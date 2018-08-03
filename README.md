@@ -1,2 +1,2 @@
-# demo
-存放平时学到用到的demo实例
+# 代码示例
+>ArcGIS示例 [API](https://developers.arcgis.com/javascript/3/jsapi/)

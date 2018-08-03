@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Echarts 关系图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 1200px;
+            height: 700px;
+            border: 1px solid #ccc;
+            margin: 10px auto;
+            position: relative;
+        }
+
+        .box-body {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div id="myEcharts" class="box-body"></div>
+    </div>
+    <script src="jquery-2.1.1.js"></script>
+    <script src="echarts.js"></script>
+    <script>
+        var echartsUtil = {
+            params: {
+                myEcharts: null,
+            },
+            init: function () {
+                this.load();
+                this.bindEvent();
+            },
+            bindEvent: function () {
+                _this = this;
+                
+            },
+            load: function () {
+                this.params.myEcharts = echarts.init(document.getElementById('myEcharts'));
+                var option = this.getOption();
+                this.params.myEcharts.setOption(option);
+            },
+            getOption: function () {
+
+                var data1 = [
+                    {
+                        name: '萨拉达·阿提\n665412588945663572',
+                        draggable: true,
+                        category: 1,
+                        itemStyle: {
+                            normal: {
+                                shadowBlur: 10,
+                                shadowColor: '#04f2a7',
+                                color: '#d43131'
+                            }
+                        }
+                    },
+                    {
+                        name: '伊娃·阿提\n665412588945663572',
+                        category: 1,
+                        itemStyle: {
+                            normal: {
+                                shadowBlur: 10,
+                                shadowColor: '#04f2a7',
+                                color: '#001c43'
+                            }
+                        }
+                    },
+                    {
+                        name: '下塔·阿提\n665412588945663572',
+                        value: '1111',
+                        category: 1,
+                        itemStyle: {
+                            normal: {
+                                shadowBlur: 10,
+                                shadowColor: '#04f2a7',
+                                color: '#001c43'
+                            }
+                        }
+                    },
+                    {
+                        name: '伊娃5·阿提\n665412588945663572',
+                        category: 2,
+                        itemStyle: {
+                            normal: {
+                                shadowBlur: 10,
+                                shadowColor: '#04f2a7',
+                                color: '#001c43'
+                            }
+                        }
+                    },
+                    {
+                        name: '伊娃6·阿提\n665412588945663572',
+                        category: 0,
+                        itemStyle: {
+                            normal: {
+                                shadowBlur: 10,
+                                shadowColor: '#04f2a7',
+                                color: '#001c43'
+                            }
+                        }
+                    },
+                    {
+                        name: '伊娃7·阿提\n665412588945663572',
+                        category: 0,
+                        itemStyle: {
+                            normal: {
+                                shadowBlur: 10,
+                                shadowColor: '#04f2a7',
+                                color: '#001c43'
+                            }
+                        }
+                    }
+                ];
+                var links1 = [
+                    {
+                        source: '萨拉达·阿提\n665412588945663572',
+                        target: '伊娃·阿提\n665412588945663572',
+                        value: '关系',
+                        lineStyle: {
+                            normal: {
+                                color: {
+                                    type: 'linear',
+                                    colorStops: [{
+                                        offset: 0, color: '#e0f55a' //0%处的颜色
+                                    }, {
+                                        offset: 1, color: '#639564' //100%处的颜色
+                                    }],
+                                    globalCoord: false
+                                }
+                            }
+                        }
+                    },
+                    {
+                        source: '萨拉达·阿提\n665412588945663572',
+                        target: '伊娃5·阿提\n665412588945663572',
+                        value: '朋友'
+                    },
+                    {
+                        source: '萨拉达·阿提\n665412588945663572',
+                        target: '伊娃6·阿提\n665412588945663572',
+                        value: '妻子',
+                        lineStyle: {
+                            normal: {
+                                color: {
+                                    type: 'linear',
+                                    x: 0,
+                                    y: 0,
+                                    x2: 0,
+                                    y2: 1,
+                                    colorStops: [{
+                                        offset: 0, color: '#e0f55a' //0%处的颜色
+                                    }, {
+                                        offset: 1, color: '#639564' //100%处的颜色
+                                    }],
+                                    globalCoord: false
+                                }
+                            }
+                        }
+                    },
+                    {
+                        source: '萨拉达·阿提\n665412588945663572',
+                        target: '伊娃7·阿提\n665412588945663572',
+                        value: '姐姐',
+                        lineStyle: {
+                            normal: {
+                                color: {
+                                    type: 'linear',
+                                    x: 0,
+                                    y: 0,
+                                    x2: 0,
+                                    y2: 1,
+                                    colorStops: [{
+                                        offset: 0, color: '#e0f55a' //0%处的颜色
+                                    }, {
+                                        offset: 1, color: '#639564' //100%处的颜色
+                                    }],
+                                    globalCoord: false
+                                }
+                            }
+                        }
+                    },
+                    {
+                        source: '萨拉达·阿提\n665412588945663572',
+                        target: '下塔·阿提\n665412588945663572',
+                        value: '关系',
+                        lineStyle: {
+                            normal: {
+                                color: {
+                                    type: 'linear',
+                                    x: 0,
+                                    y: 0,
+                                    x2: 0,
+                                    y2: 1,
+                                    colorStops: [{
+                                        offset: 0, color: '#eda553' //0%处的颜色
+                                    }, {
+                                        offset: 1, color: '#7c785b' //100%处的颜色
+                                    }],
+                                    globalCoord: false
+                                }
+                            }
+                        }
+                    }
+                ];
+                var option = {
+                    //animation: false,
+                    backgroundColor: '#14263a',
+                    //color: ['#83e0ff', '#45f5ce', '#b158ff'],
+                    // legend: {
+                    //     show: true,
+                    //     data: [
+                    //         { name: '123123', textStyle: { color: '#fff' } },
+                    //         { name: '11', textStyle: { color: '#fff' } },
+                    //         { name: '2', textStyle: { color: '#fff' } }
+                    //     ]
+                    // },
+                    series:
+                    {
+                        animation: false,
+                        type: 'graph',
+                        layout: 'force',
+                        force: {
+                            repulsion: 6000,
+                            edgeLength: 200
+                        },
+                        symbol: 'rect',
+                        symbolSize: [230, 50],
+                        // roam: true,
+                        label: {
+                            normal: {
+                                show: true,
+                                fontSize: 18
+                            }
+                        },
+                        edgeSymbolSize: [4, 10],
+                        edgeLabel: {
+                            normal: {
+                                show: true,
+                                textStyle: {
+                                    color: '#fff',
+                                    fontSize: 20
+                                },
+                                formatter: "{c}"
+                            }
+                        },
+                        data: data1,
+                        links: links1,
+                        lineStyle: {
+                            normal: {
+                                opacity: 0.9,
+                                width: 10,
+                                curveness: 0
+                            }
+                        },
+                        categories: [
+                            { name: '1' },
+                            { name: '2' },
+                            { name: '3' }
+                        ]
+                    }
+                };
+
+                return option;
+            }
+        };
+
+        $(function () {
+            echartsUtil.init();
+        });
+    </script>
+</body>
+
+</html>

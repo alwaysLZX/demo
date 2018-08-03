@@ -40,149 +40,164 @@
             },
             init: function () {
                 var _this = this;
-                $.getJSON("./map/userDefined/huanan2.json", function (huanan) {
+                $.getJSON("./map/userDefined/huanan.json", function (huanan) {
+
                     echarts.registerMap('huanan', huanan);
-                    _this.params.myEcharts = echarts.init(document.getElementById('myEcharts'));
+                    _this.initMap();
+                    _this.bindEvent();
+                });
+            },
+            initMap: function () {
+                this.params.myEcharts = echarts.init(document.getElementById('myEcharts'));
+                var option = this.getOption();
+                console.log(option);
+                this.params.myEcharts.setOption(option);
+            },
+            bindEvent: function () {
 
-                    var geoCoordMap = {
-                        '广东': [113.23333, 23.1667],
-                        '广西': [108.33000, 22.8400],
-                        '云南': [102.73333, 25.05000],
-                        '海南': [110.35000, 20.01667],
-                        '贵州': [106.71667, 26.56667],
+                this.params.myEcharts.on('click', function (params) {
+                    console.log(params);
+                });
+
+            },
+            getOption: function () {
+
+                var geoCoordMap = {
+                    '广东': [113.23333, 23.1667],
+                    '广西': [108.33000, 22.8400],
+                    '云南': [102.73333, 25.05000],
+                    '海南': [110.35000, 20.01667],
+                    '贵州': [106.71667, 26.56667],
+                }
+                var data = [
+                    { name: '广东', value: 399 },
+                    { name: '广西', value: 239 },
+                    { name: '云南', value: 152 },
+                    { name: '海南', value: 299 },
+                    { name: '贵州', value: 289 },
+                ];
+                var max = 480, min = 9; // todo 
+                var maxSize4Pin = 100, minSize4Pin = 20;
+
+                var convertData = function (data) {
+                    var res = [];
+                    for (var i = 0; i < data.length; i++) {
+                        var geoCoord = geoCoordMap[data[i].name];
+                        if (geoCoord) {
+                            res.push({
+                                name: data[i].name,
+                                value: geoCoord.concat(data[i].value)
+                            });
+                        }
                     }
-                    var data = [
-                        { name: '广东', value: 399 },
-                        { name: '广西', value: 239 },
-                        { name: '云南', value: 152 },
-                        { name: '海南', value: 299 },
-                        { name: '贵州', value: 289 },
-                    ];
-                    var max = 480, min = 9; // todo 
-                    var maxSize4Pin = 100, minSize4Pin = 20;
-
-                    var convertData = function (data) {
-                        var res = [];
-                        for (var i = 0; i < data.length; i++) {
-                            var geoCoord = geoCoordMap[data[i].name];
-                            if (geoCoord) {
-                                res.push({
-                                    name: data[i].name,
-                                    value: geoCoord.concat(data[i].value)
-                                });
+                    return res;
+                };
+                var option = {
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: function (params) {
+                            if (typeof (params.value)[2] == "undefined") {
+                                return params.name + ' : ' + params.value;
+                            } else {
+                                return params.name + ' : ' + params.value[2];
                             }
                         }
-                        return res;
-                    };
-                    var option = {
-                        tooltip: {
-                            trigger: 'item',
-                            formatter: function (params) {
-                                if (typeof (params.value)[2] == "undefined") {
-                                    return params.name + ' : ' + params.value;
-                                } else {
-                                    return params.name + ' : ' + params.value[2];
-                                }
+                    },
+                    // legend: {
+                    //     orient: 'vertical',
+                    //     y: 'bottom',
+                    //     x: 'right',
+                    //     data: ['credit_pm2.5'],
+                    //     textStyle: {
+                    //         color: '#fff'
+                    //     }
+                    // },
+                    geo: {
+                        show: true,
+                        roam: false,
+                        zoom: 1.2,
+                        map: 'huanan',
+                        label: {
+                            normal: {
+                                show: false, //显示省份标签
+                                textStyle: { color: "#fff" } //省份标签字体颜色
+                            },
+                            emphasis: { //对应的鼠标悬浮效果
+                                show: false,
+                                textStyle: { color: "#800080" }
                             }
                         },
-                        legend: {
-                            orient: 'vertical',
-                            y: 'bottom',
-                            x: 'right',
-                            data: ['credit_pm2.5'],
-                            textStyle: {
-                                color: '#fff'
+                        itemStyle: {
+                            normal: {
+                                borderWidth: .5, //区域边框宽度
+                                borderColor: '#2f2760', //区域边框颜色
+                                areaColor: "#161235", //区域颜色
+                            },
+                            emphasis: {
+                                borderWidth: .5,
+                                borderColor: '#4742a0',
+                                areaColor: "#282456",
                             }
                         },
-                        geo: {
-                            show: true,
-                            roam: false,
-                            // zoom: 1.2,
-                            map: 'huanan',
+                    },
+                    series: [
+                        {
+                            name: '问题数量',
+                            type: 'scatter',
+                            coordinateSystem: 'geo',
+                            data: convertData(data),
+                            symbolSize: function (val) {
+                                return val[2] / 10;
+                            },
                             label: {
                                 normal: {
-                                    show: false, //显示省份标签
-                                    textStyle: { color: "#fff" } //省份标签字体颜色
+                                    formatter: '{b}',
+                                    position: 'right',
+                                    show: true
                                 },
-                                emphasis: { //对应的鼠标悬浮效果
-                                    show: false,
-                                    textStyle: { color: "#800080" }
+                                emphasis: {
+                                    show: true
                                 }
                             },
                             itemStyle: {
                                 normal: {
-                                    borderWidth: .5, //区域边框宽度
-                                    borderColor: '#2f2760', //区域边框颜色
-                                    areaColor: "#161235", //区域颜色
-                                },
-                                emphasis: {
-                                    borderWidth: .5,
-                                    borderColor: '#4742a0',
-                                    areaColor: "#282456",
+                                    color: '#05C3F9'
                                 }
-                            },
-                        },
-                        series: [
-                            {
-                                name: '问题数量',
-                                type: 'scatter',
-                                coordinateSystem: 'geo',
-                                data: convertData(data),
-                                symbolSize: function (val) {
-                                    return val[2] / 10;
-                                },
-                                label: {
-                                    normal: {
-                                        formatter: '{b}',
-                                        position: 'right',
-                                        show: true
-                                    },
-                                    emphasis: {
-                                        show: true
-                                    }
-                                },
-                                itemStyle: {
-                                    normal: {
-                                        color: '#05C3F9'
-                                    }
-                                }
-                            },
-                            {
-                                name: '点',
-                                type: 'scatter',
-                                coordinateSystem: 'geo',
-                                symbol: 'pin',
-                                symbolSize: function (val) {
-                                    var a = (maxSize4Pin - minSize4Pin) / (max - min);
-                                    var b = minSize4Pin - a * min;
-                                    b = maxSize4Pin - a * max;
-                                    return a * val[2] + b;
-                                },
-                                label: {
-                                    normal: {
-                                        show: true,
-                                        textStyle: {
-                                            color: '#fff',
-                                            fontSize: 9,
-                                        }
-                                    }
-                                },
-                                itemStyle: {
-                                    normal: {
-                                        color: '#F62157', //标志颜色
-                                    }
-                                },
-                                zlevel: 6,
-                                data: convertData(data),
                             }
-                        ]
-                    };
-                    _this.params.myEcharts.setOption(option);
-                    _this.params.myEcharts.on('click', function (params) {
-                        console.log(params.name);//此处写点击事件内容
-                    });
-                });
-            },
+                        },
+                        {
+                            name: '点',
+                            type: 'scatter',
+                            coordinateSystem: 'geo',
+                            symbol: 'pin',
+                            symbolSize: function (val) {
+                                var a = (maxSize4Pin - minSize4Pin) / (max - min);
+                                var b = minSize4Pin - a * min;
+                                b = maxSize4Pin - a * max;
+                                return a * val[2] + b;
+                            },
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        color: '#fff',
+                                        fontSize: 9,
+                                    }
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    color: '#F62157', //标志颜色
+                                }
+                            },
+                            zlevel: 6,
+                            data: convertData(data),
+                        }
+                    ]
+                };
+
+                return option;
+            }
         };
 
         $(function () {

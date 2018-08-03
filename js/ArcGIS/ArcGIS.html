@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>arcgis demo</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.25/esri/css/esri.css">
+    <style>
+        html,
+        body,
+        #map {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        @keyframes scale_big {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .box {
+            width: 200px;
+            height: 300px;
+            background-color: black;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            z-index: 609;
+            border-radius: 10px;
+            display: none;
+            animation: scale_big 0.5s;
+        }
+
+        .box .close {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="claro">
+    <div id="map">
+        <div class="box" id="box">
+            <span class="close" id="close">x</span>
+        </div>
+    </div>
+</body>
+<script src="https://js.arcgis.com/3.25/"></script>
+<script>
+    // 全局变量
+    var g = {
+        map: null,              // 地图对象
+        graphicLayer: null,     // 图形层对象
+        graphic: null,           // 图形对象
+        graphic_img_url: null,   // 图形对象的图片地址
+        mapPoint: null,
+        screenPoint: null,
+        boxEle: null,            // box框
+        isShowInfoBox: false,    // 是否展示信息框
+    };
+
+    // 地图助手
+    var arcGISUtil = {
+        // 初始化
+        init: function () {
+            var _this = this;
+            require([
+                "esri/map",
+                "esri/layers/ArcGISTiledMapServiceLayer",
+                "esri/geometry/webMercatorUtils",
+                "esri/geometry/Point",
+                "esri/geometry/geometryEngine",
+                "esri/graphic",
+                "esri/layers/GraphicsLayer",
+                "esri/symbols/PictureMarkerSymbol",
+                "dojo/domReady!"], function (
+                    Map,
+                    ArcGISTiledMapServiceLayer,
+                    webMercatorUtils,
+                    Point,
+                    geometryEngine,
+                    Graphic,
+                    GraphicsLayer,
+                    PictureMarkerSymbol) {
+
+                    _this.loadMap(Map);
+                    _this.addCacheLayer(ArcGISTiledMapServiceLayer);
+                    _this.addGraphicsLayer(GraphicsLayer, Point, PictureMarkerSymbol, Graphic);
+                    _this.bindEvent(PictureMarkerSymbol);
+                });
+        },
+        // 加载地图
+        loadMap: function (Map) {
+            g.map = new Map("map", {
+                logo: false,
+                minScale: 250000,
+                maxScale: 4000,
+                basemap: "osm",  // osm
+                slider: false
+            });
+            g.map.setScale(125000);
+            g.map.centerAt([121.750836, 31.154548]);
+        },
+        // 添加缓存图层
+        addCacheLayer: function (ArcGISTiledMapServiceLayer) {
+            // 缓存地图服务
+            // var tiledMap = new ArcGISTiledMapServiceLayer("http://172.25.0.18:6080/arcgis/rest/services/shanghai02/MapServer");
+            // 添加图层
+            //map.addLayer(tiledMap);
+        },
+        // 添加图形图层
+        addGraphicsLayer: function (GraphicsLayer, Point, PictureMarkerSymbol, Graphic) {
+
+            g.graphicLayer = new GraphicsLayer();
+
+            var pt = new Point(121.724223, 31.173603, map.spatialReference);
+            var sms = new PictureMarkerSymbol('images/small_y.png', 50, 50);
+            var attr = { data: '111' };
+            var graphic = new Graphic(pt, sms, attr, null);
+
+            var pt1 = new Point(121.767054, 31.155558, map.spatialReference);
+            var sms1 = new PictureMarkerSymbol('images/small_y.png', 50, 50);
+            var graphic1 = new Graphic(pt1, sms1, null, null);
+
+            var pt2 = new Point(121.815347, 31.157783, map.spatialReference);
+            var sms2 = new PictureMarkerSymbol('images/small_y.png', 50, 50);
+            var graphic2 = new Graphic(pt2, sms2, null, null);
+
+            g.graphicLayer.add(graphic);
+            g.graphicLayer.add(graphic1);
+            g.graphicLayer.add(graphic2);
+            g.map.addLayer(g.graphicLayer);
+        },
+        // api
+        api: function () {
+
+            // 获取中心点
+            // return:{x:...,y:...}
+            // var centerPointXY = map.extent.getCenter();
+
+            // xy点转换成经纬度
+            // return [lng,lat]
+            // var centerPoint = webMercatorUtils.xyToLngLat(centerPointXY.x, centerPointXY.y);
+            // console.log(centerPoint);
+
+            // 定义点
+            // var point1 = new Point(centerPoint[0], centerPoint[1]);
+            // var point2 = new Point(114.031040, 22.324386);
+            // console.log(point1);
+            // console.log(point2);
+
+            // 计算两个几何之间的最短平面距离
+            //  distance = geometryEngine.distance(point1, point2, "");
+            // console.log(distance);
+
+            // 返回当前地图比例
+            // var currentScale = map.getScale();
+            // console.log(currentScale);
+
+            // 不允许使用鼠标滚轮放大或缩小地图
+            // map.disableScrollWheelZoom();
+
+            // 允许使用鼠标滚轮放大或缩小地图
+            // map.enableScrollWheelZoom();
+
+            // 禁止双击地图以放大关卡并使地图居中
+            // map.disableDoubleClickZoom();
+
+            // 禁止双击地图以放大关卡并使地图居中
+            // map.enableDoubleClickZoom();
+
+            // 地图的空间参考
+            // map.spatialReference
+
+            // 移动至中心点
+            // map.centerAt([121.750836, 31.154548]);
+        },
+        // 绑定事件
+        bindEvent: function (PictureMarkerSymbol) {
+            var _this = this;
+
+            // 图形图层点击事件
+            g.graphicLayer.on("click", function (evt) {
+                // 重置图形
+                _this.resizeGraphic(PictureMarkerSymbol);
+
+                // graphic 图形 symbol 标志
+                var _graphic = evt.graphic;
+                var _img_url = _graphic.symbol.url;
+
+                // 重新设置图形标志
+                _graphic.setSymbol(new PictureMarkerSymbol(_img_url, 100, 100));
+
+                // 	将单个地图点转换为屏幕坐标
+                var _screenPoint = g.map.toScreen(evt.mapPoint);
+
+                // 可以获取地图坐标
+                var _geometry = _graphic.geometry;
+                // 迁移至地图中心
+                g.map.centerAt([_geometry.x, _geometry.y]);
+
+                _this.showInfoBox(_screenPoint.x, _screenPoint.y);
+
+                // 处理全局变量
+                g.graphic = _graphic;
+                g.graphic_img_url = _img_url;
+                g.mapPoint = evt.mapPoint;
+                g.screenPoint = _screenPoint;
+            });
+
+            // 平移
+            g.map.on('pan', function (pan) {
+                if (g.screenPoint !== null && g.isShowInfoBox === true) {
+                    var movePoint = pan.delta;
+                    console.log(pan.delta);
+                    _this.showInfoBox((g.screenPoint.x + movePoint.x), (g.screenPoint.y + movePoint.y));
+                }
+            });
+
+            // 平移结束
+            g.map.on('pan-end', function (panend) {
+                if (g.screenPoint !== null && g.isShowInfoBox === true) {
+                    var movedelta = panend.delta;
+                    console.log("平移结束", panend.delta);
+                    g.screenPoint.x = g.screenPoint.x + movedelta.x;
+                    g.screenPoint.y = g.screenPoint.y + movedelta.y;
+                }
+            });
+
+            // 放大
+            g.map.on('zoom', function () {
+                if (g.screenPoint !== null && g.isShowInfoBox === true) {
+                    _this.getBoxElement().style.display = 'none';
+                }
+            });
+
+            // 缩小
+            g.map.on('zoom-end', function () {
+                if (g.screenPoint !== null && g.isShowInfoBox === true) {
+                    var zoomPoint = g.map.toScreen(g.mapPoint);
+                    _this.showInfoBox(zoomPoint.x, zoomPoint.y);
+                    g.screenPoint = zoomPoint;
+                }
+            });
+
+            // 隐藏信息盒子
+            document.getElementById('close').onclick = function () {
+                _this.hideInfoBox(PictureMarkerSymbol);
+            }
+        },
+        // 重置图形
+        resizeGraphic: function (PictureMarkerSymbol) {
+            if (g.graphic !== null) {
+                g.graphic.setSymbol(new PictureMarkerSymbol(g.graphic_img_url, 50, 50));
+            }
+        },
+        getBoxElement: function () {
+            if (g.boxEle === null) {
+                g.boxEle = document.getElementById("box");
+            }
+            return g.boxEle;
+        },
+        // 展示信息盒子
+        showInfoBox: function (x, y) {
+            var _box = this.getBoxElement();
+
+            _box.style.left = (x + 50) + "px";
+            _box.style.top = (y - 100) + "px";
+            _box.style.display = "block";
+
+            g.isShowInfoBox = true;
+        },
+        // 隐藏信息盒子
+        hideInfoBox: function (PictureMarkerSymbol) {
+            var _this = this;
+            var _box = this.getBoxElement();
+            _box.style.display = "none";
+            _this.resizeGraphic(PictureMarkerSymbol);
+            g.isShowInfoBox = false;
+        }
+    };
+
+    arcGISUtil.init();
+</script>
+</body>
+
+</html>

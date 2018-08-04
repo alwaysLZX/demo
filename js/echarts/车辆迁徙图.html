@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>车辆迁徙图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 1200px;
+            height: 500px;
+            border: 1px solid #ccc;
+            margin: 10px auto;
+            position: relative;
+        }
+
+        .box-body {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="col-md-6 text-right">
+        <span style="margin-right:10px;">车辆进出省市类型：</span>
+        <select style="width:140px;height:30px;" id="selectType">
+            <option selected value="本市车辆出外市">本市车辆出外市</option>
+            <option value="本市车辆出外省">本市车辆出外省</option>
+            <option value="外省车辆入本市">外省车辆入本市</option>
+            <option value="外市车辆入本市">外市车辆入本市</option>
+        </select>
+    </div>
+    <div class="box">
+        <div id="echartsMain" class="box-body"></div>
+    </div>
+    <script src="jquery-2.1.1.js"></script>
+    <script src="echarts.js"></script>
+    <script>
+
+        // 初始化助手
+        var initUtil = {
+            init: function () {
+                this.bindEvent();
+            },
+            bindEvent: function () {
+                var _this = this;
+                $('#selectType').change(function () {
+                    var type = $(this).val();
+                    var data = _this.testData(type);
+                    switch (type) {
+                        case "本市车辆出外市":
+                        case "外市车辆入本市":
+                            echartsMapUtil.GuangDongMap.load(data);
+                            break;
+                        case "本市车辆出外省":
+                        case "外省车辆入本市":
+                            echartsMapUtil.ChinaMap.load(data);
+                            break;
+                    }
+                }).change();
+            },
+            testData: function (type) {
+                switch (type) {
+                    case "本市车辆出外市":
+                        var data = [
+                            { from: '佛山', to: '广州', value: 94, showName: '广州' },
+                            { from: '佛山', to: '东莞', value: 66, showName: '东莞' },
+                            { from: '佛山', to: '中山', value: 70, showName: '中山' },
+                            { from: '佛山', to: '江门', value: 94, showName: '江门' },
+                        ];
+
+                        return data;
+                        break;
+                    case "本市车辆出外省":
+                        var data = [
+                            { from: '佛山', to: '北京', value: 94, showName: '内蒙古' },
+                            { from: '佛山', to: '内蒙古', value: 66, showName: '内蒙古' }
+                        ];
+
+                        return data;
+                        break;
+                    case "外省车辆入本市":
+                        var data = [
+                            { from: '北京', to: '佛山', value: 94, showName: '北京' },
+                            { from: '黑龙江', to: '佛山', value: 66, showName: '黑龙江' },
+                            { from: '内蒙古', to: '佛山', value: 70, showName: '内蒙古' }
+                        ];
+
+                        return data;
+                        break;
+                    case "外市车辆入本市":
+                        var data = [
+                            { from: '广州', to: '佛山', value: 94, showName: '广州' },
+                            { from: '东莞', to: '佛山', value: 66, showName: '东莞' },
+                            { from: '中山', to: '佛山', value: 70, showName: '中山' }
+                        ];
+
+                        return data;
+                        break;
+                }
+            }
+        };
+
+        // echarts地图助手
+        var echartsMapUtil = {
+            mapName: "",
+            mapType: {},
+            // 初始化
+            init: function (mapName, mapUrl, func) {
+                var _this = this;
+                _this.mapName = mapName;
+                if (!_this.mapType[mapName]) {
+                    $.get(mapUrl, null, function (result) {
+                        _this.mapType[mapName] = result;
+                        echarts.registerMap(_this.mapName, result);
+                        if (typeof func === "function") {
+                            func();
+                        }
+                    });
+                } else {
+                    echarts.registerMap(_this.mapName, _this.mapType[mapName]);
+                    func();
+                }
+            },
+            // 转换数据
+            convertData: function (data, geoCoordMap) {
+                var res = [];
+                for (var i = 0; i < data.length; i++) {
+                    var dataItem = data[i];
+                    var fromCoord = geoCoordMap[dataItem.from];
+                    var toCoord = geoCoordMap[dataItem.to];
+                    var showName = dataItem.showName;
+                    if (fromCoord && toCoord) {
+                        res.push([{
+                            coord: fromCoord,
+                            name: showName,
+                            value: dataItem.value//来源或流向修改
+                        }, {
+                            coord: toCoord,
+                            name: showName
+                        }]);
+                    }
+                }
+
+                return res;
+            },
+            convertEffectScatterData: function (data, geoCoordMap) {
+                var arr = [];
+                data.forEach(function (item, index) {
+                    var name, value;
+                    if (item.from === "佛山") {
+                        name = item.to + "：" + item.value;
+                        value = geoCoordMap[item.to].concat([item.value]);
+                    } else {
+                        name = item.from + "：" + item.value;
+                        value = geoCoordMap[item.from].concat([item.value]);
+                    }
+
+                    arr.push({
+                        name: name,
+                        value: value
+                    });
+
+                    if (index === 0) {
+                        // 添加中心点，一个就够
+                        arr.push({
+                            name: "佛山",
+                            value: geoCoordMap["佛山"].concat([item.value])
+                        });
+                    }
+                });
+                return arr;
+            },
+            // 系列画图
+            series: function (data, geoCoordMap) {
+                var _this = this;
+                var series = [];
+                [['佛山', data]].forEach(function (item, i) {
+                    series.push(
+                        {//线
+                            name: item[0],
+                            type: 'lines',
+                            zlevel: 2,
+                            symbol: ['none', 'arrow'], //'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'线两端的标记类型
+                            symbolSize: 5, //箭头大小
+                            lineStyle: {
+                                normal: {
+                                    width: 1,
+                                    opacity: 0.4,
+                                    curveness: 0.3
+                                },
+                            },
+                            effect: {
+                                show: true, //是否显示特效
+                                period: 6,  //特效动画的时间，单位为 s
+                                symbol: 'pin', //特效图形的类型
+                                constantSpeed: 50, //固定速度，大于0的值后会忽略 period 配置项
+                                symbolSize: 5,
+                                color: '#fff',
+                                shadowBlur: 8
+                            },
+                            data: _this.convertData(item[1], geoCoordMap)
+                        },
+                        {// 画点
+                            type: 'effectScatter',
+                            coordinateSystem: 'geo',
+                            zlevel: 2,
+                            rippleEffect: { //涟漪特效相关配置
+                                period: '6', //动画的时间
+                                scale: '20', //动画中波纹的最大缩放比例
+                                brushType: 'stroke'
+                            },
+                            label: { //图形上的城市文本标签
+                                normal: {
+                                    show: true,
+                                    position: 'right',
+                                    formatter: '{b}',
+                                    textStyle: {
+                                        color: '#fff',
+                                        fontStyle: 'normal',
+                                        fontFamily: 'arial',
+                                        fontSize: 12,
+                                    }
+                                }
+                            },
+                            //symbolSize: 3,//点大小
+                            symbolSize: function (val) {
+                                //return val[2] / 100;
+                                return 1;
+                            },
+                            data: _this.convertEffectScatterData(item[1], geoCoordMap)
+                            //data: item[1].map(function (dataItem) {
+                            //    return {
+                            //        name: dataItem[0].name,//来源或流向修改
+                            //        value: geoCoordMap[dataItem[0].name].concat([dataItem[0].value])//来源或流向修改
+                            //    };
+                            //})
+                        });
+                });
+
+                return series;
+            },
+            // 获取参数选项
+            getOption: function (data, geoCoordMap) {
+                var _this = this;
+                var option = {
+                    backgroundColor: '#23243a',
+                    tooltip: {  //提示组件
+                        trigger: 'item',
+                    },
+                    visualMap: {
+                        min: 0,
+                        max: 100,
+                        //seriesIndex:['0','1'],//选择应用那几条数据
+                        calculable: true,
+                        color: ['#ff3333', 'orange', 'yellow', 'lime', 'aqua'],
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    },
+                    geo: {
+                        map: _this.mapName,//'china',
+                        tooltip: {
+                            show: true,
+                            formatter: function (params) {
+                                debugger
+                                if (params.data.value != null) {
+                                    return params.data.name + "：" + params.data.value;
+                                } else {
+                                    return params.data.name
+                                }
+                            }
+                        },
+                        label: {
+                            emphasis: {
+                                show: false
+                            }
+                        },
+                        roam: false, //开启缩放或者平移
+                        zoom: 1.1,  //缩放比例
+                        itemStyle: {
+                            normal: {
+                                areaColor: 'none',
+                                borderColor: 'rgba(100,149,237,1)'
+                            },
+                            emphasis: {
+                                areaColor: '#1b1b1b'
+                            }
+                        }
+                    },
+                    series: _this.series(data, geoCoordMap)
+                };
+
+                return option;
+            }
+        };
+
+        // echarts地图助手 - 中国地图
+        echartsMapUtil.ChinaMap = {
+            mapUrl: './map/json/china.json',
+            mapType: 'china',
+            echartsId: 'echartsMain',
+            // 初始化
+            init: function (name, func) {
+                echartsMapUtil.init(name, this.mapUrl, func);
+            },
+            load: function (data) {
+                var myChart = echarts.init(document.getElementById(this.echartsId));
+                var base = echartsMapUtil;
+                var _this = this;
+                this.init(this.mapType, function () {
+                    myChart.setOption(base.getOption(data, _this.geoCoordMap), true);
+                });
+            },
+            // 地点与图标对应
+            geoCoordMap: {
+                '佛山': [112.98, 23.01],
+                '北京': [116.4551, 40.2539],
+                '天津': [117.4219, 39.4189],
+                '上海': [121.4648, 31.2891],
+                '重庆': [106.557165, 29.563206],
+                '河北': [114.508958, 38.066606],
+                '河南': [113.673367, 34.748062],
+                '云南': [102.721896, 25.047632],
+                '辽宁': [123.445621, 41.806698],
+                '黑龙江': [126.655705, 45.759581],
+                '湖南': [112.950888, 28.229114],
+                '安徽': [117.300842, 31.887672],
+                '山东': [117.029895, 36.677424],
+                '新疆': [87.616327, 43.800508],
+                '江苏': [118.814345, 32.061445],
+                '浙江': [120.16991, 30.272236],
+                '江西': [115.904962, 28.674132],
+                '湖北': [114.290138, 30.595623],
+                '广西': [108.381781, 22.815042],
+                '甘肃': [103.851217, 36.061978],
+                '山西': [112.57197, 37.879532],
+                '内蒙古': [112.57197, 37.879532],
+                '陕西': [108.960062, 34.285251],
+                '吉林': [126.572746, 43.86785],
+                '福建': [119.319713, 26.072564],
+                '贵州': [106.557165, 29.563206],
+                '广东': [113.238778, 23.161621],
+                '青海': [101.787147, 36.621234],
+                '西藏': [91.154492, 29.665953],
+                '四川': [104.082256, 30.652565],
+                '宁夏': [106.234805, 38.487468],
+                '海南': [109.910757, 19.108187],
+                '台湾': [121.098613, 23.778734],
+                '香港': [114.168545, 22.36641],
+                '澳门': [113.549978, 22.1943]
+            }
+        };
+
+        // echarts地图助手 - 广东地图
+        echartsMapUtil.GuangDongMap = {
+            mapUrl: './map/json/province/guangdong.json',
+            mapType: 'guangdong',
+            echartsId: 'echartsMain',
+            init: function (func) {
+                echartsMapUtil.init(this.mapType, this.mapUrl, func);
+            },
+            load: function (data) {
+                var myChart = echarts.init(document.getElementById(this.echartsId));
+                var base = echartsMapUtil;
+                var _this = this;
+                this.init(function () {
+                    myChart.setOption(base.getOption(data, _this.geoCoordMap), true);
+                });
+            },
+            // 地点与图标对应
+            geoCoordMap: {
+                '广州': [113.53, 23.36],
+                '佛山': [112.98, 23.01],
+                '东莞': [113.85, 23.01],
+                '中山': [113.38, 22.52],
+                '江门': [112.70, 22.21],
+
+                '阳江': [111.80, 21.95],
+                '茂名': [110.99, 21.88],
+                '湛江': [110.14, 21.25],
+                '珠海': [113.34, 22.07],
+                '汕头': [116.59, 23.26],
+
+                '韶关': [113.60, 24.82],
+                '肇庆': [112.25, 23.49],
+                '梅州': [116.13, 24.29],
+                '惠州': [114.52, 23.12],
+                '汕尾': [115.46, 22.91],
+
+                '河源': [114.90, 23.95],
+                '清远': [113.01, 24.11],
+                '潮州': [116.83, 23.66],
+                '揭阳': [116.01, 23.27],
+                '云浮': [111.85, 22.82],
+
+                '深圳': [114.07, 22.62]
+            }
+        };
+
+        $(function () {
+            // 初始化
+            initUtil.init();
+        });
+    </script>
+</body>
+
+</html>

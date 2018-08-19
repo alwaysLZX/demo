@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片处理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+            min-height: 500px;
+        }
+
+        body {
+            font-size: 14px;
+            font-family: '微软雅黑';
+            height: 100%;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .top {
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bottom {
+            height: 0;
+            flex-grow: 1;
+            display: flex;
+        }
+
+        .half {
+            width: 0;
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .half:last-child {
+            margin-right: 0;
+        }
+        .center{
+            text-align: center;
+        }
+
+        .none {
+            display: none;
+        }
+
+        .btn-change {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="top">
+            <input type="file" id="file" class="none" accept="image/*" />
+            <label for="file" class="btn-change">选择文件</label>
+        </div>
+        <div class="bottom">
+            <div class="half">
+                <p class="center" id="oImgText"></p>
+                <img id="oImg" src="" alt="" style="width: 100%">
+            </div>
+            <div class="half">
+                <p class="center" id="nImgText"></p>
+                <img id="nImg" src="" alt="" style="width: 100%">
+            </div>
+        </div>
+    </div>
+    <script>
+        // 读取文件
+        document.querySelector("#file").addEventListener("change", function (evt) {
+            var file = this.files[0];
+            if (!file) {
+                document.getElementById("oImgText").innerHTML = "";
+                document.getElementById("nImgText").innerHTML = "";
+                return;
+            }
+
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                document.getElementById("oImg").src = reader.result;
+            }
+
+            console.log("原始大小：" + getFileSizeOfM(file.size));
+            document.getElementById("oImgText").innerHTML = "原始图片大小："+getFileSizeOfM(file.size) +"M";
+
+            compressPicture(file, function (canvas, quality, fileType) {
+                canvas.toBlob(function (blob) {
+                    console.log("压缩大小：" + getFileSizeOfM(blob.size));
+                    document.getElementById("nImgText").innerHTML = "压缩图片大小：" + getFileSizeOfM(blob.size) +"M";
+                }, fileType, quality);
+                document.getElementById("nImg").src = canvas.toDataURL(fileType, quality);
+            });
+        });
+
+        // 压缩图片
+        function compressPicture(file, func, options) {
+            var reader = new FileReader(),
+                img = new Image(),
+                fileType = file.type || 'image/png',
+                quality = 1;
+
+            var _default = Object.assign({ maxWidth: 1500, maxHeight: 1500, step: 0.02, maxSize: 0.5 }, options);
+
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                img.src = reader.result;
+            }
+
+            img.onload = function (e) {
+                var originWidth = this.width;
+                var originHeight = this.height;
+                var targetWidth = originWidth, targetHeight = originHeight;
+
+                if (originWidth > _default.maxWidth || originHeight > _default.maxHeight) {
+                    if (originWidth / originHeight > _default.maxWidth / _default.maxHeight) {
+                        targetWidth = _default.maxWidth;
+                        targetHeight = Math.round(_default.maxWidth * (originHeight / originWidth));
+                    } else {
+                        targetHeight = _default.maxHeight;
+                        targetWidth = Math.round(_default.maxHeight * (originWidth / originHeight));
+                    }
+                }
+
+                var canvas = document.createElement('canvas');
+                var context = canvas.getContext('2d');
+
+                canvas.width = targetWidth;
+                canvas.height = targetHeight;
+
+                context.clearRect(0, 0, targetWidth, targetHeight);
+                context.drawImage(img, 0, 0, targetWidth, targetHeight);
+
+                console.log("当前压缩质量:"+quality);
+
+                canvas.toBlob(function (blob) {
+                    if ((blob.size / 1024 / 1024) > _default.maxSize) {
+                        quality = (quality - _default.step).toFixed(2)*1;
+                        img.src = canvas.toDataURL(fileType, quality);
+                    } else {
+                        func(canvas, quality, fileType);
+                    }
+                }, fileType, quality);
+            };
+        }
+
+        // 获取图片大小（M）
+        function getFileSizeOfM(size) {
+            return (size / 1024 / 1024).toFixed(2);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,8 +1,5 @@
-<style scoped>
-    @import 'styles/common.css';
-</style>
 <template>
-    <div>
+    <div id="app" class="app">
         <router-view></router-view>
     </div>
 </template>
@@ -22,3 +19,6 @@
         }
     }
 </script>
+<style scoped>
+    @import 'styles/common.css';
+</style>

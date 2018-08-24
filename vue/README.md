@@ -1,6 +1,8 @@
-# [风格指南](https://cn.vuejs.org/v2/style-guide/)
+# 风格指南
+[vue官方风格指南](https://cn.vuejs.org/v2/style-guide/)
 
-> ## 为组件样式设置作用域
+## 为组件样式设置作用域
+### 为组件样式设置作用域
 
 #### 好例子
 

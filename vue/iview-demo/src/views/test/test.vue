@@ -1,8 +1,9 @@
 <template>
-    <div>
+    <div :class="[$style.test]">
         <WeekPicker
             :start-year="2016"
             v-model="week"
+            v-bind="{id:110,'class-name':'120'}"
         />
     </div>
 </template>
@@ -19,10 +20,15 @@ export default {
         return {
             week:[]
         }
+    },
+    created(){
     }
 }
 </script>
-<style scoped>
+<style module>
+.test{
+    width: 100%;
+}
 </style>
 
 

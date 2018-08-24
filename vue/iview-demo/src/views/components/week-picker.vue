@@ -1,120 +1,121 @@
 <template>
     <Cascader 
-        :data="data" 
+        :data="dateData" 
         :load-data="loadData" 
         :render-format="format" 
         :placeholder="placeholder" 
-        v-model="currentValue"
+        v-model="currentValue" 
     />
 </template>
 <script>
 
-const weekPickerUtil = {
+const util = {
     getWeekList(year, month) {
         let result = [],
-            number = 1,
             date = [year, month, "01"].join('/'),
-            thanMonth = month = month * 1;
+            weekNumber = 1,
+            thanMonth = month;
 
-        let beginDate = this.getWeekBegin(date);
-        let endDate = this.getWeekEnd(date);
+        let beginDate = this.getCurrentMonthFirstWeekBegin(date, month);
+        let endDate = this.getCurrentMonthFirstWeekEnd(date, month);
 
-        if((beginDate.getMonth() + 1)!==month){
+        while (thanMonth === month) {
+            result.push(this.getWeekItem(beginDate, endDate, weekNumber));
+            weekNumber++;
             beginDate.setDate(beginDate.getDate() + 7);
             endDate.setDate(endDate.getDate() + 7);
-        }
-
-        result.push(this.pushObj(beginDate,endDate,number));
-        number++;
-
-        while(thanMonth === month)
-        {
-            beginDate.setDate(beginDate.getDate() + 7);
             thanMonth = beginDate.getMonth() + 1;
-
-            if (thanMonth === month) {
-                endDate.setDate(endDate.getDate() + 7);
-                result.push(this.pushObj(beginDate,endDate,number));
-                number++;
-            }
         }
-
         return result;
     },
-    pushObj(beginDate,endDate,number){
-        return { value: this.beginDateAndEndDate(beginDate,endDate), label: "第" + number + "周（"+this.beginDateAndEndDateSort(beginDate,endDate)+"）" };
+    getWeekItem(beginDate, endDate, weekNumber) {
+        let result = {
+            value: this.formatDate(beginDate, endDate),
+            label: "第" + weekNumber + "周（" + this.formatShortDate(beginDate, endDate) + "）"
+        };
+        return result;
     },
-    beginDateAndEndDate(beginDate,endDate){
-        return this.formatDate(beginDate) + " - " + this.formatDate(endDate)
+    formatDate(beginDate, endDate) {
+        return this.format(beginDate) + " - " + this.format(endDate)
     },
-    beginDateAndEndDateSort(beginDate,endDate){
-        return this.formatDateSort(beginDate) + " - " + this.formatDateSort(endDate)
+    formatShortDate(beginDate, endDate) {
+        return this.format(beginDate, true) + " - " + this.format(endDate, true)
     },
-    // 获取周开始的日期
+    format(date, isShort = false, separator = '-') {
+        let month = ("0" + (date.getMonth() + 1)).slice(-2);
+        let day = ("0" + date.getDate()).slice(-2);
+        let result = [month, day];
+        if (!isShort) {
+            result.unshift(date.getFullYear());
+        }
+        return result.join(separator);
+    },
+    getCurrentMonthFirstWeekBegin(date, month) {
+        let result = this.getWeekBegin(date);
+        if (!this.isFromMonthFirstDayStart(date, month)) {
+            result.setDate(result.getDate() + 7);
+        }
+        return result;
+    },
+    getCurrentMonthFirstWeekEnd(date, month) {
+        let result = this.getWeekEnd(date);
+        if (!this.isFromMonthFirstDayStart(date, month)) {
+            result.setDate(result.getDate() + 7);
+        }
+        return result;
+    },
+    isFromMonthFirstDayStart(date, month) {
+        let result = true;
+        if ((this.getWeekBegin(date).getMonth() + 1) !== month) {
+            result = false;
+        }
+        return result;
+    },
     getWeekBegin(date) {
-        let _date = new Date(date);
-        let weekIndex = _date.getDay();
-        let lessDay = weekIndex - 1;
+        let result = new Date(date);
+        let lessDay = result.getDay() - 1;
         lessDay = lessDay < 0 ? 6 : lessDay;
-        _date.setDate(_date.getDate() - lessDay);
-        return _date;
+        result.setDate(result.getDate() - lessDay);
+        return result;
     },
-    // 获取周结束的日期
     getWeekEnd(date) {
-        let _date = new Date(date);
-        let weekIndex = _date.getDay();
-        let addDay = 7 - weekIndex;
+        let result = new Date(date);
+        let addDay = 7 - result.getDay();
         addDay = addDay === 7 ? 0 : addDay;
-        _date.setDate(_date.getDate() + addDay);
-        return _date;
-    },
-    // 格式化日期
-    formatDate(date, separator) {
-        separator = separator || "-";
-        let month = ("0" + (date.getMonth() + 1)).slice(-2);
-        let day = ("0" + date.getDate()).slice(-2);
-        return [date.getFullYear().toString(), month, day].join(separator);
-    },
-    // 格式化日期
-    formatDateSort(date, separator) {
-        separator = separator || "-";
-        let month = ("0" + (date.getMonth() + 1)).slice(-2);
-        let day = ("0" + date.getDate()).slice(-2);
-        return [month, day].join(separator);
+        result.setDate(result.getDate() + addDay);
+        return result;
     }
 };
 
 export default {
     name: "WeekPicker",
-    props:{
-        value:{
-            type:Array,
-            default(){
+    components: {},
+    inheritAttrs: true,
+    props: {
+        value: {
+            type: Array,
+            default() {
                 return [];
             }
         },
-        startYear:{
-            type:Number,
-            default:2010
+        startYear: {
+            type: Number,
+            default: 2010
         },
-        endYear:{
-            type:Number,
-            default:(new Date()).getFullYear() + 3
+        endYear: {
+            type: Number,
+            default: (new Date()).getFullYear() + 3
         },
-        placeholder:{
-            type:String,
-            default:"请选择时间"
-        }
+        placeholder: String
     },
     data() {
         return {
-            currentValue:this.value
+            currentValue: this.value
         }
     },
     computed: {
-        data() {
+        dateData() {
             let result = [];
-
             this.years().forEach(element => {
                 element.children = this.months(element.value);
                 result.push(element);
@@ -122,9 +123,9 @@ export default {
             return result;
         }
     },
-    watch:{
-        currentValue(){
-            this.$emit("input",this.currentValue);
+    watch: {
+        currentValue() {
+            this.$emit("input", this.currentValue);
         }
     },
     methods: {
@@ -145,24 +146,19 @@ export default {
             }
             return result;
         },
-        // 动态加载子项
         loadData(item, callback) {
             item.loading = true;
-            item.children = weekPickerUtil.getWeekList(item.parent, item.value);
+            item.children = util.getWeekList(item.parent * 1, item.value * 1);
             item.loading = false;
             callback();
         },
         format(labels, selectedData) {
+            let result = "";
             if (selectedData.length > 0) {
-                return selectedData[selectedData.length - 1].value;
-            } else {
-                return "";
+                result = selectedData[selectedData.length - 1].value;
             }
+            return result;
         }
-    },
-    created(){
     }
 }
 </script>
-
-

@@ -1,11 +1,37 @@
-# 风格指南
+# vue个人风格指南
 [vue官方风格指南](https://cn.vuejs.org/v2/style-guide/)
 
-## 为组件样式设置作用域
-### 为组件样式设置作用域
+### 为组件样式设置作用域 <sup data-p="a">必要</sup>
+**对于应用来说，顶级 `App` 组件和布局组件中的样式可以是全局的，但是其它所有组件都应该是有作用域的。**
 
+这条规则只和`单文件组件`有关。你*不一定*要使用 [`scoped` 特性](https://vue-loader.vuejs.org/zh-cn/features/scoped-css.html)。设置作用域也可以通过 [CSS Modules](https://vue-loader.vuejs.org/zh-cn/features/css-modules.html)，那是一个基于 class 的类似 [BEM](http://getbem.com/) 的策略，当然你也可以使用其它的库或约定。
+
+**不管怎样，对于组件库，我们应该更倾向于选用基于 class 的策略而不是 `scoped` 特性。**
+
+这让覆写内部样式更容易：使用了常人可理解的 class 名称且没有太高的选择器优先级，而且不太会导致冲突。
+
+<details>
+<summary>
+  <h4>详解</h4>
+</summary>
+如果你和其他开发者一起开发一个大型工程，或有时引入三方 HTML/CSS (比如来自 Auth0)，设置一致的作用域会确保你的样式只会运用在它们想要作用的组件上。
+
+不止要使用 `scoped` 特性，使用唯一的 class 名可以帮你确保那些三方库的 CSS 不会运用在你自己的 HTML 上。比如许多工程都使用了 `button`、`btn` 或 `icon` class 名，所以即便你不使用类似 BEM 的策略，添加一个 app 专属或组件专属的前缀 (比如 `ButtonClose-icon`) 也可以提供很多保护。
+</details>
+
+#### 反例
+``` html
+<template>
+  <button class="btn btn-close">X</button>
+</template>
+
+<style>
+.btn-close {
+  background-color: red;
+}
+</style>
+```
 #### 好例子
-
 ``` html
 <template>
   <button class="button button-close">X</button>
@@ -58,39 +84,35 @@
 </style>
 ```
 
-### Prop 名大小写 <sup data-p="b">强烈推荐</sup>
 
-**在声明 prop 的时候，其命名应该始终使用 camelCase，而在模板和 [JSX](../guide/render-function.html#JSX) 中应该始终使用 kebab-case。**
+--------- --------- --------- --------- --------- ---------
+
+
+### Prop 名大小写 <sup data-p="b">强烈推荐</sup>
+**在声明 prop 的时候，其命名应该始终使用 camelCase，而在模板和JSX中应该始终使用 kebab-case。**
 
 我们单纯的遵循每个语言的约定。在 JavaScript 中更自然的是 camelCase。而在 HTML 中则是 kebab-case。
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
-
 ``` js
 props: {
   'greeting-text': String
 }
 ```
-
 ``` html
 <WelcomeMessage greetingText="hi"/>
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
-
 ``` js
 props: {
   greetingText: String
 }
 ```
-
 ``` html
 <WelcomeMessage greeting-text="hi"/>
 ```
-{% raw %}</div>{% endraw %}
+
+
+--------- --------- --------- --------- --------- ---------
 
 
 ### 组件/实例的选项的顺序 <sup data-p="c">推荐</sup>
@@ -153,6 +175,8 @@ props: {
   - `renderError`
 
 
+--------- --------- --------- --------- --------- ---------
+
 
 ### 元素特性的顺序 <sup data-p="c">推荐</sup>
 
@@ -198,19 +222,18 @@ props: {
   - `v-text`
 
 
+--------- --------- --------- --------- --------- ---------
+
+
 ### 单文件组件的顶级元素的顺序 <sup data-p="c">推荐</sup>
+**单文件组件应该总是让 `<script>`、`<template>` 和 `<style>` 标签的顺序保持一致。且 `<style>` 要放在最后，因为另外两个标签至少要有一个。**
 
-**[单文件组件](../guide/single-file-components.html)应该总是让 `<script>`、`<template>` 和 `<style>` 标签的顺序保持一致。且 `<style>` 要放在最后，因为另外两个标签至少要有一个。**
-
-{% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
-
 ``` html
 <style>/* ... */</style>
 <script>/* ... */</script>
 <template>...</template>
 ```
-
 ``` html
 <!-- ComponentA.vue -->
 <script>/* ... */</script>
@@ -222,11 +245,7 @@ props: {
 <script>/* ... */</script>
 <style>/* ... */</style>
 ```
-{% raw %}</div>{% endraw %}
-
-{% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
-
 ``` html
 <!-- ComponentA.vue -->
 <script>/* ... */</script>
@@ -238,7 +257,6 @@ props: {
 <template>...</template>
 <style>/* ... */</style>
 ```
-
 ``` html
 <!-- ComponentA.vue -->
 <template>...</template>
@@ -250,4 +268,3 @@ props: {
 <script>/* ... */</script>
 <style>/* ... */</style>
 ```
-{% raw %}</div>{% endraw %}

@@ -1,3 +1,32 @@
+# 笔记
+
+### `ng new heroes`
+
+使用 Angular CLI 生成一个新项目以及默认的应用代码。
+
+### `ng generate component heroes`
+
+使用 Angular CLI 创建一个名为 heroes 的新组件。
+
+### `ng generate service hero`
+
+使用 Angular CLI 创建一个名叫 hero 的服务。
+
+### `ng generate service hero --module=app`
+
+通过附加 --module=app 参数来告诉 CLI 要自动在模块级提供该服务。
+
+### `ng generate module app-routing --flat --module=app`
+
+添加路由功能
+
++ --flat 把这个文件放进了 src/app 中，而不是单独的目录中。
++ --module=app 告诉 CLI 把它注册到 AppModule 的 imports 数组中。
+
+### `npm install angular-in-memory-web-api --save`
+
+--------- --------- --------- --------- --------- ---------
+
 # AngularDemo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.

@@ -4,21 +4,12 @@
     </div>
 </template>
 <script>
-    export default {
-        data () {
-            return {}
-        },
-        mounted () {
-
-        },
-        beforeDestroy () {
-
-        },
-        methods: {
-
-        }
+export default {
+    data() {
+        return {}
     }
+}
 </script>
-<style scoped>
-    @import 'styles/common.css';
+<style>
+@import "styles/common.css";
 </style>

@@ -12,4 +12,7 @@ export default {
 </script>
 <style>
 @import "styles/common.css";
+.app{
+    height: 100%;
+}
 </style>

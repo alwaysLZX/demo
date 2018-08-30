@@ -4,6 +4,10 @@
 
 新建一个项目，此命令没有指明模块，运行之后，需要选择一个模板
 
+### `ionic generate page youPageName`
+
+使用命令行新建一个页面
+
 ### `ionic serve`
 
 运行项目在浏览器上运行

@@ -1,4 +1,4 @@
-# Ionic示例
+# Ionic 文档
 
 ### `ionic start yourProjectName`
 

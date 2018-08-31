@@ -1,7 +1,8 @@
 <template>
-  <div class="wrapper">
-    <image :src="logo" class="logo" />
-    <text class="greeting">The environment is ready!</text>
+  <div class="wrapper" @click="update">
+    <image :src="logoUrl" class="logo" />
+    <text class="title">Hello {{target}}</text>
+    <text class="desc">Now, let's use vue to build your weex app.</text>
     <router-view/>
   </div>
 </template>
@@ -11,7 +12,13 @@ export default {
   name: 'App',
   data () {
     return {
-      logo: 'https://gw.alicdn.com/tfs/TB1yopEdgoQMeJjy1XaXXcSsFXa-640-302.png'
+      logoUrl: 'http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png',
+      target: 'world'
+    }
+  },
+  methods: {
+    update (e) {
+      this.target = 'weex'
     }
   }
 }
@@ -19,22 +26,21 @@ export default {
 
 <style scoped>
   .wrapper {
-    justify-content: center;
     align-items: center;
+    margin-top: 120px;
+  }
+  .title{
+    padding-top:40px;
+    padding-bottom:48px;
+    font-size: 48px;
   }
   .logo {
-    width: 424px;
-    height: 200px;
+    width: 360px;
+    height: 156px;
   }
-  .greeting {
-    text-align: center;
-    margin-top: 70px;
-    font-size: 50px;
-    color: #41B883;
-  }
-  .message {
-    margin: 30px;
-    font-size: 32px;
-    color: #727272;
+  .desc {
+    padding-top: 20px;
+    color:#888;
+    font-size: 24px;
   }
 </style>

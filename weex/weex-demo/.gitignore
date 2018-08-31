@@ -1,1 +1,5 @@
 node_modules/
+.temp/
+dist/
+platforms/android/
+platforms/ios/

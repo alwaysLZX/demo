@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,7 +50,8 @@
         .half:last-child {
             margin-right: 0;
         }
-        .center{
+
+        .center {
             text-align: center;
         }
 
@@ -68,7 +68,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="top">
@@ -76,6 +75,7 @@
             <label for="file" class="btn-change">选择文件</label>
         </div>
         <div class="bottom">
+            <div id="tip" style="width:110px;padding-top: 19px;padding-left: 10px;"></div>
             <div class="half">
                 <p class="center" id="oImgText"></p>
                 <img id="oImg" src="" alt="" style="width: 100%">
@@ -103,12 +103,12 @@
             }
 
             console.log("原始大小：" + getFileSizeOfM(file.size));
-            document.getElementById("oImgText").innerHTML = "原始图片大小："+getFileSizeOfM(file.size) +"M";
+            document.getElementById("oImgText").innerHTML = "原始图片大小：" + getFileSizeOfM(file.size) + "M";
 
             compressPicture(file, function (canvas, quality, fileType) {
                 canvas.toBlob(function (blob) {
                     console.log("压缩大小：" + getFileSizeOfM(blob.size));
-                    document.getElementById("nImgText").innerHTML = "压缩图片大小：" + getFileSizeOfM(blob.size) +"M";
+                    document.getElementById("nImgText").innerHTML = "压缩图片大小：" + getFileSizeOfM(blob.size) + "M";
                 }, fileType, quality);
                 document.getElementById("nImg").src = canvas.toDataURL(fileType, quality);
             });
@@ -116,6 +116,7 @@
 
         // 压缩图片
         function compressPicture(file, func, options) {
+            appendTip('加载图片');
             var reader = new FileReader(),
                 img = new Image(),
                 fileType = file.type || 'image/png',
@@ -125,10 +126,12 @@
 
             reader.readAsDataURL(file);
             reader.onload = function (e) {
+                appendTip('加载图片完成');
                 img.src = reader.result;
             }
-
+            let number = 0;
             img.onload = function (e) {
+                number++;
                 var originWidth = this.width;
                 var originHeight = this.height;
                 var targetWidth = originWidth, targetHeight = originHeight;
@@ -152,13 +155,13 @@
                 context.clearRect(0, 0, targetWidth, targetHeight);
                 context.drawImage(img, 0, 0, targetWidth, targetHeight);
 
-                console.log("当前压缩质量:"+quality);
-
+                appendTip(`第${number}次压缩`);
                 canvas.toBlob(function (blob) {
                     if ((blob.size / 1024 / 1024) > _default.maxSize) {
-                        quality = (quality - _default.step).toFixed(2)*1;
+                        quality = (quality - _default.step).toFixed(2) * 1;
                         img.src = canvas.toDataURL(fileType, quality);
                     } else {
+                        appendTip('压缩完成');
                         func(canvas, quality, fileType);
                     }
                 }, fileType, quality);
@@ -169,7 +172,12 @@
         function getFileSizeOfM(size) {
             return (size / 1024 / 1024).toFixed(2);
         }
+
+        function appendTip(text){
+            var ele = document.createElement('p');
+            ele.innerText = text;
+            document.getElementById('tip').appendChild(ele);
+        }
     </script>
 </body>
-
 </html>

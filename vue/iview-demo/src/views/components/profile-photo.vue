@@ -1,65 +1,127 @@
 <template>
-    <Modal title="修改头像" class-name="modal-profile-photo" :mask-closable="false" :value="visible" width="800" @on-cancel="handleCancel">
-        <div class="profile-photo">
-            <div class="profile-photo-content cropper-bg">
-                <img id="profilePhoto" alt="">
-            </div>
-            <div class="profile-photo-tool">
-                <div class="preview cropper-bg" id="profilePhotoPreview"></div>
-                <div class="choice center" style="margin-top:20px;">
-                    <input type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="handleChange" id="fileinputProfilePhoto" class="fileinput" />
-                    <label class="filelabel" for="fileinputProfilePhoto" style="width:100px;">
-                        <Icon type="image"></Icon>&nbsp;选择图片</label>
+    <div>
+        <Modal
+            v-model="currentValue"
+            title="修改头像" 
+            class-name="modal-profile-photo"
+            width="800"
+            :mask-closable="false"
+        >
+            <div class="profile-photo">
+                <div class="profile-photo-content cropper-bg">
+                    <img id="profilePhoto" alt="">
                 </div>
-                <div class="save center" style="margin-top:20px;">
-                    <Button :loading="reClick.save" @click="handleCrop" type="primary" style="width:100px;" icon="crop">保存</Button>
+                <div class="profile-photo-tool">
+                    <div class="preview cropper-bg" id="profilePhotoPreview"></div>
+                    <div class="center marginTop20">
+                        <input 
+                            type="file" 
+                            accept="image/png, image/jpeg, image/gif, image/jpg" 
+                            @change="handleChange" 
+                            id="fileinputProfilePhoto" 
+                            class="file-input" 
+                        />
+                        <label class="file-label" for="fileinputProfilePhoto" style="width:100px;">
+                            <Icon type="image"></Icon>&nbsp;选择图片
+                        </label>
+                    </div>
+                    <div class="center marginTop20">
+                        <Button
+                            @click="handleView"
+                            type="primary" 
+                            style="width:100px;"
+                            icon="see"
+                        >预览</Button>
+                    </div>
+                    <div class="center marginTop20">
+                        <Button 
+                            :loading="reClick.save" 
+                            @click="handleCrop" 
+                            type="primary" 
+                            style="width:100px;" 
+                            icon="crop"
+                        >保存</Button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </Modal>
+        </Modal>
+        <Modal 
+            v-model="preView.modal"
+            title="预览"
+        >
+        <img :src="preView.src" style="width: 100%" alt="预览">
+        </Modal>
+    </div>
 </template>
 <script>
-import { getToken } from "@/utils/auth";
-import config from "@/utils/config.js";
-import Cropper from 'cropperjs';
-import "@/views/my-components/image-editor/cropper.min.css";
+import Cropper from 'cropperjs'
+import '@/styles/cropperjs/cropper.css'
 
 // 修改头像
 export default {
-    name: 'profile_photo',
+    name: 'ProfilePhoto',
     props: {
-        visible: {
+        value: {
             type: Boolean,
-            default: false
+            default:false
         }
     },
     data() {
         return {
-            modalProfilePhotoVisible: false,
             cropper: {},
-            fileType:"image/jpeg",
-            fileName:"",
+            file: {
+                type: 'image/jpeg',
+                name: ''
+            },
             reClick:{
                 save:false
+            },
+            preView: {
+                modal: false,
+                src: ''
             }
         };
+    },
+    computed: {
+        currentValue: {
+            get() {
+                return this.value;
+            },
+            set(value) {
+                this.$emit('input', value);
+            }
+        }
+    },
+    mounted() {
+        let img = document.getElementById('profilePhoto');
+        this.cropper = new Cropper(img, {
+            viewMode: 1,
+            dragMode: 'move',
+            preview: '#profilePhotoPreview',
+            restore: false,
+            center: false,
+            highlight: false,
+            cropBoxMovable: false,
+            minContainerWidth: 500,
+            minContainerHeight: 400,
+            aspectRatio: 1 / 1, // 框高比
+            toggleDragModeOnDblclick: false
+        });
     },
     methods: {
         handleChange(e) {
             let file = e.target.files[0];
-
             if(file === null){
                 return;
             }
-
             let size = this.getFileSizeOfM(file.size);
             if (size > 2) {
                 this.handleMaxSize(file);
                 return;
             }
 
-            this.fileType = file.type;
-            this.fileName = file.name;
+            this.file.type = file.type;
+            this.file.name = file.name;
 
             // 文件大小
             let reader = new FileReader();
@@ -79,41 +141,26 @@ export default {
                 });
                 return;
             }
-            // let file = this.cropper.getCroppedCanvas().toDataURL();
-            
+
             if(this.reClick.save){
                 return;
             }
-            this.reClick.save = true;
-            
+            this.reClick.save = true;            
             this.cropper.getCroppedCanvas().toBlob(blob => {
-                
-                var formData = new FormData();
-                formData.append("profilePhoto", blob,this.fileName);
-                this.api({
-                    url: "/sys/user/upload",
-                    method: "post",
-                    headers: {
-                        Authorization: getToken()
-                    },
-                    data: formData
-                }).then(res => {
-                    console.log(res);
-                    if (res.code === 0) {
-                        this.$store.commit('SET_USER_AVATAR', this.getAbsoluteUrl(res.msg.url));
-                        this.handleCancel();                     
-                    } else {
-                        console.log(res);
-                    }
-                    this.reClick.save = false;
-                }).catch(err => {
-                    console.log(err);
-                    this.reClick.save = false;
-                })
-            }, this.fileType);
+                this.reClick.save = false;
+            }, this.file.type);
         },
-        handleCancel() {
-            this.$emit('on-cancel');
+        handleView() {
+            let croppedCanvas = this.cropper.getCroppedCanvas();
+            if(croppedCanvas===null){
+                this.$Notice.warning({
+                    title: '选择文件',
+                    desc: '请选择文件'
+                });
+                return;
+            }
+            this.preView.src = this.cropper.getCroppedCanvas().toDataURL();
+            this.preView.modal = true;
         },
         getFileSizeOfM(size) {
             return ((size / 1024) / 1014).toFixed(2);
@@ -123,94 +170,68 @@ export default {
                 title: '文件大小超过限制',
                 desc: '【' + file.name + '】文件太大，不超过2M.'
             });
-        },
-        // 获取绝对地址
-        getAbsoluteUrl(url){
-            return config.server + url;
         }
-    },
-    computed: {
-    },
-    mounted() {
-        let img = document.getElementById('profilePhoto');
-        this.cropper = new Cropper(img, {
-            viewMode: 1,
-            dragMode: 'move',
-            preview: '#profilePhotoPreview',
-            restore: false,
-            center: false,
-            highlight: false,
-            cropBoxMovable: false,
-            minContainerWidth: 500,
-            minContainerHeight: 400,
-            aspectRatio: 1 / 1,            // 框高比
-            toggleDragModeOnDblclick: false
-        });
-    },
-    created() {
     }
 }
 </script>
 <style lang="less">
 .modal-profile-photo {
     .ivu-modal {
-        margin: 0 auto;
-        top: 100px;
-    }
-    .ivu-modal-footer {
-        display: none;
-    }
-}
-</style>
-
-<style lang="less" scoped>
-// 修改头像
-.profile-photo {
-    width: 100%;
-    height: 400px;
-    display: flex;
-    &-content {
-        width: 500px;
-        height: 400px;
-    }
-    &-tool {
-        width: 0;
-        height: 400px;
-        margin-left: 16px;
-        flex-grow: 1;
-        position: relative;
-        .preview {
-            width: 100px;
-            height: 100px;
-            border-radius: 100%;
-            overflow: hidden;
-            margin: 0 auto;
-        }
-        .choice {
-            margin-top: 20px;
-        }
-        .save {
-            margin-top: 20px;
-        }
-        .fileinput {
+        .ivu-modal-footer {
             display: none;
         }
-        .filelabel {
-            display: block;
-            padding: 6px 15px;
-            background: #2d8cf0;
-            display: inline-block;
-            border: 1px solid #2d8cf0;
-            border-radius: 4px;
-            cursor: pointer;
-            color: white;
-            font-size: 12px;
-            text-align: center;
-            transition: all 0.2s;
-            &:hover {
-                background: #5cadff;
-                border: 1px solid #5cadff;
+    }    
+}
+.center{
+    text-align: center;
+}
+.marginTop20{
+    margin-top: 20px;
+}
+</style>
+<style lang="less" scoped>
+.modal-profile-photo {
+    .profile-photo {
+        width: 100%;
+        height: 400px;
+        display: flex;
+        &-content {
+            width: 500px;
+            height: 400px;
+        }
+        &-tool {
+            width: 0;
+            height: 400px;
+            margin-left: 16px;
+            flex-grow: 1;
+            position: relative;
+            .preview {
+                width: 100px;
+                height: 100px;
+                border-radius: 100%;
+                overflow: hidden;
+                margin: 0 auto;
+            }
+            .file-input {
+                display: none;
+            }
+            .file-label {
+                display: block;
+                padding: 6px 15px;
+                background: #2d8cf0;
+                display: inline-block;
+                border: 1px solid #2d8cf0;
+                border-radius: 4px;
+                cursor: pointer;
+                color: white;
+                font-size: 12px;
+                text-align: center;
                 transition: all 0.2s;
+                &:hover {
+                    background: #5cadff;
+                    border: 1px solid #5cadff;
+                    transition: all 0.2s;
+                }
             }
         }
     }

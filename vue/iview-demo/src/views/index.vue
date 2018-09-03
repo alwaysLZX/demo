@@ -1,9 +1,7 @@
 <template>
     <Layout class="layout">
         <Header>
-            <Menu mode="horizontal"
-                  theme="dark"
-                  active-name="1">
+            <Menu mode="horizontal" theme="dark" active-name="1">
                 <MenuItem name="1">
                 <Icon type="ios-paper" /> 内容管理
                 </MenuItem>
@@ -30,51 +28,45 @@
             </Menu>
         </Header>
         <Content class="layout-content">
-            <Breadcrumb class="layout-content-breadcrumb"
-                        :style="{}">
+            <Breadcrumb class="layout-content-breadcrumb" :style="{}">
                 <BreadcrumbItem>首页</BreadcrumbItem>
                 <BreadcrumbItem>自定义组件</BreadcrumbItem>
                 <BreadcrumbItem>周控件</BreadcrumbItem>
             </Breadcrumb>
             <Card class="layout-content-main">
-                <div>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                    <p>1231231</p>
-                </div>
+                <Row :gutter="10">
+                    <Col span="12">
+                    <WeekPicker />
+                    </Col>
+                    <Col span="12">
+                    <Button type="success" long @click="openProfilePhotoModal">打开图片裁剪框</Button>
+                    </Col>
+                </Row>
+                <ProfilePhoto v-model="modalProfilePhotoVisible"/>
             </Card>
         </Content>
     </Layout>
 </template>
 <script>
+import WeekPicker from '@/views/components/week-picker.vue'
+import ProfilePhoto from '@/views/components/profile-photo.vue'
+
 export default {
-    name: 'Index'
+    name: 'Index',
+    components: {
+        WeekPicker,
+        ProfilePhoto
+    },
+    data() {
+        return {
+            modalProfilePhotoVisible: false
+        }
+    },
+    methods: {
+        openProfilePhotoModal() {
+            this.modalProfilePhotoVisible = true;
+        }
+    }
 }
 </script>
 <style lang="less" scoped>

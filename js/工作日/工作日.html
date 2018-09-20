@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css">
+    <title>工作日</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .pt15 {
+            padding-top: 15px;
+        }
+
+        .mr15 {
+            margin-right: 15px;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .date-current {
+            text-align: center;
+        }
+
+        .date-search {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+        }
+        .calendar .table {
+            border-collapse: collapse;
+            border: 1px solid #cccccc;
+        }
+
+        .calendar .table th{
+            background-color: #5eb95e;
+            color: #fff;
+            height: 40px;
+            text-align: center;
+        }
+
+        .calendar .table td {
+            width: 100px;
+            height: 50px;
+            border: 1px solid #ddd;
+            background-color: #58B8E1;
+            cursor: pointer;
+            text-align: center;
+            font: bold 16px/50px "微软雅黑";
+            color: #fff;
+            transition: 0.5s;
+        }
+
+        .calendar .table .gray {
+            background-color: #fff;
+            color: #bbb;
+            font-weight: normal;
+            border: none;
+        }
+
+        .calendar .table .red {
+            background-color: #ee8585;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2 class="date-current pt15">当前日期：<span id="currentDate">2016年01月</span></h2>
+        <div class="date-search am-form pt15">
+            <button type="button" class="am-btn am-btn-success mr15" id="preMonth">上一月</button>
+            <select class="mr15" id="year" style="width:82px;"></select>
+            <select class="mr15" id="month" style="width:82px;"></select>
+            <button type="button" class="am-btn am-btn-success mr15" id="nextMonth">下一月</button>
+        </div>
+        <div class="calendar pt15">
+            <table class="table">
+                <tr>
+                    <th>周日</th>
+                    <th>周一</th>
+                    <th>周二</th>
+                    <th>周三</th>
+                    <th>周四</th>
+                    <th>周五</th>
+                    <th>周六</th>
+                </tr>
+                <tbody id="dateListBody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
+    <script type="text/javascript">
+        // 工作日助手
+        var workdayUtil = {
+            params: {
+                year: -1,
+                month: -1
+            },
+            init: function () {
+                this.load(dateUtil.now.year(), dateUtil.now.month());
+            },
+            load: function (year, month) {
+                this.params.year = year;
+                this.params.month = month;
+                $("#currentDate").html(`${year}年${('0' + month).slice(-2)}月`);
+                $('#dateListBody').html(this.table(year, month));
+            },
+            // 工作日表格
+            table: function (year, month) {
+                var result = [];
+                var now_days = dateUtil.getDays(year, month),
+                    pre_days = dateUtil.getPreDays(year, month),
+                    next_days = dateUtil.getNextDays(year, month),
+                    week_index = this.weekIndex(year, month);
+                var day = 1, pre_day_start = pre_days - week_index + 1, next_day = 1;
+
+                for (var i = 0; i < 6; i++) {
+                    result.push('<tr>');
+                    if (i === 0) {
+                        for (var j = 0; j < 7; j++) {
+                            if (j < week_index) {
+                                result.push(`<td class="gray">${pre_day_start}</td>`);
+                                pre_day_start++;
+                            } else {
+                                result.push(`<td class="now${[0, 6].indexOf(j) > -1 ? ' red' : ''}">${day}</td>`);
+                                day++;
+                            }
+                        }
+                    } else {
+                        for (var j = 0; j < 7; j++) {
+                            if (day > now_days) {
+                                result.push(`<td class="gray">${next_day}</td>`);
+                                next_day++;
+                            } else {
+                                result.push(`<td class="now${[0, 6].indexOf(j) > -1 ? ' red' : ''}">${day}</td>`);
+                                day++;
+                            }
+                        }
+                    }
+                    result.push('</tr>');
+                }
+
+                return result.join('');
+            },
+            // 指定月份1号星期下标
+            weekIndex: function (year, month) {
+                return new Date(year + '/' + month + '/01').getDay();
+            }
+        };
+
+        // 日期助手
+        var dateUtil = {
+            // 当前时间
+            now: {
+                date: function () {
+                    return new Date();
+                },
+                year: function () {
+                    return this.date().getFullYear();
+                },
+                month: function () {
+                    return this.date().getMonth() + 1;
+                },
+                day: function () {
+                    return this.date().getDate();
+                }
+            },
+            // 获取现在的日期
+            getNowDate: function (separator) {
+                let result = [];
+                result.push(this.now.year());
+                result.push(('0' + this.now.month()).slice(-2));
+                result.push(('0' + this.now.day()).slice(-2));
+                return result.join(separator || '-');
+            },
+            // 获取上个月的天数
+            getPreDays: function (year, month) {
+                year = month === 1 ? year - 1 : year;
+                month = month === 1 ? 12 : month - 1;
+                return this.getDays(year, month);
+            },
+            // 获取下个月的天数
+            getNextDays: function (year, month) {
+                year = month === 12 ? year + 1 : year;
+                month = month === 12 ? 1 : month + 1;
+                return this.getDays(year, month);
+            },
+            // 获取每月天数
+            getDays: function (year, month) {
+                var days = 30;
+                switch (month) {
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 11:
+                        days = 31;
+                        break;
+                    case 2:
+                        days = this.isLeapYear(year) ? 29 : 28;
+                        break;
+                }
+                return days;
+            },
+            // 是否闰年
+            isLeapYear: function (year) {
+                var result = false;
+                if (year % 100 === 0) {
+                    if (year % 400 === 0) {
+                        result = true;
+                    }
+                } else if (year % 4 === 0) {
+                    result = true;
+                }
+                return result;
+            }
+        };
+
+        var pageUtil = {
+            // 初始化
+            init: function () {
+                this.bindEvent();
+                this.searchBar();
+                workdayUtil.init();
+            },
+            // 绑定事件
+            bindEvent: function () {
+                $("#dateListBody").delegate("td.now", "click", function () {
+                    var className = 'red';
+                    if ($(this).hasClass(className)) {
+                        $(this).removeClass(className);
+                    } else {
+                        $(this).addClass(className);
+                    }
+                });
+
+                $("#year,#month").change(function () {
+                    workdayUtil.load($("#year").val() * 1, $("#month").val() * 1);
+                });
+
+                $('#preMonth').click(function () {
+                    var year = workdayUtil.params.year;
+                    var month = workdayUtil.params.month;
+                    year = month === 1 ? year - 1 : year;
+                    month = month === 1 ? 12 : month - 1;
+                    $('#year').val(year);
+                    $('#month').val(month);
+                    workdayUtil.load(year, month);
+                });
+
+                $('#nextMonth').click(function () {
+                    var year = workdayUtil.params.year;
+                    var month = workdayUtil.params.month;
+                    year = month === 12 ? year + 1 : year;
+                    month = month === 12 ? 1 : month + 1;
+                    $('#year').val(year);
+                    $('#month').val(month);
+                    workdayUtil.load(year, month);
+                });
+            },
+            // 搜索栏
+            searchBar: function () {
+                $("#year").html(pageUtil.getYearOption());
+                $("#month").html(pageUtil.getMonthOption());
+            },
+            // 获取年下拉选项
+            getYearOption: function () {
+                var result = [], year = dateUtil.now.year();
+                for (i = year + 5; i >= 2010; i--) {
+                    result.push(`<option value="${i}" ${year === i ? 'selected' : ''} >${i}年</option>`);
+                }
+                return result.join('');
+            },
+            // 获取月下拉选项
+            getMonthOption: function () {
+                var result = [], month = dateUtil.now.month();
+                for (i = 1; i <= 12; i++) {
+                    result.push(`<option value="${i}" ${month === i ? 'selected' : ''} >${('0' + i).slice(-2)}月</option>`);
+                }
+                return result.join('');
+            }
+        };
+
+        $(function () {
+            pageUtil.init();
+        });
+    </script>
+</body>
+</html>

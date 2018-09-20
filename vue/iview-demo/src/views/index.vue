@@ -42,6 +42,16 @@
                     <Button type="success" long @click="openProfilePhotoModal">打开图片裁剪框</Button>
                     </Col>
                 </Row>
+                <Row :gutter="10" :style="{marginTop:'10px'}">
+                    <Col span="12">
+                    <Button type="success" long @click="isShow = !isShow">过渡</Button>
+                    </Col>
+                    <Col span="12">
+                        <transition>
+                            <Button type="success" long v-if="isShow">过渡主体</Button>
+                        </transition>
+                    </Col>
+                </Row>
                 <ProfilePhoto v-model="modalProfilePhotoVisible"/>
             </Card>
         </Content>
@@ -59,7 +69,8 @@ export default {
     },
     data() {
         return {
-            modalProfilePhotoVisible: false
+            modalProfilePhotoVisible: false,
+            isShow:true
         }
     },
     methods: {
@@ -88,5 +99,22 @@ export default {
             }
         }
     }
+}
+.v-enter-active {
+  animation: bounce-in .5s;
+}
+.v-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

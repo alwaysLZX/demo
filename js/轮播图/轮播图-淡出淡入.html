@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>轮播图-淡出淡入</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .bg-yellow {
+            background-color: yellow;
+        }
+
+        .bg-green {
+            background-color: green;
+        }
+
+        .bg-pink {
+            background-color: pink;
+        }
+
+        .flex-center{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+        }
+
+        .loop-container {
+            width: 400px;
+            height: 200px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .loop-body {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        .loop-move-ui {
+            list-style-type: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .loop-move-item {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        /* 按钮 */
+        .loop-btns {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .btn-left {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            margin-top: -15px;
+            cursor: pointer;
+        }
+
+        .btn-right {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            margin-top: -15px;
+            cursor: pointer;
+        }
+
+        .btn-point {
+            list-style: none;
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            margin-left: -50px;
+        }
+
+        .btn-point li {
+            width: 20px;
+            height: 20px;
+            background-color: cyan;
+            float: left;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        .btn-point li:last-child {
+            margin-right: 0px;
+        }
+
+        .btn-point .active {
+            width: 30px;
+            background-color: red;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="loop-container">
+        <div class="loop-body">
+            <ul class="loop-move-ui">
+                <li class="loop-move-item bg-yellow flex-center">1</li>
+                <li class="loop-move-item bg-pink flex-center">2</li>
+                <li class="loop-move-item bg-green flex-center">3</li>
+            </ul>
+        </div>
+        <div class="loop-btns">
+            <span class="btn-left"></span>
+            <span class="btn-right"></span>
+            <ol class="btn-point">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+            </ol>
+        </div>
+    </div>
+    <script src="js/jquery-1.9.1.js"></script>
+    <script>
+        var loopUtil = {
+            g: {
+                $container: null,
+                $moveItem: null,
+                $point: null,
+                moveItemCount: -1,
+                timer: -1,
+                speed: 500,
+                index: 0,
+                timespan: 3000
+            },
+            init: function () {
+                this.globalParams();
+                this.bindEvent();
+                this.g.timer = setInterval(this.moveRight, this.g.timespan);
+            },
+            // 全局变量
+            globalParams: function () {
+                var g = this.g;
+                g.$container = $('.loop-container');
+                g.$moveItem = $('.loop-container .loop-move-item');
+                g.$point = $('.loop-container .btn-point li');
+                g.moveItemCount = g.$moveItem.length;
+            },
+            // 绑定事件
+            bindEvent: function () {
+                var _this = this, g = this.g;
+
+                // 向左移动
+                $('.btn-left').click(() => {
+                    this.moveLeft();
+                });
+
+                // 向右移动
+                $('.btn-right').click(() => {
+                    this.moveRight();
+                });
+
+                // 小圆点点击
+                g.$point.click(function () {
+                    g.index = $(this).index();
+                    g.$moveItem.eq(g.index).fadeIn(g.speed).siblings().fadeOut(g.speed);
+                    _this.setPoint();
+                });
+
+                g.$container.mouseenter(function () {
+                    clearInterval(g.timer);
+                })
+
+                g.$container.mouseleave(function () {
+                    g.timer = setInterval(() => {
+                        _this.moveRight();
+                    }, g.timespan);
+                })
+            },
+            moveRight: function () {
+                var g = this.g;
+                if (!g.$moveItem.eq(g.index).is(':animated')) {
+                    if (g.index < g.moveItemCount - 1) {
+                        g.index++;
+                    } else {
+                        g.index = 0;
+                    }
+                    g.$moveItem.eq(g.index).fadeIn(g.speed).siblings().fadeOut(g.speed);
+                    this.setPoint();
+                }
+            },
+            moveLeft: function () {
+                var g = this.g;
+                if (!g.$moveItem.eq(g.index).is(':animated')) {
+                    if (g.index === 0) {
+                        g.index = g.moveItemCount - 1;
+                    } else {
+                        g.index--;
+                    }
+                    g.$moveItem.eq(g.index).fadeIn(g.speed).siblings().fadeOut(g.speed);
+                    this.setPoint();
+                }
+            },
+            setPoint() {
+                var g = this.g;
+                g.$point.eq(g.index).addClass('active').siblings().removeClass('active');
+            }
+        };
+
+        $(function () {
+            loopUtil.init();
+        });
+    </script>
+</body>
+</html>

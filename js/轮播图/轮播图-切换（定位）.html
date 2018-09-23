@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>轮播图2</title>
+    <style>
+        /* 样式初始化 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+            display: block;
+        }
+
+        img {
+            width: 700px;
+            height: 400px;
+        }
+
+        /* 轮播样式 */
+        .loop-container {
+            width: 1000px;
+            height: 400px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        /* 图片列表 */
+        .loop-img-list {
+            width: 700px;
+            height: 400px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            overflow: hidden;
+        }
+
+        .loop-img-list li {
+            position: absolute;
+            top: 0;
+        }
+
+        .loop-img-list li.prev {
+            left: -700px;
+        }
+
+        .loop-img-list li.current {
+            left: -0;
+        }
+
+        .loop-img-list li.next {
+            left: 700px;
+        }
+
+        .loop-img-list li.wating {
+            display: none;
+        }
+
+        /* 按钮 */
+        .btn_list span {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            position: absolute;
+            background-color: red;
+            top: 50%;
+            margin-top: -25px;
+        }
+
+        .btn_left {
+            left: 0;
+            margin-left: -75px;
+        }
+
+        .btn_right {
+            right: 0;
+            margin-right: -75px;
+        }
+
+        /* 文字列表 */
+        .loop-text-list {
+            width: 300px;
+            height: 400px;
+            background-color: #555555;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .loop-text-item {
+            position: absolute;
+            width: 300px;
+            height: 400px;
+            color: #fff;
+            top: 0;
+            left: 0;
+            font: normal 16px/1em "微软雅黑";
+            display: none;
+        }
+
+        .loop-text-item h4 {
+            margin: 10px;
+        }
+
+        .loop-text-item p {
+            margin: 10px;
+        }
+
+        .loop-text-item.active {
+            display: block !important;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- 轮播图 -->
+    <div class="loop-container">
+        <!-- 轮播图列表 -->
+        <ul class="loop-img-list">
+            <li class="prev"><img src="imgs/img1.jpg" alt="Alternate Text" /></li>
+            <li class="current"><img src="imgs/img2.jpg" alt="Alternate Text" /></li>
+            <li class="next"><img src="imgs/img3.jpg" alt="Alternate Text" /></li>
+            <li class="wating"><img src="imgs/img4.jpg" alt="Alternate Text" /></li>
+        </ul>
+        <ol class="loop-text-list">
+            <li class="loop-text-item">
+                <h4>河山大好</h4>
+                <p>河山大好出去走走</p>
+            </li>
+            <li class="loop-text-item active">
+                <h4>断桥残雪</h4>
+                <p>白堤柳帘垂泪好几遍</p>
+            </li>
+            <li class="loop-text-item">
+                <h4>清明雨上</h4>
+                <p>把你最爱的歌来轻轻唱</p>
+            </li>
+            <li class="loop-text-item">
+                <h4>灰色头像</h4>
+                <p>是什么坠落升空</p>
+            </li>
+        </ol>
+        <!-- 按钮 -->
+        <div class="btn_list">
+            <span class="btn_left"></span>
+            <span class="btn_right"></span>
+        </div>
+
+    </div>
+    <script src="js/jquery-1.9.1.js"></script>
+    <script>
+        var loopUtil = {
+            g: {
+                $imgItem: null,
+                $textItem: null,
+                speed: 500,
+                json: {
+                    prev: { 'left': -700 + 'px' },
+                    current: { 'left': 0 + 'px' },
+                    next: { 'left': 700 + 'px' },
+                }
+            },
+            init() {
+                this.globalParams();
+                this.bindEvent();
+            },
+            globalParams() {
+                var g = this.g;
+                g.$imgItem = $('.loop-container .loop-img-list li');
+                g.$textItem = $('.loop-container .loop-text-item');
+            },
+            bindEvent() {
+                var _this = this;
+                $(".loop-container .btn_list .btn_left").click(() => {
+                    _this.moveLeft();
+                });
+                $(".loop-container .btn_list .btn_right").click(() => {
+                    _this.moveRight();
+                });
+            },
+            moveLeft() {
+                var g = this.g;
+                if (!g.$imgItem.is(':animated')) {
+                    // 先交换位置
+                    $('.prev').animate(g.json.current, g.speed);
+                    $('.current').animate(g.json.next, g.speed);
+                    $('.next').css(g.json.prev);
+
+                    // 交换身份
+                    var prev = $('.prev');
+                    $('.next').attr('class', 'wating');
+                    $('.current').attr('class', 'next');
+                    $('.prev').attr('class', 'current');
+
+                    if(prev.prev().length !=0){
+                        prev.prev().attr("class", "prev");
+                    }else{
+                        prev.parent().children(':last').attr("class", "prev");
+                    }
+                    $(".prev").css(g.json.prev);
+                    
+                    this.setCurrent();
+                }
+            },
+            moveRight() {
+                var g = this.g;
+                if (!g.$imgItem.is(':animated')) {
+                    // 先交换位置
+                    $(".prev").css(g.json.next);
+                    $(".current").animate(g.json.prev, g.speed);
+                    $(".next").animate(g.json.current, g.speed);
+
+                    // 交换身份
+                    var next = $('.next');
+                    $(".prev").attr("class", "wating");                    
+                    $(".current").attr("class", "prev");
+                    $('.next').attr("class", "current");
+
+                    if (next.next().length != 0) {
+                        next.next().attr("class", "next");
+                    } else {
+                        next.parent().children(':first').attr("class", "next");
+                    }
+                    $('.next').css(g.json.next);
+
+                    this.setCurrent();
+                }
+            },
+            setCurrent() {
+                var g = this.g;
+                var index = $(".current").index();
+                g.$textItem.eq(index).addClass("active").siblings().removeClass("active");
+            }
+        };
+
+        $(function () {
+            loopUtil.init();
+        });
+    </script>
+</body>
+</html>

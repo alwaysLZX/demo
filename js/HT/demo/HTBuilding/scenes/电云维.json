@@ -1,0 +1,4036 @@
+{
+  "v": "6.2.1",
+  "p": {
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 3609,
+      "p": {
+        "position": {
+          "x": 38.76451,
+          "y": -262.80353
+        },
+        "anchorElevation": 0,
+        "width": 4858.18276,
+        "height": 3548.79002,
+        "tall": 20,
+        "elevation": -16
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "plane",
+        "shape3d.image": "assets/建筑/yuanqu2.png",
+        "shape3d.transparent": true,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 3610,
+      "p": {
+        "displayName": "围墙",
+        "position": {
+          "x": 157.07637,
+          "y": -182.87254
+        },
+        "width": 3550.51859,
+        "height": 2514.97619,
+        "tall": 53,
+        "elevation": 18.79253,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            1,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 993.5125,
+              "y": 1074.61556
+            },
+            {
+              "x": 1932.33566,
+              "y": 1074.61556
+            },
+            {
+              "x": 1932.33566,
+              "y": -172.344
+            },
+            {
+              "x": 1932.33566,
+              "y": -1440.36063
+            },
+            {
+              "x": 1031.96166,
+              "y": -1440.36063
+            },
+            {
+              "x": 733.96593,
+              "y": -1440.36063
+            },
+            {
+              "x": -1618.18293,
+              "y": -1440.36063
+            },
+            {
+              "x": -1618.18293,
+              "y": -887.49836
+            },
+            {
+              "x": -1618.18293,
+              "y": -620.78
+            },
+            {
+              "x": -1618.18293,
+              "y": 475.51706
+            },
+            {
+              "x": -1001.23664,
+              "y": 475.51706
+            },
+            {
+              "x": -759.8697,
+              "y": 475.51706
+            },
+            {
+              "x": -223.34892,
+              "y": 475.51706
+            },
+            {
+              "x": -223.34892,
+              "y": 1074.61556
+            },
+            {
+              "x": 648.43235,
+              "y": 1074.61556
+            }
+          ]
+        },
+        "thickness": "1"
+      },
+      "s": {
+        "all.color": null,
+        "shape.background": null,
+        "shape.border.width": 14,
+        "shape.border.color": "#DDDDDD",
+        "all.reverse.color": null,
+        "all.transparent": true,
+        "all.uv.scale": [
+          128,
+          1
+        ],
+        "front.image": "assets/贴图/栅栏.png",
+        "front.transparent": false,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "all.reverse.cull": true,
+        "back.visible": true,
+        "front.visible": true,
+        "left.visible": false,
+        "back.image": "assets/贴图/栅栏.png",
+        "right.visible": false,
+        "top.visible": false,
+        "bottom.visible": false,
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3611,
+      "p": {
+        "parent": {
+          "__i": 3610
+        },
+        "host": {
+          "__i": 3610
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 985.09768,
+          "y": 1074.61555
+        },
+        "anchorElevation": 0,
+        "width": 37.26443,
+        "height": 34.17493,
+        "tall": 85.39696,
+        "elevation": -7.60403
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "all.image": "assets/贴图/墙砖.png",
+        "all.uv.scale": [
+          1,
+          2
+        ],
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3612,
+      "p": {
+        "parent": {
+          "__i": 3610
+        },
+        "host": {
+          "__i": 3610
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 655.05201,
+          "y": 1074.61555
+        },
+        "anchorElevation": 0,
+        "width": 37.26443,
+        "height": 36.19973,
+        "tall": 85.39696,
+        "elevation": -7.60403
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "all.image": "assets/贴图/墙砖.png",
+        "all.uv.scale": [
+          1,
+          2
+        ],
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3613,
+      "p": {
+        "parent": {
+          "__i": 3610
+        },
+        "host": {
+          "__i": 3610
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 1028.62774,
+          "y": -1440.36063
+        },
+        "anchorElevation": 0,
+        "width": 37.26443,
+        "height": 34.17493,
+        "tall": 85.39696,
+        "elevation": -7.60403
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "all.image": "assets/贴图/墙砖.png",
+        "all.uv.scale": [
+          1,
+          2
+        ],
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3614,
+      "p": {
+        "parent": {
+          "__i": 3610
+        },
+        "host": {
+          "__i": 3610
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 735.3726,
+          "y": -1440.36063
+        },
+        "anchorElevation": 0,
+        "width": 37.26443,
+        "height": 34.17493,
+        "tall": 85.39696,
+        "elevation": -7.60403
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "all.image": "assets/贴图/墙砖.png",
+        "all.uv.scale": [
+          1,
+          2
+        ],
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3615,
+      "p": {
+        "parent": {
+          "__i": 3610
+        },
+        "host": {
+          "__i": 3610
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": -765.57608,
+          "y": 474.48954
+        },
+        "anchorElevation": 0,
+        "width": 37.26443,
+        "height": 36.19973,
+        "tall": 85.39696,
+        "elevation": -7.60403
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "all.image": "assets/贴图/墙砖.png",
+        "all.uv.scale": [
+          1,
+          2
+        ],
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3616,
+      "p": {
+        "parent": {
+          "__i": 3610
+        },
+        "host": {
+          "__i": 3610
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": -989.39042,
+          "y": 474.48954
+        },
+        "anchorElevation": 0,
+        "width": 37.26443,
+        "height": 36.19973,
+        "tall": 85.39696,
+        "elevation": -7.60403
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "all.image": "assets/贴图/墙砖.png",
+        "all.uv.scale": [
+          1,
+          2
+        ],
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3617,
+      "p": {
+        "parent": {
+          "__i": 3610
+        },
+        "host": {
+          "__i": 3610
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": -1618.18293,
+          "y": -633.34883
+        },
+        "anchorElevation": 0,
+        "width": 37.26443,
+        "height": 36.19973,
+        "tall": 85.39696,
+        "elevation": -7.60403
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "all.image": "assets/贴图/墙砖.png",
+        "all.uv.scale": [
+          1,
+          2
+        ],
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3618,
+      "p": {
+        "parent": {
+          "__i": 3610
+        },
+        "host": {
+          "__i": 3610
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": -1618.18293,
+          "y": -878.34283
+        },
+        "anchorElevation": 0,
+        "width": 37.26443,
+        "height": 36.19973,
+        "tall": 85.39696,
+        "elevation": -7.60403
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "all.image": "assets/贴图/墙砖.png",
+        "all.uv.scale": [
+          1,
+          2
+        ],
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3619,
+      "p": {
+        "displayName": "格雷众创园A座",
+        "tag": "zoneA",
+        "position": {
+          "x": -387.81743,
+          "y": -1090.85591
+        },
+        "anchorElevation": 0,
+        "width": 2166.42838,
+        "height": 492.89111,
+        "tall": 510.77603
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校.jpg",
+        "back.image": "assets/建筑/学校.jpg",
+        "left.image": "assets/建筑/学校5.jpg",
+        "right.image": "assets/建筑/学校5.jpg",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "top.uv.scale": null,
+        "all.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3620,
+      "p": {
+        "displayName": "赛普健身学院学生宿舍",
+        "position": {
+          "x": 1308.04464,
+          "y": -1165.36271
+        },
+        "anchorElevation": 0,
+        "width": 524.65873,
+        "height": 343.87752,
+        "tall": 223.72633
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校.jpg",
+        "back.image": "assets/建筑/学校.jpg",
+        "left.image": "assets/建筑/学校.jpg",
+        "right.image": "assets/建筑/学校.jpg",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3621,
+      "p": {
+        "displayName": "赛普健身学院学生宿舍",
+        "tag": "donitory",
+        "position": {
+          "x": 1419.44999,
+          "y": -758.54106
+        },
+        "anchorElevation": 0,
+        "width": 301.84805,
+        "height": 474.63515,
+        "tall": 223.72633
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校3.jpg",
+        "back.image": "assets/建筑/学校3.jpg",
+        "left.image": "assets/建筑/学校.jpg",
+        "right.image": "assets/建筑/学校.jpg",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3622,
+      "p": {
+        "displayName": "格雷众创园B座",
+        "tag": "zoneB",
+        "position": {
+          "x": -1221.16105,
+          "y": -392.35918
+        },
+        "anchorElevation": 0,
+        "width": 499.74113,
+        "height": 604.07349,
+        "tall": 425.59489
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校.jpg",
+        "back.image": "assets/建筑/学校.jpg",
+        "left.image": "assets/建筑/学校.jpg",
+        "right.image": "assets/建筑/学校.jpg",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3623,
+      "p": {
+        "displayName": "格雷众创园B座",
+        "position": {
+          "x": -1221.16105,
+          "y": 96.75649
+        },
+        "anchorElevation": 0,
+        "width": 499.74113,
+        "height": 374.15785,
+        "tall": 375.39114
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校.jpg",
+        "back.image": "assets/建筑/学校.jpg",
+        "left.image": "assets/建筑/学校5.jpg",
+        "right.image": "assets/建筑/学校5.jpg",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3624,
+      "p": {
+        "displayName": "餐厅",
+        "position": {
+          "x": 1352.09624,
+          "y": 145.55662
+        },
+        "anchorElevation": 0,
+        "width": 436.55555,
+        "height": 276.55758,
+        "tall": 146.27494
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校.jpg",
+        "back.image": "assets/建筑/学校.jpg",
+        "left.image": "assets/建筑/学校.jpg",
+        "right.image": "assets/建筑/学校.jpg",
+        "all.uv.scale": null,
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3625,
+      "p": {
+        "displayName": "餐厅",
+        "tag": "canteen",
+        "position": {
+          "x": 1419.44999,
+          "y": -166.25289
+        },
+        "anchorElevation": 0,
+        "width": 301.84805,
+        "height": 347.06144,
+        "tall": 146.27494
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校.jpg",
+        "back.image": "assets/建筑/学校.jpg",
+        "left.image": "assets/建筑/学校.jpg",
+        "right.image": "assets/建筑/学校.jpg",
+        "all.uv.scale": null,
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3626,
+      "p": {
+        "displayName": "威可多制衣中心B",
+        "tag": "clothB",
+        "position": {
+          "x": 863.72519,
+          "y": 683.19018
+        },
+        "anchorElevation": 0,
+        "width": 1413.29765,
+        "height": 276.55758,
+        "tall": 331.58052
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校.jpg",
+        "back.image": "assets/建筑/学校.jpg",
+        "left.image": "assets/建筑/学校3.jpg",
+        "right.image": "assets/建筑/学校3.jpg",
+        "front.uv.scale": [
+          1,
+          1
+        ],
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3627,
+      "p": {
+        "displayName": "威可多制衣中心B",
+        "position": {
+          "x": 1491.11022,
+          "y": 766.26261
+        },
+        "anchorElevation": 0,
+        "width": 143.32045,
+        "height": 138.27879,
+        "tall": 378.25564
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校5.jpg",
+        "left.image": "assets/建筑/学校4.jpg",
+        "right.image": "assets/建筑/学校4.jpg",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "back.image": "assets/建筑/学校4.jpg",
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3628,
+      "p": {
+        "displayName": "格雷众创园A座",
+        "position": {
+          "x": -334.44076,
+          "y": -1090.85591
+        },
+        "anchorElevation": 0,
+        "width": 162.1455,
+        "height": 589.72186,
+        "tall": 8,
+        "elevation": 56.57118
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3629,
+      "p": {
+        "displayName": "赛普健身学院学生宿舍",
+        "position": {
+          "x": 1462.78505,
+          "y": -1171.83174
+        },
+        "anchorElevation": 0,
+        "width": 241.92717,
+        "height": 125.63468,
+        "tall": 8,
+        "elevation": 34.63738
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "front.image": "assets/建筑/学校.jpg",
+        "back.image": "assets/建筑/学校.jpg",
+        "left.image": "assets/建筑/学校.jpg",
+        "right.image": "assets/建筑/学校.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3630,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "position": {
+          "x": -525.63048,
+          "y": 124.32947
+        },
+        "anchorElevation": 0,
+        "width": 105.99569,
+        "height": 264.78817,
+        "tall": 8,
+        "elevation": 34.63738
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "front.image": "assets/建筑/学校.jpg",
+        "back.image": "assets/建筑/学校.jpg",
+        "left.image": "assets/建筑/学校.jpg",
+        "right.image": "assets/建筑/学校.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3631,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "position": {
+          "x": 844.40311,
+          "y": 260.12315
+        },
+        "anchorElevation": 0,
+        "width": 578.83072,
+        "height": 47.42453,
+        "tall": 8,
+        "elevation": 34.63738
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3632,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "position": {
+          "x": 606.75973,
+          "y": 280.06394
+        },
+        "anchorElevation": 0,
+        "width": 8.12111,
+        "height": 7.54295,
+        "tall": 33.44665
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3633,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "position": {
+          "x": 988.45118,
+          "y": 280.06394
+        },
+        "anchorElevation": 0,
+        "width": 8.12111,
+        "height": 7.54295,
+        "tall": 33.44665
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3634,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "position": {
+          "x": 940.73975,
+          "y": 280.06394
+        },
+        "anchorElevation": 0,
+        "width": 8.12111,
+        "height": 7.54295,
+        "tall": 33.44665
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3635,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "position": {
+          "x": 893.02832,
+          "y": 280.06394
+        },
+        "anchorElevation": 0,
+        "width": 8.12111,
+        "height": 7.54295,
+        "tall": 33.44665
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3636,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "position": {
+          "x": 845.31689,
+          "y": 280.06394
+        },
+        "anchorElevation": 0,
+        "width": 8.12111,
+        "height": 7.54295,
+        "tall": 33.44665
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3637,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "position": {
+          "x": 559.0483,
+          "y": 280.06394
+        },
+        "anchorElevation": 0,
+        "width": 8.12111,
+        "height": 7.54295,
+        "tall": 33.44665
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3638,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "position": {
+          "x": 749.89403,
+          "y": 280.06394
+        },
+        "anchorElevation": 0,
+        "width": 8.12111,
+        "height": 7.54295,
+        "tall": 33.44665
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3639,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "position": {
+          "x": 702.18259,
+          "y": 280.06394
+        },
+        "anchorElevation": 0,
+        "width": 8.12111,
+        "height": 7.54295,
+        "tall": 33.44665
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3640,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "position": {
+          "x": 654.47116,
+          "y": 280.06394
+        },
+        "anchorElevation": 0,
+        "width": 8.12111,
+        "height": 7.54295,
+        "tall": 33.44665
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3641,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "position": {
+          "x": 797.60546,
+          "y": 280.06394
+        },
+        "anchorElevation": 0,
+        "width": 8.12111,
+        "height": 7.54295,
+        "tall": 33.44665
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3642,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "position": {
+          "x": 1036.16261,
+          "y": 280.06394
+        },
+        "anchorElevation": 0,
+        "width": 8.12111,
+        "height": 7.54295,
+        "tall": 33.44665
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3643,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "position": {
+          "x": 645.44741,
+          "y": 121.84436
+        },
+        "anchorElevation": 0,
+        "width": 976.7421,
+        "height": 229.13305,
+        "tall": 331.58052
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校.jpg",
+        "back.image": "assets/建筑/学校.jpg",
+        "left.image": "assets/建筑/学校3.jpg",
+        "right.image": "assets/建筑/学校3.jpg",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3644,
+      "p": {
+        "displayName": "威可多制衣中心",
+        "tag": "clothA",
+        "position": {
+          "x": -331.29468,
+          "y": 121.84436
+        },
+        "anchorElevation": 0,
+        "width": 976.7421,
+        "height": 229.13305,
+        "tall": 375.39114
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校.jpg",
+        "back.image": "assets/建筑/学校.jpg",
+        "left.image": "assets/建筑/学校3.jpg",
+        "right.image": "assets/建筑/学校3.jpg",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3645,
+      "p": {
+        "displayName": "格雷众创园B座",
+        "position": {
+          "x": -1015.34439,
+          "y": 254.55044
+        },
+        "anchorElevation": 0,
+        "width": 135.51548,
+        "height": 105.99447,
+        "tall": 8,
+        "elevation": 63.86591
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3646,
+      "p": {
+        "displayName": "格雷众创园B座",
+        "position": {
+          "x": -954.34243,
+          "y": 300.65817
+        },
+        "anchorElevation": 0,
+        "width": 7.77748,
+        "height": 7.06517,
+        "tall": 68.98005
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3647,
+      "p": {
+        "displayName": "格雷众创园B座",
+        "position": {
+          "x": -1076.34635,
+          "y": 300.65817
+        },
+        "anchorElevation": 0,
+        "width": 7.77748,
+        "height": 7.06517,
+        "tall": 68.98005
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3648,
+      "p": {
+        "displayName": "格雷众创园B座",
+        "position": {
+          "x": -954.34243,
+          "y": 208.44272
+        },
+        "anchorElevation": 0,
+        "width": 7.77748,
+        "height": 7.06517,
+        "tall": 68.98005
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3649,
+      "p": {
+        "displayName": "格雷众创园A座",
+        "position": {
+          "x": -470.572,
+          "y": -1092.31122
+        },
+        "anchorElevation": 0,
+        "width": 110.11697,
+        "height": 553.09063,
+        "tall": 562.8307
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校5.jpg",
+        "left.image": "assets/建筑/学校5.jpg",
+        "right.image": "assets/建筑/学校5.jpg",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "back.image": "assets/建筑/学校5.jpg",
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3650,
+      "p": {
+        "displayName": "格雷众创园A座",
+        "position": {
+          "x": -198.30953,
+          "y": -1092.31122
+        },
+        "anchorElevation": 0,
+        "width": 110.11697,
+        "height": 553.09063,
+        "tall": 562.8307
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校5.jpg",
+        "left.image": "assets/建筑/学校5.jpg",
+        "right.image": "assets/建筑/学校5.jpg",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "back.image": "assets/建筑/学校5.jpg",
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3651,
+      "p": {
+        "displayName": "威可多制衣中心B",
+        "position": {
+          "x": 1290.69029,
+          "y": 852.04435
+        },
+        "anchorElevation": 0,
+        "width": 7.77748,
+        "height": 7.06517,
+        "tall": 68.98005
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3652,
+      "p": {
+        "displayName": "威可多制衣中心B",
+        "position": {
+          "x": 1412.69421,
+          "y": 852.04435
+        },
+        "anchorElevation": 0,
+        "width": 7.77748,
+        "height": 7.06517,
+        "tall": 68.98005
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3653,
+      "p": {
+        "displayName": "威可多制衣中心B",
+        "position": {
+          "x": 1351.69225,
+          "y": 805.93662
+        },
+        "anchorElevation": 0,
+        "width": 135.51548,
+        "height": 105.99447,
+        "tall": 8,
+        "elevation": 63.86591
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.uv.scale": null,
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3654,
+      "p": {
+        "displayName": "威可多制衣中心B",
+        "position": {
+          "x": 1351.69225,
+          "y": 824.0432
+        },
+        "anchorElevation": 0,
+        "width": 135.51548,
+        "height": 22.71761,
+        "tall": 331.58052
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校4.jpg",
+        "front.uv.scale": [
+          1,
+          1
+        ],
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3655,
+      "p": {
+        "displayName": "格雷众创园A座",
+        "position": {
+          "x": -334.44076,
+          "y": -1093.95973
+        },
+        "anchorElevation": 0,
+        "width": 162.1455,
+        "height": 517.16128,
+        "tall": 540.69143
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校4.jpg",
+        "front.uv.scale": [
+          1,
+          1
+        ],
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "back.image": "assets/建筑/学校4.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3656,
+      "p": {
+        "displayName": "格雷众创园B座",
+        "position": {
+          "x": -1224.11236,
+          "y": -356.16074
+        },
+        "anchorElevation": 0,
+        "width": 531.76239,
+        "height": 153.5739,
+        "tall": 376.75942
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校4.jpg",
+        "front.uv.scale": [
+          1,
+          1
+        ],
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "back.image": "assets/建筑/学校4.jpg",
+        "left.image": "assets/建筑/学校4.jpg",
+        "right.image": "assets/建筑/学校4.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3657,
+      "p": {
+        "displayName": "赛普健身学院学生宿舍",
+        "position": {
+          "x": 1419.23746,
+          "y": -946.41687
+        },
+        "anchorElevation": 0,
+        "width": 329.02235,
+        "height": 98.88352,
+        "tall": 166.12344
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校4.jpg",
+        "front.uv.scale": [
+          1,
+          1
+        ],
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "back.image": "assets/建筑/学校4.jpg",
+        "left.image": "assets/建筑/学校4.jpg",
+        "right.image": "assets/建筑/学校4.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3658,
+      "p": {
+        "displayName": "餐厅",
+        "position": {
+          "x": 1416.58295,
+          "y": -40.88067
+        },
+        "anchorElevation": 0,
+        "width": 329.02235,
+        "height": 98.88352,
+        "tall": 106.40556
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校4.jpg",
+        "front.uv.scale": [
+          1,
+          1
+        ],
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "back.image": "assets/建筑/学校4.jpg",
+        "left.image": "assets/建筑/学校4.jpg",
+        "right.image": "assets/建筑/学校4.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3659,
+      "p": {
+        "displayName": "格雷众创园B座",
+        "rotation": 6.28319,
+        "position": {
+          "x": -1025.86618,
+          "y": 35.90628
+        },
+        "anchorElevation": 0,
+        "width": 156.55906,
+        "height": 153.5739,
+        "tall": 431.98943
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "front.image": "assets/建筑/学校4.jpg",
+        "front.uv.scale": [
+          1,
+          1
+        ],
+        "back.uv.scale": null,
+        "left.uv.scale": null,
+        "right.uv.scale": null,
+        "all.uv.scale": null,
+        "top.uv.scale": null,
+        "bottom.uv.scale": null,
+        "top.image": "assets/建筑/wd.jpg",
+        "back.image": "assets/建筑/学校4.jpg",
+        "left.image": "assets/建筑/学校4.jpg",
+        "right.image": "assets/建筑/学校4.jpg",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3660,
+      "p": {
+        "position": {
+          "x": 4137.82876,
+          "y": 906.54263
+        },
+        "anchorElevation": 0,
+        "width": 258.48766,
+        "height": 107.93147,
+        "tall": 467.17425,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3661,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -2901.05692,
+          "y": 2080.28585
+        },
+        "anchorElevation": 0,
+        "width": 713.06026,
+        "height": 189.33046,
+        "tall": 98.77765,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3662,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -2707.31727,
+          "y": -2854.85354
+        },
+        "anchorElevation": 0,
+        "width": 292.64197,
+        "height": 578.70733,
+        "tall": 98.77765,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3663,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -3906.96569,
+          "y": -2981.89756
+        },
+        "anchorElevation": 0,
+        "width": 287.94778,
+        "height": 324.61928,
+        "tall": 229.61766,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3664,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -5048.77283,
+          "y": -2981.89756
+        },
+        "anchorElevation": 0,
+        "width": 1995.66651,
+        "height": 324.61928,
+        "tall": 98.77765,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3665,
+      "p": {
+        "displayName": "六面体",
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 3350.70959,
+          "y": 1419.00289
+        },
+        "anchorElevation": 0,
+        "width": 309.11147,
+        "height": 1987.88387,
+        "tall": 98.77765,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3666,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 3840.99654,
+          "y": 2547.5058
+        },
+        "anchorElevation": 0,
+        "width": 1289.68537,
+        "height": 211.72415,
+        "tall": 202.73878,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3667,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -3205.48998,
+          "y": 1550.39859
+        },
+        "anchorElevation": 0,
+        "width": 703.70345,
+        "height": 211.72415,
+        "tall": 98.77765,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3668,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -2699.08252,
+          "y": 1414.24658
+        },
+        "anchorElevation": 0,
+        "width": 309.11147,
+        "height": 484.02816,
+        "tall": 198.93717,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3669,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -2699.08252,
+          "y": 344.46316
+        },
+        "anchorElevation": 0,
+        "width": 309.11147,
+        "height": 1352.80768,
+        "tall": 289.03035,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3670,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -2699.08252,
+          "y": -967.01686
+        },
+        "anchorElevation": 0,
+        "width": 309.11147,
+        "height": 1131.46947,
+        "tall": 98.77765,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3671,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -5172.17971,
+          "y": 2584.50553
+        },
+        "anchorElevation": 0,
+        "width": 232.95065,
+        "height": 137.72466,
+        "tall": 179.78254,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3672,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -4515.77339,
+          "y": 2545.4364
+        },
+        "anchorElevation": 0,
+        "width": 1079.86197,
+        "height": 215.86295,
+        "tall": 314.80621,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3673,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -5828.58601,
+          "y": 2545.4364
+        },
+        "anchorElevation": 0,
+        "width": 1079.86197,
+        "height": 215.86295,
+        "tall": 515.94476,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3674,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 5044.93598,
+          "y": 2066.10022
+        },
+        "anchorElevation": 0,
+        "width": 614.26804,
+        "height": 178.97615,
+        "tall": 108.77733,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3675,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4373.19345,
+          "y": 1976.61214
+        },
+        "anchorElevation": 0,
+        "width": 729.21704,
+        "height": 215.86295,
+        "tall": 253.75703,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3676,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -4251.60486,
+          "y": 2006.4178
+        },
+        "anchorElevation": 0,
+        "width": 175.95986,
+        "height": 107.93148,
+        "tall": 193.99049,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3677,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -4515.77339,
+          "y": 1844.52058
+        },
+        "anchorElevation": 0,
+        "width": 923.50659,
+        "height": 215.86295,
+        "tall": 257.9569,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3678,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -5109.44993,
+          "y": 1952.45205
+        },
+        "anchorElevation": 0,
+        "width": 581.87937,
+        "height": 215.86295,
+        "tall": 193.99049,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3679,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -4782.06139,
+          "y": 1019.06651
+        },
+        "anchorElevation": 0,
+        "width": 1903.02092,
+        "height": 63.50783,
+        "tall": 193.99049,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3680,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -4719.77397,
+          "y": 751.18702
+        },
+        "anchorElevation": 0,
+        "width": 515.50543,
+        "height": 472.25114,
+        "tall": 261.5872,
+        "elevation": 71.24864
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3681,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -4757.73523,
+          "y": 717.37095
+        },
+        "anchorElevation": 0,
+        "width": 923.50659,
+        "height": 539.88327,
+        "tall": 193.99049,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3682,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -3942.28553,
+          "y": 779.59879
+        },
+        "anchorElevation": 0,
+        "width": 223.46916,
+        "height": 415.42761,
+        "tall": 193.99049,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3683,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -5621.83728,
+          "y": 779.59879
+        },
+        "anchorElevation": 0,
+        "width": 223.46916,
+        "height": 415.42761,
+        "tall": 193.99049,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3684,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4267.07259,
+          "y": 146.15197
+        },
+        "anchorElevation": 0,
+        "width": 571.21238,
+        "height": 226.599,
+        "tall": 118.53624,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.transparent": true,
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": false,
+        "bottom.visible": false,
+        "bottom.color": null,
+        "bottom.reverse.cull": false,
+        "all.reverse.color": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3685,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "rotation": 6.28319,
+        "position": {
+          "x": 4645.02096,
+          "y": 174.88362
+        },
+        "anchorElevation": 0,
+        "width": 184.68436,
+        "height": 169.1357,
+        "tall": 195.12646,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.transparent": true,
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3686,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4737.80195,
+          "y": 119.56348
+        },
+        "anchorElevation": 0,
+        "width": 136.34564,
+        "height": 207.17496,
+        "tall": 126.25274,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.transparent": true,
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3687,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4871.71387,
+          "y": -360.04324
+        },
+        "anchorElevation": 0,
+        "width": 96.92387,
+        "height": 207.17496,
+        "tall": 126.25274,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.transparent": true,
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3688,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4720.41737,
+          "y": -341.02361
+        },
+        "anchorElevation": 0,
+        "width": 205.66912,
+        "height": 169.1357,
+        "tall": 195.12646,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.transparent": true,
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3689,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4299.5246,
+          "y": -341.02361
+        },
+        "anchorElevation": 0,
+        "width": 636.11642,
+        "height": 169.1357,
+        "tall": 118.53624,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.transparent": true,
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3690,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": -747.47615,
+          "y": -90.32243
+        },
+        "anchorElevation": 0,
+        "width": 14611.82151,
+        "height": 7777.25984,
+        "tall": 20,
+        "elevation": -55.39039
+      },
+      "s": {
+        "all.color": "rgb(0,16,51)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 3691,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "rotationX": 1.57718,
+        "position": {
+          "x": -5418.15726,
+          "y": -1956.24969
+        },
+        "anchorElevation": 0,
+        "width": 815.27531,
+        "height": 454.2806,
+        "tall": 1186.99409,
+        "elevation": 183.70774,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -5408.80381,
+              "y": -2183.38999
+            },
+            {
+              "x": -5825.79492,
+              "y": -1983.12162
+            },
+            {
+              "x": -5825.79492,
+              "y": -1729.10939
+            },
+            {
+              "x": -5010.51961,
+              "y": -1729.10939
+            },
+            {
+              "x": -5010.51961,
+              "y": -1983.12162
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "rgba(132,137,148,0.31)",
+        "shape3d.top.color": "",
+        "shape3d.bottom.color": "",
+        "shape.background": "#EEEEEE",
+        "shape3d.transparent": true,
+        "shape3d.reverse.cull": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 3692,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "rotationX": 1.57718,
+        "position": {
+          "x": -4170.62945,
+          "y": -1956.24969
+        },
+        "anchorElevation": 0,
+        "width": 815.27531,
+        "height": 454.2806,
+        "tall": 1186.99409,
+        "elevation": 183.70774,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -4161.276,
+              "y": -2183.38999
+            },
+            {
+              "x": -4578.26711,
+              "y": -1983.12162
+            },
+            {
+              "x": -4578.26711,
+              "y": -1729.10939
+            },
+            {
+              "x": -3762.9918,
+              "y": -1729.10939
+            },
+            {
+              "x": -3762.9918,
+              "y": -1983.12162
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "rgba(132,137,148,0.31)",
+        "shape3d.top.color": "",
+        "shape3d.bottom.color": "",
+        "shape.background": "#EEEEEE",
+        "shape3d.transparent": true,
+        "shape3d.reverse.cull": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 3693,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "rotation": 1.5708,
+        "rotationX": 1.57718,
+        "position": {
+          "x": -3801.93889,
+          "y": -80.32542
+        },
+        "anchorElevation": 0,
+        "width": 377.33557,
+        "height": 283.54804,
+        "tall": 1186.99409,
+        "elevation": 96.7319,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -3797.60981,
+              "y": -222.09944
+            },
+            {
+              "x": -3990.60667,
+              "y": -97.09806
+            },
+            {
+              "x": -3990.60667,
+              "y": 61.4486
+            },
+            {
+              "x": -3613.2711,
+              "y": 61.4486
+            },
+            {
+              "x": -3613.2711,
+              "y": -97.09806
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "rgba(132,137,148,0.31)",
+        "shape3d.top.color": "",
+        "shape3d.bottom.color": "",
+        "shape.background": "#EEEEEE",
+        "shape3d.transparent": true,
+        "shape3d.reverse.cull": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 3694,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "rotation": 1.5708,
+        "rotationX": 1.57718,
+        "position": {
+          "x": -5418.15726,
+          "y": -80.32542
+        },
+        "anchorElevation": 0,
+        "width": 377.33557,
+        "height": 283.54804,
+        "tall": 520.2996,
+        "elevation": 96.7319,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -5413.82818,
+              "y": -222.09944
+            },
+            {
+              "x": -5606.82504,
+              "y": -97.09806
+            },
+            {
+              "x": -5606.82504,
+              "y": 61.4486
+            },
+            {
+              "x": -5229.48948,
+              "y": 61.4486
+            },
+            {
+              "x": -5229.48948,
+              "y": -97.09806
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "rgba(132,137,148,0.31)",
+        "shape3d.top.color": "",
+        "shape3d.bottom.color": "",
+        "shape.background": "#EEEEEE",
+        "shape3d.transparent": true,
+        "shape3d.reverse.cull": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 3695,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "rotation": 1.5708,
+        "rotationX": 1.57718,
+        "position": {
+          "x": 3591.89522,
+          "y": -802.13366
+        },
+        "anchorElevation": 0,
+        "width": 377.33557,
+        "height": 283.54804,
+        "tall": 520.2996,
+        "elevation": 96.7319,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 3596.2243,
+              "y": -943.90769
+            },
+            {
+              "x": 3403.22744,
+              "y": -818.9063
+            },
+            {
+              "x": 3403.22744,
+              "y": -660.35964
+            },
+            {
+              "x": 3780.56301,
+              "y": -660.35964
+            },
+            {
+              "x": 3780.56301,
+              "y": -818.9063
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "rgba(132,137,148,0.31)",
+        "shape3d.top.color": "",
+        "shape3d.bottom.color": "",
+        "shape.background": "#EEEEEE",
+        "shape3d.transparent": true,
+        "shape3d.reverse.cull": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 3696,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "rotation": 1.5708,
+        "rotationX": 1.57718,
+        "position": {
+          "x": 5208.1136,
+          "y": -802.13366
+        },
+        "anchorElevation": 0,
+        "width": 377.33557,
+        "height": 283.54804,
+        "tall": 1186.99409,
+        "elevation": 96.7319,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 5212.44267,
+              "y": -943.90769
+            },
+            {
+              "x": 5019.44581,
+              "y": -818.9063
+            },
+            {
+              "x": 5019.44581,
+              "y": -660.35964
+            },
+            {
+              "x": 5396.78138,
+              "y": -660.35964
+            },
+            {
+              "x": 5396.78138,
+              "y": -818.9063
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "rgba(132,137,148,0.31)",
+        "shape3d.top.color": "",
+        "shape3d.bottom.color": "",
+        "shape.background": "#EEEEEE",
+        "shape3d.transparent": true,
+        "shape3d.reverse.cull": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 3697,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "rotationX": 1.57718,
+        "position": {
+          "x": 4839.42303,
+          "y": -2678.05793
+        },
+        "anchorElevation": 0,
+        "width": 815.27531,
+        "height": 454.2806,
+        "tall": 1186.99409,
+        "elevation": 183.70774,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 4848.77649,
+              "y": -2905.19823
+            },
+            {
+              "x": 4431.78538,
+              "y": -2704.92986
+            },
+            {
+              "x": 4431.78538,
+              "y": -2450.91764
+            },
+            {
+              "x": 5247.06069,
+              "y": -2450.91764
+            },
+            {
+              "x": 5247.06069,
+              "y": -2704.92986
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "rgba(132,137,148,0.31)",
+        "shape3d.top.color": "",
+        "shape3d.bottom.color": "",
+        "shape.background": "#EEEEEE",
+        "shape3d.transparent": true,
+        "shape3d.reverse.cull": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 3698,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "rotationX": 1.57718,
+        "position": {
+          "x": 3591.89522,
+          "y": -2678.05793
+        },
+        "anchorElevation": 0,
+        "width": 815.27531,
+        "height": 454.2806,
+        "tall": 1186.99409,
+        "elevation": 183.70774,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 3601.24868,
+              "y": -2905.19823
+            },
+            {
+              "x": 3184.25757,
+              "y": -2704.92986
+            },
+            {
+              "x": 3184.25757,
+              "y": -2450.91764
+            },
+            {
+              "x": 3999.53288,
+              "y": -2450.91764
+            },
+            {
+              "x": 3999.53288,
+              "y": -2704.92986
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "rgba(132,137,148,0.31)",
+        "shape3d.top.color": "",
+        "shape3d.bottom.color": "",
+        "shape.background": "#EEEEEE",
+        "shape3d.transparent": true,
+        "shape3d.reverse.cull": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3699,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4137.82876,
+          "y": 1578.8307
+        },
+        "anchorElevation": 0,
+        "width": 258.48766,
+        "height": 107.93147,
+        "tall": 253.75703,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3700,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4502.43728,
+          "y": 1578.8307
+        },
+        "anchorElevation": 0,
+        "width": 258.48766,
+        "height": 107.93147,
+        "tall": 253.75703,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3701,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 5317.10428,
+          "y": 1578.8307
+        },
+        "anchorElevation": 0,
+        "width": 258.48766,
+        "height": 107.93147,
+        "tall": 253.75703,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3702,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4952.49576,
+          "y": 1578.8307
+        },
+        "anchorElevation": 0,
+        "width": 258.48766,
+        "height": 107.93147,
+        "tall": 253.75703,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3703,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4952.49576,
+          "y": 1365.03716
+        },
+        "anchorElevation": 0,
+        "width": 258.48766,
+        "height": 107.93147,
+        "tall": 581.03267,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3704,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 5317.10428,
+          "y": 1365.03716
+        },
+        "anchorElevation": 0,
+        "width": 258.48766,
+        "height": 107.93147,
+        "tall": 253.75703,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3705,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4502.43728,
+          "y": 1365.03716
+        },
+        "anchorElevation": 0,
+        "width": 258.48766,
+        "height": 107.93147,
+        "tall": 581.03267,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3706,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4137.82876,
+          "y": 1365.03716
+        },
+        "anchorElevation": 0,
+        "width": 258.48766,
+        "height": 107.93147,
+        "tall": 253.75703,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3707,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4952.49576,
+          "y": 1121.27863
+        },
+        "anchorElevation": 0,
+        "width": 258.48766,
+        "height": 107.93147,
+        "tall": 253.75703,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3708,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 5317.10428,
+          "y": 1121.27863
+        },
+        "anchorElevation": 0,
+        "width": 258.48766,
+        "height": 107.93147,
+        "tall": 253.75703,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3709,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4502.43728,
+          "y": 1121.27863
+        },
+        "anchorElevation": 0,
+        "width": 258.48766,
+        "height": 107.93147,
+        "tall": 253.75703,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 3710,
+      "p": {
+        "parent": {
+          "__i": 3660
+        },
+        "host": {
+          "__i": 3660
+        },
+        "position": {
+          "x": 4137.82876,
+          "y": 1121.27863
+        },
+        "anchorElevation": 0,
+        "width": 258.48766,
+        "height": 107.93147,
+        "tall": 253.75703,
+        "elevation": 25.62941
+      },
+      "s": {
+        "all.color": "rgba(132,137,148,0.31)",
+        "all.reverse.cull": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "left.transparent": true,
+        "right.transparent": true,
+        "top.transparent": true,
+        "bottom.transparent": true,
+        "bottom.visible": false,
+        "bottom.color": "rgba(64,64,64,0.83)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    }
+  ],
+  "scene": {
+    "eye": [
+      1777.22707,
+      2383.59772,
+      2273.50101
+    ],
+    "center": [
+      886.72074,
+      -53.2742,
+      -635.42188
+    ],
+    "near": 10,
+    "far": 100000,
+    "gridSize": 184,
+    "gridGap": 75,
+    "gridColor": [
+      0.4,
+      0.75,
+      0.85,
+      1
+    ]
+  }
+}

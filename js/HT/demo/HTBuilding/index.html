@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HT Building</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<script src="../../guide/lib/core/ht.js"></script>
+	<script src="../../guide/lib/plugin/ht-form.js"></script>
+	<script type="text/javascript">
+		dm = new ht.DataModel();
+		gv = new ht.graph.GraphView(dm);
+		gv.setInteractors([]);
+
+		function init() {
+			ht.Default.xhrLoad('displays/background.json', function(text) {
+				dm.deserialize(text);
+
+				gv.addToDOM();
+				gv.fitContent(true, 0);
+
+				var g3dInfo = create3D('g3dNode');
+				var g2dInfo = createGV('formGV');
+				gv.mp(function(e) {
+					if (e.property === 'zoom' || e.property === 'translateX' || e.property === 'translateY' ) {
+						layout(g3dInfo);
+						layout(g2dInfo);
+					}
+				});
+
+				window.addEventListener('resize', function(e) {
+					gv.fitContent(false, 0);
+				});
+
+				timeShow();// 动态变化右上角时间显示
+			});
+		}
+
+		function layout(info) {
+			var rect = info.node.getRect(),// 获取场景依赖的节点的 矩形区域
+				zoom = gv.getZoom(),// 获取当前 gv 的缩放值
+				tx = gv.tx(),// 获取当前 gv 的水平平移值
+				ty = gv.ty();// 获取当前 gv 的垂直平移值
+
+				// 依赖的节点的大小根据 zoom 缩放值来进行缩放
+				rect.x *= zoom,
+				rect.y *= zoom,
+				rect.width *= zoom,
+				rect.height *= zoom;
+
+			var x = rect.x + tx,
+				y = rect.y + ty;
+
+			// 设置场景自动布局
+			if (info.g3d) info.g3d.layout(x, y, rect.width, rect.height);
+			else if (info.g2d) {
+				info.g2d.layout(x, y, rect.width, rect.height);
+				info.g2d.fitContent();
+			}
+			else {
+                info.div.style.position = 'absolute';
+                info.div.style.width = rect.width + 'px';
+                info.div.style.height = rect.height + 'px';
+                info.div.style.left = x + 'px';
+                info.div.style.top = y + 'px';
+            }
+		}
+
+		function create3D(tag) {
+			var g3d = new ht.graph3d.Graph3dView();// 3D 组件
+			var dataModel = g3d.dm();// 获取 3D 场景的数据容器
+			g3d.setFar(100000);// 设置远端截面位置
+			g3d.setEye([1628, 1522, 3147]);// 设置眼睛（或Camera）所在位置
+			g3d.setCenter([226, 182, 191]);// 设置中心点
+
+			gv.getView().appendChild(g3d.getView());// 将 3D 场景添加到 2D 场景中
+			ht.Default.xhrLoad('scenes/电云维.json', function(text) {// 加载 3D 场景的 json 矢量图纸
+				dataModel.deserialize(text);// 反序列化数据到数据模型
+			});
+
+			// 停止事件的传播，阻止它被分派到其他 Document 节点
+			g3d.getView().addEventListener('mousedown', function(e) { e.stopPropagation()});
+			g3d.getView().addEventListener('mousewheel', function(e) { e.stopPropagation()});
+			if (isFirefox=navigator.userAgent.indexOf("Firefox") > 0) {
+				g3d.getView().addEventListener('DOMMouseScroll', function(e) { e.stopPropagation()});
+		   	}
+
+		   	// 创建在建筑上面的显示面板
+			var billboard = new ht.Node();
+			billboard.setScaleX(2);// 将节点 X 轴上放大 2 倍
+			billboard.setScaleTall(2);// 将节点 Y 轴上放大 2 倍
+			billboard.s({
+				'shape3d': 'billboard',// 此类型为一个面片
+				'shape3d.image': 'symbols/nodeForm.json',// 设置面片的显示图片为矢量图片
+				'shape3d.autorotate': true,// 始终面向相机
+				'shape3d.vector.dynamic': true,// 设置矢量图形
+				'3d.visible': false// 不可见
+			});
+			billboard.setTag('billboard');// 设置节点的 tag 唯一属性
+			dataModel.add(billboard);// 将节点添加到数据容器中
+
+		   	dataModel.sm().ms(function(e) {// 监听选中变化事件
+				if (e.kind === 'set') {// 设置选中
+					billboard.s('3d.visible', true);
+					var data = dataModel.sm().ld();// 获取当前选中的最后一个节点
+					if (!data) return;
+
+					var node = setSelectNode(data, dataModel);
+					if (node) billboard.p3(node.getPosition().x, node.getTall() + 200, node.getPosition().y);
+				}
+				else if (e.kind === 'clear') billboard.s('3d.visible', false);// 清除所有的选中后设置 billboard 不可见
+				else return;
+			});
+
+			g3d.mi(function(e) {// 增加交互事件监听器
+				if(e.kind === 'clickData' || e.kind === 'doubleClickData'){
+					if (e.data.s('shape3d') === 'billboard') return;
+
+					var node = setSelectNode(e.data, dataModel);
+					g3d.flyTo(node, true, 0.5);// 将 eye 和 center 从当前位置“飞到”目标节点的位置 第二个参数若是1 则占满全屏。 6.2.2 版本以上有此方法
+					var name = e.data.getDisplayName();
+
+					// 由于 3D 中不能将模型组合到一起，所以我用追加选中的方法来解决
+					dataModel.each(function(node) {
+						if(node.getDisplayName() !== name) return;// 我将同一类型的节点的 displayName 设置相同
+						dataModel.sm().appendSelection(node);
+					})
+
+					if (dataModel.sm().contains(e.data)) return;// 避免重复选中节点
+
+					if (name === '威克多制衣中心B') name = '威克多制衣中心';// 业务需求
+					// 不同的楼宇上显示的内容不同 我希望不同的楼宇间数据的显示也要不同 因此重复设置了数据绑定的值
+					billboard.a('buildingName', name);
+					billboard.a('electricUsage', (Math.random()*300).toFixed(2));
+					billboard.a('waterUsage', (Math.random()*300).toFixed(2));
+					billboard.a('gasUsage', (Math.random()*300).toFixed(2));
+
+
+				}
+			});
+
+			setInterval(function() {// form 表单数据动态变化
+				billboard.a('electricUsage', (Math.random()*300).toFixed(2));
+				billboard.a('waterUsage', (Math.random()*300).toFixed(2));
+				billboard.a('gasUsage', (Math.random()*300).toFixed(2));
+			}, 3000);
+
+			var info = {
+				g3d: g3d,
+				node: dm.getDataByTag(tag),
+			};
+			return info;
+		}
+
+		function setSelectNode(data, dataModel) {
+			var node;
+			if (data.getDisplayName() === '威可多制衣中心') node = dataModel.getDataByTag('clothA');
+			else if (data.getDisplayName() === '威可多制衣中心B') node = dataModel.getDataByTag('clothB');
+			else if (data.getDisplayName() === '格雷众创园A座') node = dataModel.getDataByTag('zoneA');
+			else if (data.getDisplayName() === '格雷众创园B座') node = dataModel.getDataByTag('zoneB');
+			else if (data.getDisplayName() === '赛普健身学院学生宿舍') node = dataModel.getDataByTag('donitory');
+			else if (data.getDisplayName() === '餐厅') node = dataModel.getDataByTag('canteen');
+			return node;
+		}
+
+		function createGV(tag) {
+			var g2d = new ht.graph.GraphView();// 2D 拓扑场景
+			var dataModel = g2d.dm();// 获取当前拓扑场景的数据容器
+			gv.getView().appendChild(g2d.getView());// 将此拓扑场景添加到底层背景图上
+			g2d.setInteractors([]);// 清除此组件上的交互
+
+			// 添加两个节点到拓扑场景上
+			var node = new ht.Node();
+			node.setImage('symbols/form.json');
+			node.setPosition(0, 0);
+			dataModel.add(node);
+
+			var node1 = new ht.Node();
+			node1.setImage('symbols/form1.json');
+			node1.setPosition(0, dm.getDataByTag(tag).getHeight()/3);
+			dataModel.add(node1);
+
+			g2d.fitContent();
+
+			setInterval(function() {// form表单数据动态变化
+				node.a('electricUse', (Math.random()*300).toFixed(2));
+				node.a('waterUse', (Math.random()*300).toFixed(2));
+				node.a('gasUse', (Math.random()*300).toFixed(2));
+				node.a('tempUse', (RandomNumBoth(10, 40))+'');
+				node.a('wetUse', (Math.floor((Math.random()*100)))+'');
+			}, 3000);
+
+			var info = {
+				g2d: g2d,
+				node: dm.getDataByTag(tag)
+			}
+			return info;
+		}
+
+		function RandomNumBoth(min,max){
+			var num = Math.floor(Math.random()*(max-min+1)+min);
+			return num;
+		}
+
+		function timeShow() {
+			setInterval(function() {// 时钟时间变化
+				var date = new Date();
+				dm.getDataByTag('date').s('text', date.toLocaleDateString().replace(/\//g, '-'));
+				dm.getDataByTag('time').s('text', date.toTimeString().slice(0, date.toTimeString().indexOf(' ')+ 1));
+				switch(date.getDay()) {
+					case 0:
+						dm.getDataByTag('week').s('text', '星期日');
+						break;
+					case 1:
+						dm.getDataByTag('week').s('text', '星期一');
+						break;
+					case 2:
+						dm.getDataByTag('week').s('text', '星期二');
+						break;
+					case 3:
+						dm.getDataByTag('week').s('text', '星期三');
+						break;
+					case 4:
+						dm.getDataByTag('week').s('text', '星期四');
+						break;
+					case 5:
+						dm.getDataByTag('week').s('text', '星期五');
+						break;
+					default:
+						dm.getDataByTag('week').s('text', '星期六');
+						break;
+				}
+			}, 1000);
+		}
+	</script>
+</head>
+<body onload="init()">
+</body>
+</html>

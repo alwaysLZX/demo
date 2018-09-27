@@ -1,0 +1,200 @@
+{
+  "width": 340,
+  "height": 254,
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgba(6,13,36,0.80)",
+      "borderColor": "#979797",
+      "shadowColor": "#1ABC9C",
+      "points": [
+        9.98617,
+        4.90185,
+        31.98576,
+        4.90185,
+        287.8462,
+        4.90185,
+        334.76959,
+        33.308,
+        334.76959,
+        248.19124,
+        25.83498,
+        248.19124,
+        9.98617,
+        238.39596,
+        9.98617,
+        130.80383,
+        15.87693,
+        126.71803,
+        15.87693,
+        113.01478,
+        9.98617,
+        110.29015
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,16,61)",
+      "borderWidth": 1,
+      "borderColor": "rgb(0,145,194)",
+      "borderCap": "square",
+      "shadowColor": "#1ABC9C",
+      "rotation": -1.5708,
+      "closePath": true,
+      "points": [
+        -0.07058,
+        115.46916,
+        2.3587,
+        120.98683,
+        11.71016,
+        120.98683,
+        14.74024,
+        115.46916,
+        -0.07058,
+        115.46916
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(0,145,194)",
+      "borderCap": "square",
+      "shadowColor": "#1ABC9C",
+      "scaleX": -1,
+      "rotation": -1.5708,
+      "points": [
+        -90.28731,
+        123.36926,
+        -90.28737,
+        100.87385,
+        15.15312,
+        100.88286,
+        17.93055,
+        106.58505,
+        31.52463,
+        106.58505,
+        34.87465,
+        100.88286,
+        138.63988,
+        100.87206,
+        152.95674,
+        123.36766,
+        152.95681,
+        148.87166
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(0,145,194)",
+      "borderCap": "square",
+      "shadowColor": "#1ABC9C",
+      "rotation": -1.5708,
+      "points": [
+        143.61418,
+        139.4793,
+        143.61404,
+        190.84187,
+        366.34065,
+        190.84305,
+        387.13113,
+        158.22185,
+        387.13134,
+        58.52238
+      ]
+    },
+    {
+      "type": "text",
+      "text": "预警区域：",
+      "color": "rgb(51,136,176)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        43.27516,
+        75.64961,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@alarmArea",
+        "value": "格雷众创园A座"
+      },
+      "color": "rgb(104,221,183)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        152.14577,
+        75.64961,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "预警时间：",
+      "color": "rgb(51,136,176)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        43.27516,
+        123.91555,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@alarmTime",
+        "value": "2018-05-13 19:00:00"
+      },
+      "color": "rgb(104,221,183)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        152.14577,
+        123.91555,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "预警内容：",
+      "color": "rgb(51,136,176)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        43.27516,
+        178.34231,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@alarmContent",
+        "value": "XXXX"
+      },
+      "color": "rgb(104,221,183)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        152.14577,
+        178.34231,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "预警信息",
+      "color": "rgb(51,136,176)",
+      "font": "bold 20px arial, sans-serif",
+      "rect": [
+        122.71046,
+        18.32949,
+        50,
+        50
+      ]
+    }
+  ]
+}

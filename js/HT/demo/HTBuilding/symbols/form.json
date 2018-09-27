@@ -1,0 +1,302 @@
+{
+  "width": 340,
+  "height": 265,
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgba(6,13,36,0.80)",
+      "borderColor": "#979797",
+      "shadowColor": "#1ABC9C",
+      "points": [
+        9.99689,
+        5.01383,
+        32.04009,
+        5.01383,
+        288.40765,
+        5.01383,
+        335.42404,
+        35.02809,
+        335.42404,
+        262.0762,
+        25.87712,
+        262.0762,
+        9.99689,
+        251.72639,
+        9.99689,
+        138.04331,
+        15.89933,
+        133.7262,
+        15.89933,
+        119.24719,
+        9.99689,
+        116.36832
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,16,61)",
+      "borderWidth": 1,
+      "borderColor": "rgb(0,145,194)",
+      "borderCap": "square",
+      "shadowColor": "#1ABC9C",
+      "rotation": -1.5708,
+      "closePath": true,
+      "points": [
+        -0.48434,
+        121.99123,
+        2.08246,
+        127.51984,
+        11.96332,
+        127.51984,
+        15.16494,
+        121.99123,
+        -0.48434,
+        121.99123
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(0,145,194)",
+      "borderCap": "square",
+      "shadowColor": "#1ABC9C",
+      "scaleX": -1,
+      "rotation": -1.5708,
+      "points": [
+        -97.11948,
+        130.26994,
+        -97.11954,
+        107.72994,
+        14.29009,
+        107.73897,
+        17.22475,
+        113.45247,
+        31.58842,
+        113.45247,
+        35.12809,
+        107.73897,
+        144.76762,
+        107.72815,
+        159.89498,
+        130.26834,
+        159.89505,
+        155.82289
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(0,145,194)",
+      "borderCap": "square",
+      "shadowColor": "#1ABC9C",
+      "rotation": -1.5708,
+      "points": [
+        137.23815,
+        146.40158,
+        137.23801,
+        197.86596,
+        372.5735,
+        197.86713,
+        394.54096,
+        165.18128,
+        394.54118,
+        65.2842
+      ]
+    },
+    {
+      "type": "text",
+      "text": "用电量：",
+      "color": "rgb(51,136,176)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        64.18153,
+        2.9238,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@electricUse",
+        "value": "23.5"
+      },
+      "color": "rgb(104,221,183)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        173.05213,
+        2.9238,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "°",
+      "color": "rgb(112,114,119)",
+      "font": "bold 12px arial, sans-serif",
+      "rect": [
+        237.37078,
+        2.9238,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "用水量：",
+      "color": "rgb(51,136,176)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        64.18153,
+        51.18974,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@waterUse",
+        "value": "43"
+      },
+      "color": "rgb(104,221,183)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        173.05213,
+        51.18974,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "L",
+      "color": "rgb(112,114,119)",
+      "font": "bold 12px arial, sans-serif",
+      "rect": [
+        237.37078,
+        52.9238,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "用气量：",
+      "color": "rgb(51,136,176)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        64.18153,
+        105.6165,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@gasUse",
+        "value": "267"
+      },
+      "color": "rgb(104,221,183)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        173.05213,
+        105.6165,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "N m³",
+      "color": "rgb(112,114,119)",
+      "font": "bold 12px arial, sans-serif",
+      "rect": [
+        237.37078,
+        105.6165,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "环境温度：",
+      "color": "rgb(51,136,176)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        64.18153,
+        163.81026,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@tempUse",
+        "value": "29"
+      },
+      "color": "rgb(104,221,183)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        173.05213,
+        163.81026,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "°",
+      "color": "rgb(112,114,119)",
+      "font": "bold 12px arial, sans-serif",
+      "rect": [
+        237.37078,
+        165.54432,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "环境湿度：",
+      "color": "rgb(51,136,176)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        64.18153,
+        212.0762,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@wetUse",
+        "value": "43"
+      },
+      "color": "rgb(104,221,183)",
+      "font": "bold 16px arial, sans-serif",
+      "rect": [
+        173.05213,
+        212.0762,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "%RH",
+      "color": "rgb(112,114,119)",
+      "font": "bold 12px arial, sans-serif",
+      "rect": [
+        237.37078,
+        212.0762,
+        50,
+        50
+      ]
+    }
+  ]
+}

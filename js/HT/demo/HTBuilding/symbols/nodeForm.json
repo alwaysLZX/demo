@@ -1,0 +1,278 @@
+{
+  "dataBindings": [
+    {
+      "attr": "electricUsage",
+      "valueType": "String"
+    },
+    {
+      "attr": "waterUsage",
+      "valueType": "String"
+    },
+    {
+      "attr": "gasUsage",
+      "valueType": "String"
+    },
+    {
+      "attr": "electricUnit",
+      "valueType": "String"
+    },
+    {
+      "attr": "waterUnit",
+      "valueType": "String"
+    },
+    {
+      "attr": "gasUnit",
+      "valueType": "String"
+    },
+    {
+      "attr": "buildingName",
+      "valueType": "String"
+    }
+  ],
+  "width": 230,
+  "height": 150,
+  "comps": [
+    {
+      "type": "shape",
+      "background": "rgba(6,13,36,0.80)",
+      "borderColor": "#979797",
+      "shadowColor": "#1ABC9C",
+      "points": [
+        18.09633,
+        9.87021,
+        31.44201,
+        9.87021,
+        203.52529,
+        9.87021,
+        215.12042,
+        25.20382,
+        215.12042,
+        141.19754,
+        24.62,
+        141.19754,
+        18.09633,
+        135.91005,
+        18.09633,
+        77.83195,
+        21.66987,
+        75.62644,
+        21.66987,
+        68.22945,
+        18.09633,
+        66.7587
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,16,61)",
+      "borderWidth": 1,
+      "borderColor": "rgb(0,145,194)",
+      "borderCap": "square",
+      "shadowColor": "#1ABC9C",
+      "rotation": -1.5708,
+      "closePath": true,
+      "points": [
+        12.49051,
+        69.43518,
+        13.80183,
+        72.65188,
+        18.84974,
+        72.65188,
+        20.48537,
+        69.43518,
+        12.49051,
+        69.43518
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(0,145,194)",
+      "borderCap": "square",
+      "shadowColor": "#1ABC9C",
+      "displayName": "不规则图形",
+      "scaleX": -1,
+      "rotation": -1.5708,
+      "points": [
+        -30.8176,
+        92.97559,
+        -30.81774,
+        56.28523,
+        26.09891,
+        56.2907,
+        27.59816,
+        59.74983,
+        34.93622,
+        59.74983,
+        36.74457,
+        56.2907,
+        92.75691,
+        56.28416,
+        100.4851,
+        65.72898,
+        100.48517,
+        85.40226
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "rgb(0,145,194)",
+      "borderCap": "square",
+      "shadowColor": "#1ABC9C",
+      "rotation": -1.5708,
+      "points": [
+        127.35236,
+        63.4485,
+        127.35229,
+        94.6067,
+        247.57984,
+        94.60741,
+        258.80236,
+        85.96074,
+        258.80248,
+        54.44816
+      ]
+    },
+    {
+      "type": "text",
+      "text": "用电量：",
+      "color": "rgb(51,136,176)",
+      "font": "bold 14px arial, sans-serif",
+      "rect": [
+        41.80282,
+        38.58948,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "用水量：",
+      "color": "rgb(51,136,176)",
+      "font": "bold 14px arial, sans-serif",
+      "rect": [
+        41.80282,
+        64.89351,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": "用气量：",
+      "color": "rgb(51,136,176)",
+      "font": "bold 14px arial, sans-serif",
+      "rect": [
+        41.80282,
+        91.19754,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@electricUsage",
+        "value": "文本"
+      },
+      "color": "rgb(104,221,183)",
+      "font": "bold 14px arial, sans-serif",
+      "rect": [
+        105.33532,
+        38.58948,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@waterUsage",
+        "value": "文本"
+      },
+      "color": "rgb(104,221,183)",
+      "font": "bold 14px arial, sans-serif",
+      "rect": [
+        105.33532,
+        64.89351,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@gasUsage",
+        "value": "文本"
+      },
+      "color": "rgb(104,221,183)",
+      "font": "bold 14px arial, sans-serif",
+      "rect": [
+        105.33532,
+        91.38902,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@electricUnit",
+        "value": "°"
+      },
+      "color": "rgb(112,114,119)",
+      "rect": [
+        155.33532,
+        42.04609,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@waterUnit",
+        "value": "L"
+      },
+      "color": "rgb(112,114,119)",
+      "rect": [
+        155.33532,
+        67.04609,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@gasUnit",
+        "value": "N m³"
+      },
+      "color": "rgb(112,114,119)",
+      "rect": [
+        155.33532,
+        92.04609,
+        50,
+        50
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@buildingName",
+        "value": "赛普健身学院学生宿舍"
+      },
+      "align": "center",
+      "color": "rgb(104,221,183)",
+      "font": "bold 16px arial, sans-serif",
+      "rotation": 6.28319,
+      "rect": [
+        87.01812,
+        21.36463,
+        55.96375,
+        20.02426
+      ]
+    }
+  ]
+}

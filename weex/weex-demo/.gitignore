@@ -3,3 +3,4 @@ node_modules/
 dist/
 platforms/android/
 platforms/ios/
+package-lock.json

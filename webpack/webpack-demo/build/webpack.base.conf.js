@@ -6,14 +6,15 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
+    // 多入口
     entry: {
+        index: './src/index.js',
         main: './src/main.js',
         other: './src/other.js'
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, '../dist'),
-        publicPath: ''
+        path: path.resolve(__dirname, '../dist')
     },
     module: {
         rules: [
@@ -42,10 +43,10 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
+                            // 文件大小小于此限制则以base64的形式显示文件[单位：字节]
                             limit: 1024 * 100,
                             context: './src',
-                            name: '[path][name].[hash:8].[ext]',
-                            publicPath: ''
+                            name: '[path][name].[hash:8].[ext]'
                         }
                     }
                 ]
@@ -53,8 +54,17 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('app.css'),
-        new CleanWebpackPlugin(['dist']),
+        new ExtractTextPlugin({
+            filename: 'styles.css',
+            allChunks: true
+        }),
+        /*
+        * 根目录很重要，该插件只会删除根目录下的文件
+        * 如果发现一直删除不了指定文件，可能指定的文件在根目录之外，此时插件会忽略
+        */
+        new CleanWebpackPlugin('dist', {
+            root: path.join(__dirname, '../')
+        }),
         new CopyWebpackPlugin([
             { from: './src/assets/images/favicon.ico', to: 'favicon.ico' }
         ]),
@@ -63,29 +73,49 @@ module.exports = {
             _: 'lodash'
         }),
         new HtmlWebpackPlugin({
+            title: 'index页面',
             filename: 'index.html',
-            template: './src/assets/template.html'
+            template: './src/assets/template.html',
+            chunks: ['vendor', 'index'],
+            hash: true
+        }),
+        new HtmlWebpackPlugin({
+            title: 'main页面',
+            filename: 'main.html',
+            template: './src/assets/template.html',
+            chunks: ['vendor', 'main'],
+            hash: true
+        }),
+        new HtmlWebpackPlugin({
+            title: 'other页面',
+            filename: 'other.html',
+            template: './src/assets/template.html',
+            chunks: ['vendor', 'other'],
+            hash: true
         })
     ],
     resolve: {
+        // 自动解析确定的扩展名，此配置会覆盖默认配置
         extensions: ['.js', '.json', '.jsx', '.less', '.css'],
-        // 别名
+        /*
+        创建 import 或 require 的别名，来确保模块引入变得更简单
+        示例：import Upper from '@/utils/util';
+        */
         alias: {
             '@': path.resolve(__dirname, '../src')
         }
     },
-    // 防止将某些 import 的包(package)打包到 bundle 中
-    externals: {
-        // lodash: {
-        //     commonjs: 'lodash',
-        //     amd: 'lodash',
-        //     root: '_' // 指向全局变量
-        // }
-    },
-    // 将展示一条错误，通知你这是体积大的资源
+    // 配置如何展示性能提示
     performance: {
-        // hints: 'error',
-        // maxEntrypointSize: 1024 * 1024 * 5 // 默认值（250kb）
+        hints: 'warning',
+        // 入口起点文件大小
+        maxEntrypointSize: 1024 * 1024,
+        // 资源最大大小
+        maxAssetSize: 1024 * 1024,
+        // 控制用于计算性能提示的文件
+        assetFilter: function(assetFilename) {
+            return !/\.map$/.test(assetFilename);
+        }
     },
     optimization: {
         // 模块拆分
@@ -97,12 +127,6 @@ module.exports = {
                     chunks: 'all',
                     priority: 10
                 }
-                // common: {
-                //     name: 'common',
-                //     chunks: 'all',
-                //     minSize: 1,
-                //     priority: 0
-                // }
             }
         }
     }

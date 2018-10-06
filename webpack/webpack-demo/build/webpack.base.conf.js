@@ -5,6 +5,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+const isProduction = process.argv.indexOf('--mode=production') > -1;
+
 module.exports = {
     // 多入口
     entry: {
@@ -13,8 +15,8 @@ module.exports = {
         other: './src/other.js'
     },
     output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, '../dist')
+        filename: 'js/[name].js',
+        path: path.resolve(__dirname, '../dist/')
     },
     module: {
         rules: [
@@ -25,17 +27,42 @@ module.exports = {
             },
             {
                 test: /\.css/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader']
-                })
+                use: isProduction
+                    ? ExtractTextPlugin.extract({
+                          fallback: 'style-loader',
+                          use: [
+                              {
+                                  loader: 'css-loader',
+                                  options: {
+                                      modules: true,
+                                      importLoaders: 1,
+                                      localIdentName:
+                                          '[name]-[local]-[hash:base64:5]'
+                                  }
+                              }
+                          ]
+                      })
+                    : [
+                          'style-loader',
+                          {
+                              loader: 'css-loader',
+                              options: {
+                                  modules: true,
+                                  importLoaders: 1,
+                                  localIdentName:
+                                      '[name]-[local]-[hash:base64:5]'
+                              }
+                          }
+                      ]
             },
             {
                 test: /.less$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'less-loader']
-                })
+                use: isProduction
+                    ? ExtractTextPlugin.extract({
+                          fallback: 'style-loader',
+                          use: ['css-loader', 'less-loader']
+                      })
+                    : ['style-loader', 'css-loader', 'less-loader']
             },
             {
                 test: /.(png|jpg|gif)$/,
@@ -54,10 +81,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin({
-            filename: 'styles.css',
-            allChunks: true
-        }),
         /*
         * 根目录很重要，该插件只会删除根目录下的文件
         * 如果发现一直删除不了指定文件，可能指定的文件在根目录之外，此时插件会忽略
@@ -65,8 +88,16 @@ module.exports = {
         new CleanWebpackPlugin('dist', {
             root: path.join(__dirname, '../')
         }),
+        // 推荐使用绝对路径
         new CopyWebpackPlugin([
-            { from: './src/assets/images/favicon.ico', to: 'favicon.ico' }
+            {
+                from: './src/assets/images/favicon.ico',
+                to: 'favicon.ico'
+            },
+            {
+                from: path.join(__dirname, '../src/assets/images/'),
+                to: path.join(__dirname, '../dist/assets/images/')
+            }
         ]),
         // 自动加载模块，而不必到处 import 或 require
         new webpack.ProvidePlugin({

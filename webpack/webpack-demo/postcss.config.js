@@ -4,6 +4,10 @@ module.exports = {
         require('precss'),
         require('cssnano')({
             preset: 'default'
-        })
+        }),
+        // require('postcss-pxtorem')({
+        //     rootValue: 75,
+        //     propList:["*"]
+        // })
     ]
 };

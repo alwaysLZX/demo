@@ -19,6 +19,9 @@ webpack v4 相关配置
 >开启热更新
 + 此demo是以命令行的形式添加--hot的方式开启热更新，以这种方式会自动添加webpack.HotModuleReplacementPlugin插件，而不需要额外配置。
 
+### 3、关于[postcss](https://github.com/postcss/postcss)
+postcss对于处理css真的很强大
+
 # 遇到的问题
 
 ### 1、无法在配置文件获取到process.env.NODE_ENV的值

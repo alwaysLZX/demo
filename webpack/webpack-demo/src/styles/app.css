@@ -1,13 +1,18 @@
-.app1{
+.app1 {
     width: 100%;
     color: red;
 }
-.app2 .aa{
+.app2 .aa {
     width: 100%;
 }
-.app3{
+.app3 {
     width: 100%;
 }
-.app4{
+.app4 {
     width: 100%;
+}
+::placeholder {
+    color: red;
+    box-shadow: 1px 1px 1px red;
+    border-radius: 5px;
 }

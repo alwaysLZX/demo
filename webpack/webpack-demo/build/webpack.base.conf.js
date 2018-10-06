@@ -39,7 +39,8 @@ module.exports = {
                                       localIdentName:
                                           '[name]-[local]-[hash:base64:5]'
                                   }
-                              }
+                              },
+                              'postcss-loader'
                           ]
                       })
                     : [
@@ -52,7 +53,8 @@ module.exports = {
                                   localIdentName:
                                       '[name]-[local]-[hash:base64:5]'
                               }
-                          }
+                          },
+                          'postcss-loader'
                       ]
             },
             {
@@ -60,7 +62,7 @@ module.exports = {
                 use: isProduction
                     ? ExtractTextPlugin.extract({
                           fallback: 'style-loader',
-                          use: ['css-loader', 'less-loader']
+                          use: ['css-loader', 'postcss-loader', 'less-loader']
                       })
                     : ['style-loader', 'css-loader', 'less-loader']
             },

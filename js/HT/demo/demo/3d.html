@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HT 3d demo</title>
+    <script src="../../guide/lib/core/ht.js"></script>
+    <script>
+        class Scene3D extends ht.graph3d.Graph3dView {
+            constructor() {
+                let dataModel = new ht.DataModel();
+                super(dataModel);
+                this.dataModel = dataModel;
+                this.addToDOM();
+                // this.setGridVisible(true);
+
+                let node = new ht.Node();
+                node.setStyle('3d.visible', true);
+                node.setStyle('shape3d', 'box');
+                node.setStyle('shape3d.image', './404.jpg');
+                node.s('3d.editable', false);
+                node.s('3d.movable', false);
+                node.s('3d.selectable', false);
+                node.setSize3d(500, 500, 500);
+                node.setPosition3d(0, 500, 0);
+                this.dataModel.add(node);
+
+                let node2 = new ht.Node();
+                node2.setStyle('3d.visible', true);
+                node2.setStyle('shape3d', 'sphere');
+                node2.setStyle('shape3d.image', './404.jpg');
+                node2.s('shape3d.reverse.flip', true);
+                node2.s('3d.selectable', false);
+                node2.setSize3d(12500, 12500, 12500);
+                node2.setPosition3d(0, 0, 0);
+                this.dataModel.add(node2);
+
+                let node3 = new ht.Node();
+                node3.setStyle('3d.visible', true);
+                node3.setStyle('shape3d', 'box');
+                node3.setStyle('shape3d.image', './404.jpg');
+                node3.s('3d.editable', false);
+                node3.s('3d.movable', false);
+                node3.s('3d.selectable', false);
+                node3.setSize3d(12500, 100, 12500);
+                node3.setPosition3d(0, -300, 0);
+                this.dataModel.add(node3);
+
+                this.addPropertyChangeListener(e => {
+                    if (e.property === 'eye') {
+                        if (e.newValue[0] >= 2500) {
+                            this['_eye'][0] = 2500;
+                        } else if (e.newValue[0] <= -2400) {
+                            this['_eye'][0] = -2400;
+                        }
+                        if (e.newValue[1] >= 4500) {
+                            this['_eye'][1] = 4500;
+                        } else if (e.newValue[1] <= 150) {
+                            this['_eye'][1] = 150
+                        }
+                        if (e.newValue[2] >= 3000) {
+                            this['_eye'][2] = 3000;
+                        } else if (e.newValue[2] <= -2500) {
+                            this['_eye'][2] = -2500
+                        }
+                    }
+                });
+            }
+
+            createNode() {
+
+            }
+        }
+
+        var HTUtil = {
+            params: {
+                g3d: null,
+                data: null
+            },
+            init() {
+                this.params.g3d = new Scene3D();
+            }
+        };
+    </script>
+</head>
+<body onload="HTUtil.init()">
+
+</body>
+</html>

@@ -4,15 +4,15 @@
 
 ## 调度
 
-> **概念**
+### 1. 概念
 
 调度，用通俗易懂的话来说，就是定时执行的任务。
 
-> **执行流程**
+### 2. 执行流程
 
 先通过`DataModel`添加调度任务，`DataModel`会在调度任务指定的时间间隔到达时， 遍历`DataModel`所有图元回调调度任务的`action`函数，可在该函数中对`传入的Data图元`做相应的属性修改以达到动画效果。
 
-> **增加调度任务**
+### 3. 增加调度任务
 
 通过`DataModel.addScheduleTask(task)`添加调度任务
 
@@ -40,7 +40,7 @@ blinkTask = {
 dataModel.addScheduleTask(blinkTask);
 ~~~
 
-> **删除调度任务和停用调度任务**
+### 4. 删除调度任务
 
 通过`DataModel.removeScheduleTask(task)`删除调度任务，其中`task`为以前添加过的调度任务对象。
 
@@ -50,6 +50,7 @@ dataModel.removeScheduleTask(blinkTask);
 ~~~
 
 > **启停调度任务**
+### 5. 启停调度任务
 
 调度任务的`json`参数对象上的`enabled`属性可控制调度任务的启停。
 

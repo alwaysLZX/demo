@@ -42,6 +42,23 @@
 + 原始数据类型：boolean、number、string、null、undefined、symbol
 + 对象类型
 
+### 声明文件（自己写的声明文件，只要是包含在项目里，开发工具会自动查找）
+
++ `tsd`：这是我在项目中遇到的，然而，tsd的描述文档里，表示已弃用，推荐使用`typings`
+
++ `typings`：随着时间的推移，貌似这种解决方案也被弃用了
+
++ `@types`：这是ts 2.0之后官方支持的
+
+### `tsconfig.json`
+
++ [`compilerOptions`](http://www.typescriptlang.org/docs/handbook/compiler-options.html)
++ `files`：指定一个包含相对或绝对文件路径的列表
++ "include"和"exclude"属性指定一个文件glob匹配模式列表。 支持的glob通配符有：
+  + \* 匹配0或多个字符（不包括目录分隔符）
+  + ? 匹配一个任意字符（不包括目录分隔符）
+  + **/ 递归匹配任意子目录
+
 ### 其他
 
 + 使用`type`创建类型别名：类型别名常用于联合类型。

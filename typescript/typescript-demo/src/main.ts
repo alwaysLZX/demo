@@ -6,10 +6,10 @@ interface IPerson {
 }
 
 let tom: IPerson = {
-    id:'1',
+    id: '1',
     name: 'qian_xie',
-    age: 18,
-    class: '软件133'
+    age: 24,
+    class: '13软件3班'
 };
 
 class Animal {
@@ -18,6 +18,8 @@ class Animal {
         this._name = name;
     }
     Action(): void {
+        XQUtil.getFirstName('dog');
         console.log('I am a animal');
     }
 }
+

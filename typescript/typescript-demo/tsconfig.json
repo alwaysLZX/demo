@@ -1,0 +1,9 @@
+{
+    // 编译选项
+    "compilerOptions": {
+        "noEmitOnError": true,  // 在报错的时候终止js文件的生成
+    }
+    // "files": {},
+    // "include": {},
+    // "exclude": {}
+}

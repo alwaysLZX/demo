@@ -2,7 +2,9 @@
 
 [最好的学习是看官方文档](https://webpack.docschina.org/concepts/)
 
-## 相关配置
+## 我的项目结构
+
+![项目结构](webpack-demo/src/assets/images/structure.jpg)
 
 ### 1、关于mode
 

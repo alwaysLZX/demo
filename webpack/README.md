@@ -2,6 +2,8 @@
 
 [最好的学习是看官方文档](https://webpack.docschina.org/concepts/)
 
+## 相关配置
+
 ### 1、关于mode
 
 选项                  | 描述

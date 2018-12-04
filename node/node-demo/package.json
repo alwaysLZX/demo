@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "npm run dev",
-    "dev": "SET DEBUG=node-demo:*,express:router & set PORT=3001 & node ./bin/www",
-    "build":"SET PORT=3001 & node ./bin/www"
+    "dev": "SET DEBUG=node-demo:* & set PORT=3001 & node ./bin/www",
+    "debug":"SET DEBUG=node-demo:*,express:router & set PORT=3001 & node ./bin/www",
+    "build":"SET PORT=3001 & SET NODE_ENV=production & node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",

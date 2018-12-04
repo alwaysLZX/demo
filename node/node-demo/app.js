@@ -10,27 +10,32 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-// view engine setup
+// 设置模板引擎
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
 
+// HTTP请求记录器中间件
 app.use(logger('dev'));
-app.use(express.json());
+
+// json中间件、urlencoded中间件、cookie中间件
+app.use(express.json({limit: '5mb'}));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
+// 设置静态文件，参考文档：https://github.com/expressjs/serve-static
+app.use(express.static(path.join(__dirname, 'public'), { index: ['index.html', 'home.html'] }));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
+// 捕获404和抛出错误
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+// 错误处理
+app.use(function (err, req, res, next) {
+  // 设置locals，只在开发中时提供错误
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   next(err);

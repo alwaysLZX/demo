@@ -1,9 +1,11 @@
-exports.logErrors = function (err, req, res, next) {
+
+
+function logErrorHandler(err, req, res, next) {
     console.error('log middlewares', err.stack)
     next(err)
 }
 
-exports.clientErrorHandler = function (err, req, res, next) {
+function clientErrorHandler (err, req, res, next) {
     if (req.xhr) {
         if (err.status === 404) {
             res.status(404).send({ error: 'API IS Not Found!' })
@@ -14,7 +16,8 @@ exports.clientErrorHandler = function (err, req, res, next) {
         next(err)
     }
 }
-exports.errorHandler = function (err, req, res, next) {
+
+function errorHandler (err, req, res, next) {
     let status = 500;
     let template = 'error';
     if (err.status === 404) {
@@ -24,3 +27,9 @@ exports.errorHandler = function (err, req, res, next) {
     res.status(status);
     res.render(template, { error: err });
 }
+
+module.exports = {
+    logErrorHandler,
+    clientErrorHandler,
+    errorHandler
+};

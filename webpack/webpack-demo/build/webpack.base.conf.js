@@ -29,41 +29,41 @@ module.exports = {
                 test: /\.css/,
                 use: isProduction
                     ? ExtractTextPlugin.extract({
-                          fallback: 'style-loader',
-                          use: [
-                              {
-                                  loader: 'css-loader',
-                                  options: {
-                                      modules: true,
-                                      importLoaders: 1,
-                                      localIdentName:
-                                          '[name]-[local]-[hash:base64:5]'
-                                  }
-                              },
-                              'postcss-loader'
-                          ]
-                      })
+                        fallback: 'style-loader',
+                        use: [
+                            {
+                                loader: 'css-loader',
+                                options: {
+                                    modules: true,
+                                    importLoaders: 1,
+                                    localIdentName:
+                                        '[name]-[local]-[hash:base64:5]'
+                                }
+                            },
+                            'postcss-loader'
+                        ]
+                    })
                     : [
-                          'style-loader',
-                          {
-                              loader: 'css-loader',
-                              options: {
-                                  modules: true,
-                                  importLoaders: 1,
-                                  localIdentName:
-                                      '[name]-[local]-[hash:base64:5]'
-                              }
-                          },
-                          'postcss-loader'
-                      ]
+                        'style-loader',
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: true,
+                                importLoaders: 1,
+                                localIdentName:
+                                    '[name]-[local]-[hash:base64:5]'
+                            }
+                        },
+                        'postcss-loader'
+                    ]
             },
             {
                 test: /.less$/,
                 use: isProduction
                     ? ExtractTextPlugin.extract({
-                          fallback: 'style-loader',
-                          use: ['css-loader', 'postcss-loader', 'less-loader']
-                      })
+                        fallback: 'style-loader',
+                        use: ['css-loader', 'postcss-loader', 'less-loader']
+                    })
                     : ['style-loader', 'css-loader', 'less-loader']
             },
             {
@@ -146,7 +146,7 @@ module.exports = {
         // 资源最大大小
         maxAssetSize: 1024 * 1024,
         // 控制用于计算性能提示的文件
-        assetFilter: function(assetFilename) {
+        assetFilter: function (assetFilename) {
             return !/\.map$/.test(assetFilename);
         }
     },

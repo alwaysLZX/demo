@@ -6,7 +6,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run dev",
     "dev": "webpack-dev-server --config ./build/webpack.dev.conf.js --color --progress",
-    "build": "webpack --mode=production --config ./build/webpack.prod.conf.js --color --progress"
+    "build": "webpack --mode=production --config ./build/webpack.prod.conf.js --color --progress",
+    "babel": "babel src --out-dir babelOut",
+    "eslint": "eslint src"
   },
   "keywords": [],
   "author": "xieqian",

@@ -1,0 +1,11 @@
+@function px2rem($px) {
+    @return $px/75px * 1rem;
+}
+
+.box {
+    width: px2rem(10px);
+}
+
+.wrapper {
+    font-size: px2rem(32px);
+}

@@ -1,9 +1,14 @@
-@function px2rem($px) {
-    @return $px/75px * 1rem;
+@import './common.scss';
+
+header {
+    height: px2rem(363px);
 }
 
 .box {
     width: px2rem(10px);
+    ::placeholder {
+        color: blue;
+    }
 }
 
 .wrapper {

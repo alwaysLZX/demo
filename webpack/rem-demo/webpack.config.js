@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -9,13 +10,14 @@ const isDev = false;
 module.exports = {
     mode: 'development',
     // mode: 'production',
-    devtool: 'eval-source-map',
+    devtool: 'inline-source-map',   // 不适合用于正式环境
     entry: {
         main: './src/index.js'
     },
     output: {
         filename: 'main.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -30,6 +32,7 @@ module.exports = {
                             localIdentName: '[name]-[local]-[hash:base64:5]'
                         }
                     },
+                    "postcss-loader"
                 ]
             },
             {
@@ -37,7 +40,8 @@ module.exports = {
                 use: [
                     "style-loader",
                     "css-loader",
-                    "sass-loader"
+                    "sass-loader",
+                    "postcss-loader"
                 ]
             },
             {
@@ -45,6 +49,7 @@ module.exports = {
                 use: [
                     "style-loader",
                     "css-loader",
+                    "postcss-loader",
                     "less-loader"
                 ]
             }
@@ -58,6 +63,10 @@ module.exports = {
             {
                 from: path.join(__dirname, './src/assets/'),
                 to: path.join(__dirname, './dist/assets/')
+            },
+            {
+                from: path.join(__dirname, './src/assets/images/favicon.ico'),
+                to: path.join(__dirname, './dist/')
             }
         ]),
         new MiniCssExtractPlugin({
@@ -65,10 +74,12 @@ module.exports = {
             chunkFilename: isDev ? '[id].css' : '[id].[hash].css',
         }),
         new HtmlWebpackPlugin({
-            title: 'MAIN',
+            title: '广州天河区分局运维管理平台',
             filename: 'htmls/index.html',
             template: './src/htmls/index.html',
             hash: true
         }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin()
     ]
 };

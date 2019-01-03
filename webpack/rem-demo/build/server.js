@@ -3,9 +3,12 @@ const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require("webpack-hot-middleware");
+const opn = require('opn');
+
+const port = 3000;
 
 const app = express();
-let config = require('./webpack.config.js');
+let config = require('./webpack.dev.conf');
 parseWebpackEntry(config);
 const compiler = webpack(config);
 
@@ -18,11 +21,17 @@ app.use(webpackHotMiddleware(compiler, {
     reload: true
 }));
 
-app.listen(3000, function () {
-    console.log('http://localhost:3000');
+app.listen(port, function () {
+    let url = `http://localhost:${port}`;
+    console.log(url);
+    opn(url);
 });
 
 
+/**
+ * 转换webpack的入口，使之成数组的方式并添加热加载相关代码
+ * @param  {object} config
+ */
 function parseWebpackEntry(config) {
     let entry = config.entry;
     let client = "webpack-hot-middleware/client";

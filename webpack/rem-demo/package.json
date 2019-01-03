@@ -5,11 +5,11 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "node src/test.js",
     "start": "npm run dev",
-    "dev": "node server.js",
-    "build": "webpack --config webpack.config.js",
-    "watch": "webpack --watch"
+    "dev": "node build/server.js",
+    "build": "webpack --config build/webpack.prod.conf.js --mode=production --color --progress",
+    "watch": "webpack --watch",
+    "test": "node build/test.js"
   },
   "keywords": [
     "rem",
@@ -29,12 +29,14 @@
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
+    "opn": "^5.4.0",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-middleware": "^3.4.0",
-    "webpack-hot-middleware": "^2.24.3"
+    "webpack-hot-middleware": "^2.24.3",
+    "webpack-merge": "^4.1.5"
   }
 }

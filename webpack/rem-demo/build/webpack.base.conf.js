@@ -4,27 +4,22 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const moduleConfig = require("./wepack.module.conf");
 
-const isDev = false;
+const isProd = process.argv.indexOf('--mode=production') > -1;
 
-module.exports = {
-    mode: 'development',
-    // mode: 'production',
-    devtool: 'inline-source-map',   // 不适合用于正式环境
-    entry: {
-        main: './src/index.js'
-    },
+let config = {
+    entry: {},
     output: {
-        filename: 'main.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
+        filename: 'js/[name].js',
+        path: path.resolve(__dirname, '../dist'),
     },
     module: {
         rules: [
             {
                 test: /\.css$/,
                 use: [
-                    isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+                    isProd ? MiniCssExtractPlugin.loader : "style-loader",
                     {
                         loader: "css-loader",
                         options: {
@@ -38,7 +33,7 @@ module.exports = {
             {
                 test: /\.scss|\.sass$/,
                 use: [
-                    "style-loader",
+                    isProd ? MiniCssExtractPlugin.loader : "style-loader",
                     "css-loader",
                     "sass-loader",
                     "postcss-loader"
@@ -47,7 +42,7 @@ module.exports = {
             {
                 test: /\.less$/,
                 use: [
-                    "style-loader",
+                    isProd ? MiniCssExtractPlugin.loader : "style-loader",
                     "css-loader",
                     "postcss-loader",
                     "less-loader"
@@ -57,29 +52,33 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin('dist', {
-            root: path.join(__dirname, './')
+            root: path.join(__dirname, '../')
         }),
         new CopyWebpackPlugin([
             {
-                from: path.join(__dirname, './src/assets/'),
-                to: path.join(__dirname, './dist/assets/')
+                from: path.join(__dirname, '../src/assets/'),
+                to: path.join(__dirname, '../dist/assets/')
             },
             {
-                from: path.join(__dirname, './src/assets/images/favicon.ico'),
-                to: path.join(__dirname, './dist/')
+                from: path.join(__dirname, '../src/assets/images/favicon.ico'),
+                to: path.join(__dirname, '../dist/')
             }
         ]),
-        new MiniCssExtractPlugin({
-            filename: isDev ? '[name].css' : '[name].[hash].css',
-            chunkFilename: isDev ? '[id].css' : '[id].[hash].css',
-        }),
-        new HtmlWebpackPlugin({
-            title: '广州天河区分局运维管理平台',
-            filename: 'htmls/index.html',
-            template: './src/htmls/index.html',
-            hash: true
-        }),
-        new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin()
     ]
 };
+
+// 添加entry和html插件
+Object.keys(moduleConfig).forEach(key => {
+    config.entry[key] = moduleConfig[key].entry;
+    config.plugins.push(
+        new HtmlWebpackPlugin({
+            title: moduleConfig[key].title || '广州天河区分局运维管理平台',
+            filename: `htmls/${key}.html`,
+            template: `./src/htmls/${key}.html`,
+            hash: true
+        })
+    );
+});
+
+module.exports = config;

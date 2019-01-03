@@ -44,7 +44,19 @@ let config = {
                 use: [
                     isProd ? MiniCssExtractPlugin.loader : "style-loader",
                     "css-loader",
-                    "postcss-loader",
+                    {
+                        // 在这里单独指定了options，所以postcss不会去读取默认配置的文件[postcss.config.js]的配置
+                        loader: "postcss-loader",
+                        options: {
+                            plugins: [
+                                require('postcss-pxtorem')({
+                                    rootValue: 72,
+                                    minPixelValue: 2,
+                                    propList: ["font", "font-size"]
+                                })
+                            ]
+                        }
+                    },
                     "less-loader"
                 ]
             }
@@ -76,6 +88,7 @@ Object.keys(moduleConfig).forEach(key => {
             title: moduleConfig[key].title || '广州天河区分局运维管理平台',
             filename: `htmls/${key}.html`,
             template: `./src/htmls/${key}.html`,
+            chunks: [key],
             hash: true
         })
     );

@@ -8,6 +8,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     devtool: 'source-map',
     output: {
         // 很重要，不主动添加publicPath属性时，添加到html的脚本会按照页面相对路径来引用
+        // 但是如果不加，在热跟新的时候会有路径的问题
         publicPath: '/'
     },
     plugins: [

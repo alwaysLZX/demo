@@ -59,6 +59,20 @@ let config = {
                     },
                     "less-loader"
                 ]
+            },
+            {
+                test: /.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            // 文件大小小于此限制则以base64的形式显示文件[单位：字节]
+                            limit: 1024 * 10,
+                            context: './src',
+                            name: '[path][name].[hash:8].[ext]'
+                        }
+                    }
+                ]
             }
         ]
     },

@@ -1,0 +1,17 @@
+{
+  "name": "xqtree",
+  "version": "1.0.0",
+  "description": "树组件",
+  "scripts": {
+    "dev": "gulp"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-minify-html": "^1.0.6"
+  }
+}

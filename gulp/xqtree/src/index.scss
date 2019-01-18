@@ -1,0 +1,50 @@
+/* 组件树 */
+.tree {
+    color: #333;
+    font-size: 16px;
+}
+
+.tree-node {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tree-node-title {
+    padding: 0 10px;
+}
+
+.tree .checkbox-true-full {
+    width: 24px;
+    height: 24px;
+    background: url(../images/icons/checkbox-select.png) center center no-repeat;
+    background-size: 100%;
+}
+
+.tree .checkbox-true-part {
+    width: 24px;
+    height: 24px;
+    background: url(../images/icons/checkbox-select-part.png) center center no-repeat;
+    background-size: 100%;
+}
+
+.tree .checkbox-false-full {
+    width: 24px;
+    height: 24px;
+    background: url(../images/icons/checkbox.png) center center no-repeat;
+    background-size: 100%;
+}
+
+.tree .switch-open {
+    width: 24px;
+    height: 8px;
+    background: url(../images/icons/open-close-select.png) 0 -11px no-repeat;
+    background-size: 24px;
+}
+
+.tree .switch-close {
+    width: 24px;
+    height: 8px;
+    background: url(../images/icons/open-close.png) 0 -4px no-repeat;
+    background-size: 24px;
+}

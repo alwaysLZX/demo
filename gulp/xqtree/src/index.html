@@ -5,30 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>xqtree</title>
+    <link rel="stylesheet" href="index.css" />
+    <style>
+        .container {
+            width: 500px;
+            margin: 50px auto;
+            display: flex;
+        }
+
+        .container>* {
+            float: 1;
+        }
+
+        .box {
+            width: 500px;
+            margin: 50px auto;
+        }
+
+    </style>
 </head>
 <body>
-    <ul class="tree">
-        <li class="tree-node level0">
-            <span class="checkbox-true-full"></span>
-            <span class="tree-node-title">电子警察1111</span>
-            <span class="switch-open"></span>
-        </li>
-        <li class="tree-node level0">
-            <span class="checkbox-true-part"></span>
-            <span class="tree-node-title">卡口</span>
-            <span class="switch-open"></span>
-        </li>
-        <li class="tree-node level0">
-            <span class="checkbox-false-full"></span>
-            <span class="tree-node-title">信号机</span>
-            <span class="switch-close"></span>
-        </li>
-        <li class="tree-node level0">
-            <span class="checkbox-false-full"></span>
-            <span class="tree-node-title">诱导屏1</span>
-            <span class="switch-close"></span>
-        </li>
-    </ul>
+    <div class="container" id="box">
+    </div>
     <script src="./index.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var ele = document.getElementById("box");
+            var config = {};
+            var nodes = [{
+                    name: "广东省",
+                    children: [{
+                            name: "广州市"
+                        },
+                        {
+                            name: "深圳市"
+                        },
+                        {
+                            name: "珠海市"
+                        },
+                        {
+                            name: "汕头市"
+                        }
+                    ]
+                },
+                {
+                    name: "福建省"
+                },
+                {
+                    name: "广西壮族自治区"
+                },
+                {
+                    name: "湖南省"
+                },
+                {
+                    name: "江西省"
+                },
+                {
+                    name: "海南省"
+                }
+            ];
+            var tree = new xqTree(ele, config, nodes);
+        });
+
+    </script>
 </body>
 </html>

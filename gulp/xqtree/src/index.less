@@ -1,50 +1,87 @@
-/* 组件树 */
-.tree {
-    color: #333;
-    font-size: 16px;
+@import "./styles/reset";
+@import "./styles/variable";
+@import "./styles/mixin";
+
+// 行内元素水平居中
+.verticalCenter() {
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.tree-node {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+.xqtree * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    user-select:none;
+    transition: all .3s;
 }
 
-.tree-node-title {
-    padding: 0 10px;
-}
+.xqtree {
+    color: @fontColorDefault;
+    font-size: @fontSizeDefault;
+    font-family: @fontDefault;
 
-.tree .checkbox-true-full {
-    width: 24px;
-    height: 24px;
-    background: url(../images/icons/checkbox-select.png) center center no-repeat;
-    background-size: 100%;
-}
+    &-node {
+        position: relative;
+        & ul {
+            padding-left: 20px;
+        }
+        // 复选框
+        &-checkbox {
+            width: 24px;
+            height: 24px;
+            .verticalCenter();
+            cursor: pointer;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
 
-.tree .checkbox-true-part {
-    width: 24px;
-    height: 24px;
-    background: url(../images/icons/checkbox-select-part.png) center center no-repeat;
-    background-size: 100%;
-}
+        &-checkbox-select-false {
+            background-image: url(./images/checkbox.png);
+        }
 
-.tree .checkbox-false-full {
-    width: 24px;
-    height: 24px;
-    background: url(../images/icons/checkbox.png) center center no-repeat;
-    background-size: 100%;
-}
+        &-checkbox-select-part {
+            background-image: url(./images/checkbox-select-part.png);
+        }
 
-.tree .switch-open {
-    width: 24px;
-    height: 8px;
-    background: url(../images/icons/open-close-select.png) 0 -11px no-repeat;
-    background-size: 24px;
-}
+        &-checkbox-select-true {
+            background-image: url(./images/checkbox-select.png);
+        }
 
-.tree .switch-close {
-    width: 24px;
-    height: 8px;
-    background: url(../images/icons/open-close.png) 0 -4px no-repeat;
-    background-size: 24px;
+        // 树节点链接
+        &-link {
+            .verticalCenter();
+            text-decoration: none;
+            color: @fontColorDefault;
+            padding-left: 5px;
+            padding-right: 5px;
+            &:hover {
+                color: @fontColorHover;
+                & ~ .xqtree-node-switch-close {
+                    background-image: url(./images/open-close-select.png);
+                }
+            }
+        }
+
+        // 开关
+        &-switch {
+            .verticalCenter();
+            width: 24px;
+            height: 8px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: 24px;
+        }
+
+        &-switch-close {
+            background-position: 0 -11px;
+            background-image: url(./images/open-close.png);
+        }
+
+        &-switch-open {
+            background-position: 0 -4px;
+            background-image: url(./images/open-close-select.png);
+        }
+    }
 }

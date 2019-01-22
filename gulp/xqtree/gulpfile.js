@@ -2,10 +2,15 @@ var gulp = require("gulp");
 var browserSync = require("browser-sync");
 var plugins = require('gulp-load-plugins')();
 
+var option = {
+    base: 'src'
+};
+var dist = __dirname + '/dist';
+
 gulp.task("build:less", function () {
-    gulp.src("src/*.less")
+    gulp.src("src/*.less", option)
         .pipe(plugins.less())
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest(dist))
         .pipe(browserSync.reload({
             stream: true
         }))
@@ -13,12 +18,15 @@ gulp.task("build:less", function () {
         .pipe(plugins.rename(function (path) {
             path.basename += '.min';
         }))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest(dist));
 });
 
 gulp.task("build:js", function () {
-    gulp.src("src/*.js")
-        .pipe(gulp.dest('dist'))
+    gulp.src("src/*.js", option)
+        .pipe(plugins.babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(gulp.dest(dist))
         .pipe(browserSync.reload({
             stream: true
         }))
@@ -26,12 +34,12 @@ gulp.task("build:js", function () {
         .pipe(plugins.rename(function (path) {
             path.basename += '.min';
         }))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest(dist));
 });
 
 gulp.task("build:html", function () {
-    gulp.src("src/*.html")
-        .pipe(gulp.dest('dist'))
+    gulp.src("src/*.html", option)
+        .pipe(gulp.dest(dist))
         .pipe(browserSync.reload({
             stream: true
         }))
@@ -39,19 +47,29 @@ gulp.task("build:html", function () {
         .pipe(plugins.rename(function (path) {
             path.basename += '.min';
         }))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest(dist));
+});
+
+gulp.task("build:asset", function () {
+    gulp
+        .src('src/images/**/*.?(png|jpg|gif)', option)
+        .pipe(gulp.dest(dist))
+        .pipe(browserSync.reload({
+            stream: true
+        }));
 });
 
 gulp.task("watch", function () {
-    gulp.watch("src/*.html", ['build:html']);
-    gulp.watch("src/*.js", ['build:js']);
+    gulp.watch('src/images/**/*.?(png|jpg|gif)', ['build:asset']);
     gulp.watch("src/*.less", ['build:less']);
+    gulp.watch("src/*.js", ['build:js']);
+    gulp.watch("src/*.html", ['build:html']);
 });
 
 gulp.task("server", function () {
     browserSync.init({
         server: {
-            baseDir: "dist"
+            baseDir: dist
         },
         port: 12,
         open: 'external',
@@ -59,6 +77,6 @@ gulp.task("server", function () {
     });
 });
 
-gulp.task("release", ["build:html", "build:js", "build:less"]);
+gulp.task("release", ["build:asset", "build:less", "build:js", "build:html"]);
 
 gulp.task("default", ["release", "server", "watch"]);

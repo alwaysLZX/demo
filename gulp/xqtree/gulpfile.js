@@ -58,13 +58,13 @@ gulp.task("build:html", function () {
             var contents = file.contents.toString();
             contents = contents.replace(
               /<link\s+rel="stylesheet"\s+href="(index.css)"\/>/gi,
-              function(match, $1) {
-                return ('<link rel="stylesheet" href="xqtree.css" />');
+              function() {
+                return ('<link rel="stylesheet" href="xqtree.css"/>');
               }
             );
             contents = contents.replace(
                 /<script\s+src="(index.js)"><\/script>/gi,
-                function(match, $1) {
+                function() {
                   return ('<script src="xqtree.js"></script>');
                 }
               );

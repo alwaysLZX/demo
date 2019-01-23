@@ -17,7 +17,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   var defaultNode = {
     _id: "",
     open: false,
-    checked: false
+    checked: false,
+    checkedPart: false
   }; // 树构造函数
 
   function xqTree(ele, config, nodes) {
@@ -131,46 +132,47 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   }; // 设置节点选中
 
 
-  xqTree.prototype.setNodesChecked = function (node) {
-    var spanCheckbox = node.firstChild;
-    spanCheckbox.classList.remove("xqtree-node-checkbox-select-false");
-    spanCheckbox.classList.remove("xqtree-node-checkbox-select-part");
-    spanCheckbox.classList.add("xqtree-node-checkbox-select-true");
-    this.nodes[node.id].checked = true;
+  xqTree.prototype.setNodeChecked = function (node) {
+    this.setNodeCheckedStatus(node, true, false);
 
     if (node.lastChild.nodeName === "UL") {
-      this.setNodesChildChecked(node);
+      this.setNodeChildChecked(node);
+    }
+
+    if (node.parentNode.nodeName === "UL" && node.parentNode.getAttribute("root") === "false") {
+      this.setNodeParentChecked(node);
     }
   }; // 设置子节点选中
 
 
-  xqTree.prototype.setNodesChildChecked = function (node) {
+  xqTree.prototype.setNodeChildChecked = function (node) {
     var _this2 = this;
 
     var ul = node.lastChild;
 
     if (ul.nodeName === "UL") {
       xqTree.forEach(ul.children, function (item) {
-        _this2.setNodesChecked(item);
+        _this2.setNodeCheckedStatus(item, true, false);
+
+        _this2.setNodeChildChecked(item);
       });
     }
-  }; // 设置子节点选中
+  }; // 设置父节点选中
 
 
-  xqTree.prototype.setNodesParentChecked = function (node) {
-    var _this3 = this;
+  xqTree.prototype.setNodeParentChecked = function (node) {
+    var ul = node.parentNode;
 
-    var ul = node.lastChild;
-
-    if (ul.nodeName === "UL") {
-      xqTree.forEach(ul.children, function (item) {
-        _this3.setNodesChecked(item);
-      });
+    if (ul.nodeName === "UL" && ul.getAttribute("root") === "false") {
+      var crtNode = ul.parentNode;
+      var status = this.getNodeCheckedStatus(crtNode);
+      this.setNodeCheckedStatus(crtNode, status.checked, status.checkedPart);
+      this.setNodeParentChecked(crtNode);
     }
   }; // 设置节点不选中
 
 
-  xqTree.prototype.setNodesNoChecked = function (node) {
+  xqTree.prototype.setNodeNoChecked = function (node) {
     var spanCheckbox = node.firstChild;
     ;
     spanCheckbox.classList.add("xqtree-node-checkbox-select-false");
@@ -179,21 +181,88 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     this.nodes[node.id].checked = false;
 
     if (node.lastChild.nodeName === "UL") {
-      this.setNodesChildNoChecked(node);
+      this.setNodeChildNoChecked(node);
     }
   }; // 设置子节点选中
 
 
-  xqTree.prototype.setNodesChildNoChecked = function (node) {
-    var _this4 = this;
+  xqTree.prototype.setNodeChildNoChecked = function (node) {
+    var _this3 = this;
 
     var ul = node.lastChild;
 
     if (ul.nodeName === "UL") {
       xqTree.forEach(ul.children, function (item) {
-        _this4.setNodesNoChecked(item);
+        _this3.setNodeNoChecked(item);
       });
     }
+  }; // 设置节点选中状态
+
+
+  xqTree.prototype.setNodeCheckedStatus = function (node, checked, part) {
+    var spanCheckbox = node.firstChild;
+    spanCheckbox.classList.remove("xqtree-node-checkbox-select-false");
+    spanCheckbox.classList.remove("xqtree-node-checkbox-select-part");
+    spanCheckbox.classList.remove("xqtree-node-checkbox-select-true");
+
+    if (checked && !part) {
+      spanCheckbox.classList.add("xqtree-node-checkbox-select-true");
+      this.nodes[node.id].checked = true;
+      this.nodes[node.id].checkedPart = false;
+    } else if (checked && part) {
+      spanCheckbox.classList.add("xqtree-node-checkbox-select-part");
+      this.nodes[node.id].checked = true;
+      this.nodes[node.id].checkedPart = true;
+    } else {
+      spanCheckbox.classList.add("xqtree-node-checkbox-select-false");
+      this.nodes[node.id].checked = false;
+      this.nodes[node.id].checkedPart = false;
+    }
+  }; // 获取节点选中状态
+
+
+  xqTree.prototype.getNodeCheckedStatus = function (node) {
+    var _this4 = this;
+
+    var ul = node.lastChild;
+    var result = {
+      checked: true,
+      checkedPart: false
+    };
+
+    if (ul.nodeName === "UL") {
+      var checkCount = 0;
+      var checkedPartCount = 0;
+      xqTree.forEach(ul.children, function (item) {
+        var nodeData = _this4.getNodeObj(item);
+
+        if (nodeData.checked) {
+          checkCount++;
+
+          if (nodeData.checkedPart) {
+            checkedPartCount++;
+          }
+        }
+      });
+
+      if (checkCount === 0) {
+        result.checked = false;
+      } else if (checkCount < ul.childElementCount) {
+        result.checkedPart = true;
+      } else if (checkedPartCount > 0) {
+        result.checkedPart = true;
+      } else {
+        result.checked = true;
+        result.checkedPart = false;
+      }
+    }
+
+    return result;
+  }; // 获取节点数据
+
+
+  xqTree.prototype.getNodeObj = function (node) {
+    return this.nodes[node.id];
   }; // 绑定事件
 
 
@@ -205,9 +274,9 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       var node = this.parentNode;
 
       if (_this.nodes[node.id].checked) {
-        _this.setNodesNoChecked(node);
+        _this.setNodeNoChecked(node);
       } else {
-        _this.setNodesChecked(node);
+        _this.setNodeChecked(node);
       }
     }
 
@@ -290,14 +359,6 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
     this.nodes[node._id] = node;
     return node;
-  } // 获取ul的高度
-
-
-  function _getUlHeight(node) {
-    var allHeight = 0;
-    Array.prototype.forEach.call(ul.children, function (item) {
-      allHeight += item.clientHeight;
-    });
   } // 创建元素
 
 

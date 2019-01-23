@@ -109,7 +109,8 @@ gulp.task("server", function () {
         },
         port: 12,
         open: 'external',
-        host: 'localhost'
+        host: 'localhost',
+        index: "xqtree.html"
     });
 });
 

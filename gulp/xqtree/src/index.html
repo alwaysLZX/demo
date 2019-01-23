@@ -27,15 +27,62 @@
 <body>
     <div class="container" id="box">
     </div>
-    <script src="./index.js"></script>
+    <script src="index.js"></script>
     <script>
+        var tree;
         document.addEventListener("DOMContentLoaded", function () {
             var ele = document.getElementById("box");
             var config = {};
             var nodes = [{
                     name: "广东省",
                     children: [{
-                            name: "广州市"
+                            name: "广州市",
+                            children: [{
+                                    name: "天河区",
+                                    children: [
+                                        {
+                                            name: "长兴街道",
+                                            children: [
+                                                {
+                                                    name: "长湴村"
+                                                },
+                                                {
+                                                    name: "天鹅花苑"
+                                                },
+                                                {
+                                                    name: "乐意居"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            name: "五山街道"
+                                        },
+                                        {
+                                            name: "员村街道",
+                                            children: [
+                                                {
+                                                    name: "红砖厂"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            name: "猎德街道"
+                                        }
+                                    ]
+                                },
+                                {
+                                    name: "白云区"
+                                },
+                                {
+                                    name: "越秀区"
+                                },
+                                {
+                                    name: "海珠区"
+                                },
+                                {
+                                    name: "番禺区"
+                                }
+                            ]
                         },
                         {
                             name: "深圳市"
@@ -64,7 +111,7 @@
                     name: "海南省"
                 }
             ];
-            var tree = new xqTree(ele, config, nodes);
+            tree = new xqTree(ele, config, nodes);
         });
 
     </script>

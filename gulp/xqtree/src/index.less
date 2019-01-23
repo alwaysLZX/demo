@@ -12,8 +12,8 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    user-select:none;
-    transition: all .3s;
+    user-select: none;
+    // transition: all .3s;
 }
 
 .xqtree {
@@ -23,9 +23,13 @@
 
     &-node {
         position: relative;
+
         & ul {
             padding-left: 20px;
+            overflow: hidden;
+            transition: all .3s;
         }
+
         // 复选框
         &-checkbox {
             width: 24px;
@@ -35,6 +39,7 @@
             background-position: center center;
             background-repeat: no-repeat;
             background-size: 100%;
+            transition: all .3s;
         }
 
         &-checkbox-select-false {
@@ -56,12 +61,18 @@
             color: @fontColorDefault;
             padding-left: 5px;
             padding-right: 5px;
+
             &:hover {
                 color: @fontColorHover;
-                & ~ .xqtree-node-switch-close {
+
+                &~.xqtree-node-switch-close {
                     background-image: url(./images/open-close-select.png);
                 }
             }
+        }
+
+        &-link-open {
+            color: @fontColorActive;
         }
 
         // 开关

@@ -10,6 +10,11 @@ var dist = __dirname + '/dist';
 gulp.task("build:less", function () {
     gulp.src("src/*.less", option)
         .pipe(plugins.less())
+        .pipe(plugins.rename(function (path) {
+            if (path.basename === "index") {
+                path.basename = 'xqtree';
+            }
+        }))
         .pipe(gulp.dest(dist))
         .pipe(browserSync.reload({
             stream: true
@@ -26,6 +31,11 @@ gulp.task("build:js", function () {
         .pipe(plugins.babel({
             presets: ['@babel/env']
         }))
+        .pipe(plugins.rename(function (path) {
+            if (path.basename === "index") {
+                path.basename = 'xqtree';
+            }
+        }))
         .pipe(gulp.dest(dist))
         .pipe(browserSync.reload({
             stream: true
@@ -39,6 +49,27 @@ gulp.task("build:js", function () {
 
 gulp.task("build:html", function () {
     gulp.src("src/*.html", option)
+        .pipe(plugins.rename(function (path) {
+            if (path.basename === "index") {
+                path.basename = 'xqtree';
+            }
+        }))
+        .pipe(plugins.tap(function (file) {
+            var contents = file.contents.toString();
+            contents = contents.replace(
+              /<link\s+rel="stylesheet"\s+href="(index.css)"\/>/gi,
+              function(match, $1) {
+                return ('<link rel="stylesheet" href="xqtree.css" />');
+              }
+            );
+            contents = contents.replace(
+                /<script\s+src="(index.js)"><\/script>/gi,
+                function(match, $1) {
+                  return ('<script src="xqtree.js"></script>');
+                }
+              );
+            file.contents = new Buffer(contents);
+        }))
         .pipe(gulp.dest(dist))
         .pipe(browserSync.reload({
             stream: true
@@ -52,7 +83,12 @@ gulp.task("build:html", function () {
 
 gulp.task("build:asset", function () {
     gulp
-        .src('src/images/**/*.?(png|jpg|gif)', option)
+        .src('src/images/**/*.?(png|jpg|gif|ico)', option)
+        .pipe(plugins.rename(function (path) {
+            if (path.basename === "favicon" && path.extname === ".ico") {
+                path.dirname = "";
+            }
+        }))
         .pipe(gulp.dest(dist))
         .pipe(browserSync.reload({
             stream: true
@@ -60,7 +96,7 @@ gulp.task("build:asset", function () {
 });
 
 gulp.task("watch", function () {
-    gulp.watch('src/images/**/*.?(png|jpg|gif)', ['build:asset']);
+    gulp.watch('src/images/**/*.?(png|jpg|gif|ico)', ['build:asset']);
     gulp.watch("src/*.less", ['build:less']);
     gulp.watch("src/*.js", ['build:js']);
     gulp.watch("src/*.html", ['build:html']);

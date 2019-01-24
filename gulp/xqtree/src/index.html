@@ -5,21 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>xqtree</title>
-    <link rel="stylesheet" href="index.css"/>
+    <link rel="stylesheet" href="index.css" />
     <style>
         .container {
-            width: 500px;
-            margin: 50px auto;
-            display: flex;
-        }
-
-        .container>* {
-            float: 1;
-        }
-
-        .box {
-            width: 500px;
-            margin: 50px auto;
+            width: 300px;
+            margin: 20px auto;
         }
 
     </style>
@@ -32,19 +22,37 @@
         var tree;
         document.addEventListener("DOMContentLoaded", function () {
             var ele = document.getElementById("box");
-            var config = {};
+            var config = {
+                onClick: function (e, nodeObj) {
+                    console.log(nodeObj);
+                },
+                onCheck: function (a, nodeObj) {
+                    console.log(nodeObj);
+                }
+            };
             var nodes = [{
                     name: "广东省",
                     children: [{
                             name: "广州市",
                             children: [{
                                     name: "天河区",
-                                    children: [
-                                        {
+                                    children: [{
                                             name: "长兴街道",
-                                            children: [
-                                                {
-                                                    name: "长湴村"
+                                            children: [{
+                                                    name: "长湴村",
+                                                    children: [{
+                                                            name: "长湴东街"
+                                                        },
+                                                        {
+                                                            name: "长湴西街"
+                                                        },
+                                                        {
+                                                            name: "长湴南街"
+                                                        },
+                                                        {
+                                                            name: "长湴北街"
+                                                        }
+                                                    ]
                                                 },
                                                 {
                                                     name: "天鹅花苑"
@@ -59,11 +67,9 @@
                                         },
                                         {
                                             name: "员村街道",
-                                            children: [
-                                                {
-                                                    name: "红砖厂"
-                                                }
-                                            ]
+                                            children: [{
+                                                name: "红砖厂"
+                                            }]
                                         },
                                         {
                                             name: "猎德街道"

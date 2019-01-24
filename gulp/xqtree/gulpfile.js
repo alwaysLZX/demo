@@ -57,7 +57,7 @@ gulp.task("build:html", function () {
         .pipe(plugins.tap(function (file) {
             var contents = file.contents.toString();
             contents = contents.replace(
-              /<link\s+rel="stylesheet"\s+href="(index.css)"\/>/gi,
+              /<link\s+rel="stylesheet"\s+href="(index.css)"\s+\/>/gi,
               function() {
                 return ('<link rel="stylesheet" href="xqtree.css"/>');
               }

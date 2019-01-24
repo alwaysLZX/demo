@@ -1,5 +1,9 @@
 "use strict";
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { if (i % 2) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } else { Object.defineProperties(target, Object.getOwnPropertyDescriptors(arguments[i])); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 !function (global, factory) {
@@ -12,7 +16,10 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
   }
 }(window, function () {
   // 默认配置
-  var defaultConfig = {}; // 默认节点对象
+  var defaultConfig = {
+    onClick: function onClick() {},
+    onCheck: function onCheck() {}
+  }; // 默认节点对象
 
   var defaultNode = {
     _id: "",
@@ -28,7 +35,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
     this.element = ele;
     this.originalNodes = nodes;
-    this.config = Object.assign({}, defaultConfig, config);
+    this.config = _objectSpread({}, defaultConfig, {}, config);
     this.nodes = {};
 
     if (xqTree.type.isArray(nodes) && nodes.length > 0) {
@@ -140,7 +147,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     }
 
     if (node.parentNode.nodeName === "UL" && node.parentNode.getAttribute("root") === "false") {
-      this.setNodeParentChecked(node);
+      this.setNodeParentCheckedStatus(node);
     }
   }; // 设置子节点选中
 
@@ -157,31 +164,30 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
         _this2.setNodeChildChecked(item);
       });
     }
-  }; // 设置父节点选中
+  }; // 设置父节点选中不选中状态
 
 
-  xqTree.prototype.setNodeParentChecked = function (node) {
+  xqTree.prototype.setNodeParentCheckedStatus = function (node) {
     var ul = node.parentNode;
 
     if (ul.nodeName === "UL" && ul.getAttribute("root") === "false") {
       var crtNode = ul.parentNode;
       var status = this.getNodeCheckedStatus(crtNode);
       this.setNodeCheckedStatus(crtNode, status.checked, status.checkedPart);
-      this.setNodeParentChecked(crtNode);
+      this.setNodeParentCheckedStatus(crtNode);
     }
   }; // 设置节点不选中
 
 
   xqTree.prototype.setNodeNoChecked = function (node) {
-    var spanCheckbox = node.firstChild;
-    ;
-    spanCheckbox.classList.add("xqtree-node-checkbox-select-false");
-    spanCheckbox.classList.remove("xqtree-node-checkbox-select-part");
-    spanCheckbox.classList.remove("xqtree-node-checkbox-select-true");
-    this.nodes[node.id].checked = false;
+    this.setNodeCheckedStatus(node, false, false);
 
     if (node.lastChild.nodeName === "UL") {
       this.setNodeChildNoChecked(node);
+    }
+
+    if (node.parentNode.nodeName === "UL" && node.parentNode.getAttribute("root") === "false") {
+      this.setNodeParentCheckedStatus(node);
     }
   }; // 设置子节点选中
 
@@ -193,7 +199,9 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
     if (ul.nodeName === "UL") {
       xqTree.forEach(ul.children, function (item) {
-        _this3.setNodeNoChecked(item);
+        _this3.setNodeCheckedStatus(item, false, false);
+
+        _this3.setNodeChildNoChecked(item);
       });
     }
   }; // 设置节点选中状态
@@ -218,7 +226,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       this.nodes[node.id].checked = false;
       this.nodes[node.id].checkedPart = false;
     }
-  }; // 获取节点选中状态
+  }; // 获取节点选中状态通过子节点确认
 
 
   xqTree.prototype.getNodeCheckedStatus = function (node) {
@@ -247,13 +255,13 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
       if (checkCount === 0) {
         result.checked = false;
-      } else if (checkCount < ul.childElementCount) {
-        result.checkedPart = true;
-      } else if (checkedPartCount > 0) {
-        result.checkedPart = true;
-      } else {
+        result.checkedPart = false;
+      } else if (checkCount === ul.childElementCount && checkedPartCount === 0) {
         result.checked = true;
         result.checkedPart = false;
+      } else {
+        result.checked = true;
+        result.checkedPart = true;
       }
     }
 
@@ -273,11 +281,15 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     function _eventCheckbox(e) {
       var node = this.parentNode;
 
-      if (_this.nodes[node.id].checked) {
+      var obj = _this.getNodeObj(node);
+
+      if (obj.checked && !obj.checkedPart) {
         _this.setNodeNoChecked(node);
       } else {
         _this.setNodeChecked(node);
       }
+
+      _this.config.onCheck(e, obj);
     }
 
     Array.prototype.forEach.call(this.element.getElementsByClassName("xqtree-node-checkbox"), function (node) {
@@ -287,11 +299,15 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     function _eventLink(e) {
       var node = this.parentNode;
 
-      if (_this.nodes[node.id].open) {
+      var obj = _this.getNodeObj(node);
+
+      if (obj.open) {
         _this.setNodeClose(node);
       } else {
         _this.setNodeOpen(node);
       }
+
+      _this.config.onClick(e, obj);
     }
 
     Array.prototype.forEach.call(this.element.getElementsByClassName("xqtree-node-link"), function (node) {

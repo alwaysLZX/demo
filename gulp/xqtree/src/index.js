@@ -8,7 +8,10 @@
     }
 })(window, function () {
     // 默认配置
-    var defaultConfig = {};
+    var defaultConfig = {
+        onClick: function () {},
+        onCheck: function () {}
+    };
 
     // 默认节点对象
     var defaultNode = {
@@ -26,7 +29,10 @@
 
         this.element = ele;
         this.originalNodes = nodes;
-        this.config = Object.assign({}, defaultConfig, config);
+        this.config = {
+            ...defaultConfig,
+            ...config
+        };
         this.nodes = {};
 
         if (xqTree.type.isArray(nodes) && nodes.length > 0) {
@@ -133,7 +139,7 @@
             this.setNodeChildChecked(node);
         }
         if (node.parentNode.nodeName === "UL" && node.parentNode.getAttribute("root") === "false") {
-            this.setNodeParentChecked(node);
+            this.setNodeParentCheckedStatus(node);
         }
     }
 
@@ -148,26 +154,25 @@
         }
     }
 
-    // 设置父节点选中
-    xqTree.prototype.setNodeParentChecked = function (node) {
+    // 设置父节点选中不选中状态
+    xqTree.prototype.setNodeParentCheckedStatus = function (node) {
         let ul = node.parentNode;
         if (ul.nodeName === "UL" && ul.getAttribute("root") === "false") {
             let crtNode = ul.parentNode;
             let status = this.getNodeCheckedStatus(crtNode);
             this.setNodeCheckedStatus(crtNode, status.checked, status.checkedPart);
-            this.setNodeParentChecked(crtNode);
+            this.setNodeParentCheckedStatus(crtNode);
         }
     }
 
     // 设置节点不选中
     xqTree.prototype.setNodeNoChecked = function (node) {
-        var spanCheckbox = node.firstChild;;
-        spanCheckbox.classList.add("xqtree-node-checkbox-select-false");
-        spanCheckbox.classList.remove("xqtree-node-checkbox-select-part");
-        spanCheckbox.classList.remove("xqtree-node-checkbox-select-true");
-        this.nodes[node.id].checked = false;
+        this.setNodeCheckedStatus(node, false, false);
         if (node.lastChild.nodeName === "UL") {
             this.setNodeChildNoChecked(node);
+        }
+        if (node.parentNode.nodeName === "UL" && node.parentNode.getAttribute("root") === "false") {
+            this.setNodeParentCheckedStatus(node);
         }
     }
 
@@ -176,7 +181,8 @@
         var ul = node.lastChild;
         if (ul.nodeName === "UL") {
             xqTree.forEach(ul.children, item => {
-                this.setNodeNoChecked(item);
+                this.setNodeCheckedStatus(item, false, false);
+                this.setNodeChildNoChecked(item);
             });
         }
     }
@@ -204,7 +210,7 @@
         }
     }
 
-    // 获取节点选中状态
+    // 获取节点选中状态通过子节点确认
     xqTree.prototype.getNodeCheckedStatus = function (node) {
         let ul = node.lastChild;
         let result = {
@@ -225,13 +231,13 @@
             });
             if (checkCount === 0) {
                 result.checked = false;
-            } else if (checkCount < ul.childElementCount) {
-                result.checkedPart = true;
-            } else if (checkedPartCount > 0) {
-                result.checkedPart = true;
-            } else {
+                result.checkedPart = false;
+            } else if (checkCount === ul.childElementCount && checkedPartCount === 0) {
                 result.checked = true;
                 result.checkedPart = false;
+            } else {
+                result.checked = true;
+                result.checkedPart = true;
             }
         }
         return result;
@@ -248,11 +254,13 @@
         // 复选框点击事件
         function _eventCheckbox(e) {
             var node = this.parentNode;
-            if (_this.nodes[node.id].checked) {
+            var obj = _this.getNodeObj(node);
+            if (obj.checked && !obj.checkedPart) {
                 _this.setNodeNoChecked(node);
             } else {
                 _this.setNodeChecked(node);
             }
+            _this.config.onCheck(e, obj);
         }
         Array.prototype.forEach.call(this.element.getElementsByClassName("xqtree-node-checkbox"), node => {
             node.addEventListener("click", _eventCheckbox, false);
@@ -261,11 +269,13 @@
         // 节点点击事件
         function _eventLink(e) {
             var node = this.parentNode;
-            if (_this.nodes[node.id].open) {
+            var obj = _this.getNodeObj(node);
+            if (obj.open) {
                 _this.setNodeClose(node);
             } else {
                 _this.setNodeOpen(node);
             }
+            _this.config.onClick(e, obj);
         }
         Array.prototype.forEach.call(this.element.getElementsByClassName("xqtree-node-link"), node => {
             node.addEventListener("click", _eventLink, false);

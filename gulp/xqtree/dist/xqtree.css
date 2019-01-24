@@ -15,6 +15,11 @@
 }
 .xqtree-node {
   position: relative;
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
 }
 .xqtree-node ul {
   padding-left: 20px;

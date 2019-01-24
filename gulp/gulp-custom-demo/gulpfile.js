@@ -7,6 +7,15 @@ var option = {
 };
 var dist = __dirname + '/dist';
 
+var banner = [
+    '/*!',
+    ' * xqTree v<%= pkg.version %> (<%= pkg.homepage %>)',
+    ' * Copyright <%= new Date().getFullYear() %> xieqian.',
+    ' * Licensed under the <%= pkg.license %> license',
+    ' */',
+    ''
+  ].join('\n');
+
 gulp.task("build:less", function () {
     gulp.src("src/*.less", option)
         .pipe(plugins.less())

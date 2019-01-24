@@ -8,6 +8,11 @@
     vertical-align: middle;
 }
 
+// 过渡效果
+.transition(@s: .3s) {
+    transition: all .3s;
+}
+
 .xqtree * {
     margin: 0;
     padding: 0;
@@ -28,7 +33,7 @@
         & ul {
             padding-left: 20px;
             overflow: hidden;
-            transition: all .3s;
+            .transition();
         }
 
         // 复选框
@@ -40,19 +45,25 @@
             background-position: center center;
             background-repeat: no-repeat;
             background-size: 100%;
-            transition: all .3s;
+            .transition();
         }
 
         &-checkbox-select-false {
             background-image: url(./images/checkbox.png);
+            background-image: url(./images/xqtree-sprites.png);
+            background-position: 0px 0px;
         }
 
         &-checkbox-select-part {
             background-image: url(./images/checkbox-select-part.png);
+            background-image: url(./images/xqtree-sprites.png);
+            background-position: 0px -48px;
         }
 
         &-checkbox-select-true {
             background-image: url(./images/checkbox-select.png);
+            background-image: url(./images/xqtree-sprites.png);
+            background-position: 0px -24px;
         }
 
         // 树节点链接
@@ -68,6 +79,8 @@
 
                 &~.xqtree-node-switch-close {
                     background-image: url(./images/open-close-select.png);
+                    background-image: url(./images/xqtree-sprites.png);
+                    background-position: 0px -107px;
                 }
             }
         }
@@ -84,16 +97,21 @@
             background-position: center center;
             background-repeat: no-repeat;
             background-size: 24px;
+            .transition();
         }
 
         &-switch-close {
             background-position: 0 -11px;
             background-image: url(./images/open-close.png);
+            background-image: url(./images/xqtree-sprites.png);
+            background-position: 0px -83px;
         }
 
         &-switch-open {
             background-position: 0 -4px;
             background-image: url(./images/open-close-select.png);
+            background-image: url(./images/xqtree-sprites.png);
+            background-position: 0px -100px;
         }
     }
 }

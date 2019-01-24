@@ -39,12 +39,18 @@
 }
 .xqtree-node-checkbox-select-false {
   background-image: url(./images/checkbox.png);
+  background-image: url(./images/xqtree-sprites.png);
+  background-position: 0px 0px;
 }
 .xqtree-node-checkbox-select-part {
   background-image: url(./images/checkbox-select-part.png);
+  background-image: url(./images/xqtree-sprites.png);
+  background-position: 0px -48px;
 }
 .xqtree-node-checkbox-select-true {
   background-image: url(./images/checkbox-select.png);
+  background-image: url(./images/xqtree-sprites.png);
+  background-position: 0px -24px;
 }
 .xqtree-node-link {
   display: inline-block;
@@ -59,6 +65,8 @@
 }
 .xqtree-node-link:hover ~ .xqtree-node-switch-close {
   background-image: url(./images/open-close-select.png);
+  background-image: url(./images/xqtree-sprites.png);
+  background-position: 0px -107px;
 }
 .xqtree-node-link-open {
   color: #2299ee;
@@ -71,12 +79,17 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 24px;
+  transition: all 0.3s;
 }
 .xqtree-node-switch-close {
   background-position: 0 -11px;
   background-image: url(./images/open-close.png);
+  background-image: url(./images/xqtree-sprites.png);
+  background-position: 0px -83px;
 }
 .xqtree-node-switch-open {
   background-position: 0 -4px;
   background-image: url(./images/open-close-select.png);
+  background-image: url(./images/xqtree-sprites.png);
+  background-position: 0px -100px;
 }

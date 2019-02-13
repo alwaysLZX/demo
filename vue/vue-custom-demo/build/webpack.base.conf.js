@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isProduction = process.env.NODE_ENV === "production";
+
 function resolve(dir) {
     return path.join(__dirname, '..', dir);
 }
@@ -18,10 +19,20 @@ module.exports = {
         path: resolve("dist")
     },
     module: {
-        rules: [
+        rules: [{
+                enforce: "pre",
+                test: /\.(js|vue)$/,
+                exclude: /node_modules/,
+                loader: "eslint-loader",
+            },
             {
                 test: /\.vue$/,
                 loader: 'vue-loader'
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: 'babel-loader'
             },
             {
                 test: /\.css$/,
@@ -33,7 +44,8 @@ module.exports = {
                             modules: true,
                             localIdentName: '[name]-[local]-[hash:base64:5]'
                         }
-                    }
+                    },
+                    'postcss-loader'
                 ]
             },
             {
@@ -58,18 +70,32 @@ module.exports = {
                 ]
             },
             {
-                test: /.(png|jpg|gif)$/,
+                test: /\.less$/,
                 use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            // 文件大小小于此限制则以base64的形式显示文件[单位：字节]
-                            limit: 1024 * 100,
-                            context: './src',
-                            name: '[path][name].[hash:8].[ext]'
-                        }
-                    }
+                    'vue-style-loader',
+                    'css-loader',
+                    'less-loader'
                 ]
+            },
+            {
+                test: /\.styl(us)?$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader',
+                    'stylus-loader'
+                ]
+            },
+            {
+                test: /.(png|jpg|gif)$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        // 文件大小小于此限制则以base64的形式显示文件[单位：字节]
+                        limit: 1024 * 100,
+                        context: './src',
+                        name: '[path][name].[hash:8].[ext]'
+                    }
+                }]
             }
         ]
     },

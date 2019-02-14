@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -101,6 +102,10 @@ module.exports = {
     },
     plugins: [
         new VueLoaderPlugin(),
+        new CopyWebpackPlugin([{
+            from: resolve("src/images/favicon.ico"),
+            to: resolve("dist/favicon.ico")
+        }]),
         new HtmlWebpackPlugin({
             title: 'Custom Vue',
             filename: 'index.html',

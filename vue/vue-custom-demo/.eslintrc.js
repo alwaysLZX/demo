@@ -13,8 +13,8 @@ module.exports = {
     },
     "rules": {
         "indent": ["error", 4, { "SwitchCase": 1 }],
-        "quotes": ["error", "single"],
-        "semi": ["error", "always"],
+        "quotes": ["warn", "double"],
+        "semi": ["warn", "always"],
         "no-empty": 2,
         "no-eq-null": 2,
         "no-new": 0,

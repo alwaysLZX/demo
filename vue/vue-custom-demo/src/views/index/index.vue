@@ -1,5 +1,5 @@
 <template>
-    <div>这是index页面</div>
+    <div :class="$style.red">这是index页面</div>
 </template>
 <script>
 export default {
@@ -11,9 +11,17 @@ export default {
     },
     created() {
         console.log("这是index页面");
+        debugger
+
     }
 }
 </script>
-<style>
+<style module>
+.red {
+    color: red;
+}
 
+.red .aa {
+    text-decoration: none;
+}
 </style>

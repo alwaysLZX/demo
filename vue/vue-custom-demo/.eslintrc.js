@@ -2,8 +2,12 @@ module.exports = {
     "extends": "plugin:vue/essential",
     "root": true,
     "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module"
+        // 在使用三点操作符的时候，不能指定版本为6，因为三点操作符在2018的时候才有的
+        // "ecmaVersion": 6, // 2018
+        "sourceType": "module",
+        // "ecmaFeatures": {
+        //     "experimentalObjectRestSpread": true
+        // }
     },
     "globals": {
         "_": false

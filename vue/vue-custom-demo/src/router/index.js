@@ -15,7 +15,7 @@ let router = new Router({
         name: "about",
         component: About
     }]
-})
+});
 
 router.beforeEach((to, from, next) => {
     next();

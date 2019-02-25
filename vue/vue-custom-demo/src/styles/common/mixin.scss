@@ -1,0 +1,44 @@
+@function px2rem($px) {
+    @return $px/(20px/375px * 720px) * 1rem;
+}
+
+@mixin modalIcon($imageUrl, $length: 32px) {
+    width: $length;
+    height: $length;
+    background: url($imageUrl) center center no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+}
+
+@mixin flexRowCenter() {
+    display: flex;
+    align-items: center;
+}
+
+
+@mixin ellipsis($w:auto) {
+    width: $w;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+
+@mixin ellipsisLn($line) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+}
+
+@mixin text_wrap() {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+@mixin hyphens() {
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}

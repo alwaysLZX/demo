@@ -1,6 +1,7 @@
 const babelConfig = {
     presets: [
-        ["@babel/preset-env",   // 可以去掉preset，简写为@babel/env
+        [
+            "@babel/preset-env",   // 可以去掉preset，简写为@babel/env
             {
                 targets: {
                     // 支持浏览器的最低版本

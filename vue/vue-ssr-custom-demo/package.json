@@ -1,0 +1,17 @@
+{
+  "name": "vue-ssr-custom-demo",
+  "version": "1.0.0",
+  "description": "服务器端渲染(Server-side rendering, SSR)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "vue": "^2.6.10",
+    "vue-server-renderer": "^2.6.10"
+  }
+}

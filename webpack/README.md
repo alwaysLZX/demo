@@ -28,6 +28,10 @@
 
 postcss对于处理css真的很强大
 
+### 4、关于context上下文
+
+默认取当前项目目录，即 `E:\XQ\github\demo\webpack\webpack-demo\`，而不是webpack配置文件所在的目录`build`，这点要注意。
+
 ## 遇到的问题
 
 ### 1、无法在配置文件获取到process.env.NODE_ENV的值

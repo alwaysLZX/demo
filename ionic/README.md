@@ -26,11 +26,11 @@
 
 1、生成签名秘钥
 
-`keytool -genkey -v -keystore [姓名].keystore -alias [姓名].keystore -keyalg RSA -validity 20000`
+`keytool -genkey -v -keystore [秘钥名称].keystore -alias [秘钥名称].keystore -keyalg RSA -validity 20000`
 
 2、签名打包
 
-`jarsigner -verbose -keystore [姓名].keystore -signedjar complete.apk app.apk [姓名].keystore`
+`jarsigner -verbose -keystore [秘钥名称].keystore -signedjar complete.apk app.apk [秘钥名称].keystore`
 
 ## 问题
 

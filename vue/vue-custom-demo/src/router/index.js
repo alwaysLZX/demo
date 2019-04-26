@@ -6,15 +6,18 @@ import About from "@/views/about/about";
 Vue.use(Router);
 
 let router = new Router({
-    routes: [{
-        path: "/",
-        name: "index",
-        component: Index
-    }, {
-        path: "/about",
-        name: "about",
-        component: About
-    }]
+    routes: [
+        {
+            path: "/",
+            name: "index",
+            component: Index
+        },
+        {
+            path: "/about",
+            name: "about",
+            component: About
+        }
+    ]
 });
 
 router.beforeEach((to, from, next) => {

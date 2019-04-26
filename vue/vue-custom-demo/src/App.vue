@@ -2,7 +2,7 @@
     <div>
         <h1 class="main-title">{{ msg }}</h1>
         <h2>{{ count }}</h2>
-        <router-view />
+        <router-view/>
     </div>
 </template>
 <script>
@@ -20,7 +20,7 @@ export default {
     },
     created() {
         this.$store.commit({
-            type: 'increment',
+            type: "increment",
             amount: 10
         });
     }

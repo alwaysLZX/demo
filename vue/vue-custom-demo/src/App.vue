@@ -27,8 +27,9 @@ export default {
 };
 </script>
 <style module>
-.sss {
+.main-title {
     margin: 0;
+    background-image: url(./images/xq.png);
 }
 </style>
 

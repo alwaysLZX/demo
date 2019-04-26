@@ -8,7 +8,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     mode: "production",
     output: {
         // 很重要，不主动添加publicPath属性时，添加到html的脚本会按照页面相对路径来引用
-        // publicPath: ''
+        // publicPath: ""
     },
     module: {
         rules: []

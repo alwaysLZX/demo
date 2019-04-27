@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>中国地图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 1200px;
+            height: 700px;
+            border: 1px solid #ccc;
+            margin: 10px auto;
+            position: relative;
+        }
+
+        .box-body {
+            height: 100%;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <button id="btnInit">初始化</button>
+        <div id="myEcharts" class="box-body"></div>
+    </div>
+    <script src="jquery-2.1.1.js"></script>
+    <script src="echarts.js"></script>
+    <script>
+        var echartsUtil = {
+            params: {
+                myEcharts: null,
+                mapName: null,
+                level: "china",
+                relative: null,
+            },
+            init: function (mapJson, mapName) {
+                var _this = this;
+                this.params.mapName = mapName;
+                $.getJSON("./map/china-geojson/china-geojson-master/" + mapJson, function (map) {
+                    _this.params.relative = _this.getMapRelative(map);
+                    echarts.registerMap(mapName, map);
+                    _this.initMap();
+                    _this.bindEvent();
+                });
+            },
+            initMap: function () {
+                this.params.myEcharts = echarts.init(document.getElementById('myEcharts'));
+                var option = this.getOption();
+                // echartsUtil.params.myEcharts.clear();
+                this.params.myEcharts.setOption(option);
+            },
+            bindEvent: function () {
+                this.params.myEcharts.off("dblclick");
+                let _this = this;
+                this.params.myEcharts.on('dblclick', function (params) {
+                    let id = _this.params.relative[params.name];
+                    let prefix = "";
+                    switch (_this.params.level) {
+                        case "china":
+                            _this.params.level = "province";
+                            prefix = "geometryProvince";
+                            break;
+                        case "province":
+                            _this.params.level = "city";
+                            prefix = "geometryCouties";
+                            id = id + "00";
+                            break;
+                        case "city":
+                            _this.params.level = "county";
+                            break;
+                    }
+                    if (["province", "city"].indexOf(_this.params.level) > -1) {
+                        _this.init(prefix + "/" + id + ".json", id);
+                    }
+                });
+            },
+            getOption: function () {
+
+                var option = {
+                    geo: {
+                        show: true,
+                        roam: false,
+                        zoom: 1.2,
+                        map: this.params.mapName,
+                        label: {
+                            normal: {
+                                show: false, //显示省份标签
+                                textStyle: { color: "#fff" } //省份标签字体颜色
+                            },
+                            emphasis: { //对应的鼠标悬浮效果
+                                show: true,
+                                textStyle: { color: "#fff" }
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                borderWidth: .5, //区域边框宽度
+                                borderColor: '#2f2760', //区域边框颜色
+                                areaColor: "#161235", //区域颜色
+                            },
+                            emphasis: {
+                                borderWidth: .5,
+                                borderColor: '#4742a0',
+                                areaColor: "#282456",
+                            }
+                        },
+                    }
+                };
+
+                return option;
+            },
+            // 获取id与名称的关系
+            getMapRelative(map) {
+                let arr = map.features;
+                let obj = {};
+                arr.forEach(element => {
+                    obj[element.properties.name] = element.properties.id;
+                });
+                return obj;
+            }
+        };
+
+        $(function () {
+            echartsUtil.init("china.json", "china");
+
+            $("#btnInit").click(function() {
+                echartsUtil.params.level = "china";
+                echartsUtil.init("china.json", "china");
+            });
+        });
+    </script>
+</body>
+</html>

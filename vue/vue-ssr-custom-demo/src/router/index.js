@@ -10,17 +10,17 @@ export function createRouter() {
             {
                 path: "/",
                 name: "home",
-                component: () => import("../components/home")
+                component: () => import("../views/home")
             },
             {
-                path: "/",
+                path: "/about",
                 name: "about",
-                component: () => import("../components/about")
+                component: () => import("../views/about")
             },
             {
-                path: "/",
+                path: "/help",
                 name: "help",
-                component: () => import("../components/help")
+                component: () => import("../views/help")
             }
         ]
     });

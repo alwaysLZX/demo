@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "node build/server.js",
-    "build": "npm run client & npm run server",
+    "build": "npm run client && npm run server",
     "client": "webpack --config ./build/webpack.client.conf.js --color --progress",
-    "server": "webpack --config ./build/webpack.server.conf.js --color --progress"
+    "server": "webpack --config ./build/webpack.server.conf.js --color --progress",
+    "test": "node build/test.js"
   },
   "keywords": [],
   "author": "",
@@ -42,6 +43,8 @@
     "vue-loader": "^15.7.0",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
+    "webpack-dev-middleware": "^3.7.0",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
   }

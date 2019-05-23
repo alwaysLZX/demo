@@ -4,12 +4,10 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const isProduction = process.env.NODE_ENV === "production";
-
-function resolve(dir) {
-    return path.join(__dirname, "..", dir);
-}
+const resolve = dir => path.join(__dirname, "..", dir);
 
 module.exports = {
+    mode: isProduction ? "production" : "development",
     output: {
         path: resolve("dist")
     },

@@ -1,14 +1,14 @@
-const path = require('path');
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const baseWebpackConfig = require('./webpack.base.conf');
+const path = require("path");
+const webpack = require("webpack");
+const merge = require("webpack-merge");
+const baseWebpackConfig = require("./webpack.base.conf");
 
 const webpackConfig = merge(baseWebpackConfig, {
-    mode: 'development',
-    devtool: 'source-map',
+    mode: "development",
+    devtool: "source-map",
     output: {
         // 很重要，不主动添加publicPath属性时，添加到html的脚本会按照页面相对路径来引用
-        publicPath: ''
+        publicPath: "/"
     },
     plugins: [
         // 开启模块热替换需要
@@ -16,7 +16,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     ],
     devServer: {
         // 告诉服务器从哪个目录中提供内容。
-        contentBase: path.join(__dirname, '../dist'),
+        contentBase: path.join(__dirname, "../dist"),
         // 打开浏览器
         open: true,
         // 当出现编译器错误或警告时，在浏览器中显示全屏覆盖层。默认禁用。

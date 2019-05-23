@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "webpack demo",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run dev",
     "dev": "webpack-dev-server --config ./build/webpack.dev.conf.js --color --progress",
     "build": "webpack --mode=production --config ./build/webpack.prod.conf.js --color --progress",
+    "serverm": "node ./build/server.m.js",
     "babel": "babel src --out-dir babelOut",
     "eslint": "eslint src"
   },
@@ -24,6 +24,7 @@
     "cssnano": "^4.1.4",
     "eslint": "^5.10.0",
     "eslint-loader": "^2.1.1",
+    "express": "^4.17.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
@@ -36,7 +37,9 @@
     "url-loader": "^1.1.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
+    "webpack-dev-middleware": "^3.7.0",
     "webpack-dev-server": "^3.1.9",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {

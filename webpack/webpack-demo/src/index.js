@@ -5,6 +5,6 @@ import apps from './styles/app.css';
 
 let h1 = document.createElement('h1');
 h1.className = apps.app1;
-h1.innerHTML = Upper('this page is main!<br/>') + _.now();
+h1.innerHTML = Upper('this page is main!!<br/>') + _.now();
 
 document.getElementById('app').appendChild(h1);

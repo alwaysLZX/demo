@@ -5,7 +5,7 @@ import { createStore } from "./store";
 import { sync } from "vuex-router-sync";
 
 // 导出一个工厂函数，用于创建新的应用程序、router 和 store 实例
-export function createApp() {
+export default function createApp() {
     // 创建 router 实例
     const router = createRouter();
     const store = createStore();

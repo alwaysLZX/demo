@@ -6,7 +6,7 @@
     "start": "npm run dev",
     "dev": "webpack-dev-server --config ./build/webpack.dev.conf.js --color --progress",
     "build": "webpack --mode=production --config ./build/webpack.prod.conf.js --color --progress",
-    "serverm": "node ./build/server.m.js",
+    "server:wdm": "node ./build/server.wdm.js",
     "babel": "babel src --out-dir babelOut",
     "eslint": "eslint src"
   },

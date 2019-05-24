@@ -4,7 +4,7 @@
   "description": "服务器端渲染(Server-side rendering, SSR)",
   "main": "index.js",
   "scripts": {
-    "dev": "node build/server.js",
+    "dev": "node server.js",
     "build": "npm run client && npm run server",
     "client": "webpack --config ./build/webpack.client.conf.js --color --progress",
     "server": "webpack --config ./build/webpack.server.conf.js --color --progress",

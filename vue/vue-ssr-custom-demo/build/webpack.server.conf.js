@@ -11,7 +11,7 @@ module.exports = merge(baseConfig, {
     // 告知 `vue-loader` 输送面向服务器代码(server-oriented code)。
     target: "node",
     // 对 bundle renderer 提供 source map 支持
-    devtool: "#source-map",
+    devtool: "source-map",
     // 此处告知 server bundle 使用 Node 风格导出模块(Node-style exports)
     output: {
         libraryTarget: "commonjs2",

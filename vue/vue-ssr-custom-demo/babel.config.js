@@ -1,7 +1,9 @@
 const babelConfig = {
     presets: [
-        ["@babel/preset-env",   // 可以去掉preset，简写为@babel/env
+        [
+            "@babel/preset-env", // 可以去掉preset，简写为@babel/env
             {
+                modules: false,
                 targets: {
                     // 支持浏览器的最低版本
                     // chrome: "67",
@@ -9,7 +11,7 @@ const babelConfig = {
                     // edge: "17",
                     // firefox: "60",
                     // safari: "11.1",
-                    ie: '7',
+                    // ie: '7',
                     // ios: '',
                     // android: '',
                     // node: '',
@@ -19,9 +21,7 @@ const babelConfig = {
             }
         ]
     ],
-    plugins: [
-
-    ]
+    plugins: []
 };
 
 module.exports = babelConfig;

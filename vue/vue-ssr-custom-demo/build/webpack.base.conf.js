@@ -72,7 +72,14 @@ const config = {
     },
     optimization: {
         splitChunks: {
-            chunks: "all"
+            cacheGroups: {
+                vendor: {
+                    name: "vendor",
+                    filename: "[name].bundle.js",
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: "initial"
+                }
+            }
         }
     }
 };

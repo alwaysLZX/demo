@@ -20,7 +20,7 @@ Object(...) is not a function
 
 看了下我引入 `app.js` 的时候，只是写了 `app` ，而没写文件后缀。
 
-无奈我的 webpack 配置配了.vue 的优先级先与.js，即
+无奈我的 `webpack` 配置配了`.vue` 的优先级先与`.js`，即
 
 ```javascript
 module.exports = {
@@ -30,6 +30,6 @@ module.exports = {
 }
 ```
 
-无奈同目录下还有个App.vue文件，所以引入的东西不是我想要的，报错了。
+无奈同目录下还有个 `App.vue` 文件，所以引入的东西不是我想要的，报错了。
 
 没办法，锅还是自己的，自己扛。

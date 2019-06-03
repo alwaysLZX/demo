@@ -20,7 +20,7 @@ Object(...) is not a function
 
 看了下我引入 `app.js` 的时候，只是写了 `app` ，而没写文件后缀。
 
-无奈我的 `webpack` 配置配了`.vue` 的优先级先与`.js`，即
+无奈我的 `webpack` 配置配了`.vue` 的优先级先于`.js`，即
 
 ```javascript
 module.exports = {

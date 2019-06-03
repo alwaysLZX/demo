@@ -15,13 +15,13 @@ const babelConfig = {
                     // ios: '',
                     // android: '',
                     // node: '',
-                },
+                }
                 // 只加载需要的polyfill
-                useBuiltIns: "usage"
+                // useBuiltIns: "usage"
             }
         ]
     ],
-    plugins: []
+    plugins: ["@babel/syntax-dynamic-import"]
 };
 
 module.exports = babelConfig;

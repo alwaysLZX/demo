@@ -8,16 +8,16 @@ export function createStore() {
         state: {
             items: {}
         },
+        mutations: {
+            setItem(state, { id, item }) {
+                Vue.set(state.items, id, item);
+            }
+        },
         actions: {
             fetchItem({ commit }, id) {
                 setTimeout(() => {
                     commit("setItem", { id: "1", item: { name: "蟹钳" } });
                 }, 1000);
-            }
-        },
-        mutations: {
-            setItem(state, { id, item }) {
-                Vue.set(state.items, id, item);
             }
         }
     });

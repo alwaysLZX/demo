@@ -1,8 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "@/views/home";
-import About from "@/views/about";
-import Help from "@/views/help";
 
 Vue.use(Router);
 
@@ -13,17 +10,17 @@ export function createRouter() {
             {
                 path: "/",
                 name: "home",
-                component: Home
+                component: () => import("@/views/home")
             },
             {
                 path: "/about",
                 name: "about",
-                component: About
+                component: () => import("@/views/about")
             },
             {
                 path: "/help",
                 name: "help",
-                component: Help
+                component: () => import("@/views/help")
             }
         ]
     });

@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const isProduction = process.env.NODE_ENV === "production";
 const resolve = dir => path.join(__dirname, "..", dir);
 
-module.exports = {
+const config = {
     mode: isProduction ? "production" : "development",
     output: {
         path: resolve("dist")
@@ -38,7 +38,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: ["vue-style-loader", "css-loader", "postcss-loader", "sass-loader"]
+                use: [isProduction ? MiniCssExtractPlugin.loader : "vue-style-loader", "css-loader", "postcss-loader", "sass-loader"]
             },
             {
                 test: /.(png|jpg|gif)$/,
@@ -69,5 +69,21 @@ module.exports = {
             vue$: "vue/dist/vue.esm.js",
             "@": path.resolve(__dirname, "../src")
         }
+    },
+    optimization: {
+        splitChunks: {
+            chunks: "all"
+        }
     }
 };
+
+if (isProduction) {
+    config.plugins.push(
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        })
+    );
+}
+
+module.exports = config;

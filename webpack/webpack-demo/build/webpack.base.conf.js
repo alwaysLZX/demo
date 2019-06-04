@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const resolve = dir => path.join(__dirname, "..", dir);
 
 const isProduction = process.argv.indexOf("--mode=production") > -1;
 
@@ -78,8 +79,10 @@ module.exports = {
                         options: {
                             // 文件大小小于此限制则以base64的形式显示文件[单位：字节]
                             limit: 1024 * 100,
-                            context: "./src",
-                            name: "[path][name].[hash:8].[ext]"
+                            // context: resolve("src"), // 影响name中[path]值
+                            // name: "[path][name].[hash:8].[ext]"
+                            publicPath: "../",
+                            name: "images/[name].[hash:8].[ext]"
                         }
                     }
                 ]
@@ -188,14 +191,14 @@ module.exports = {
                     test: /[\\/]node_modules[\\/]/,
                     chunks: "all",
                     priority: 10 // 优先级
-                },
-                common: {
-                    name: "common",
-                    test: /[\\/]src[\\/]/,
-                    minSize: 1024,
-                    chunks: "all",
-                    priority: 5
                 }
+                // common: {
+                //     name: "common",
+                //     test: /[\\/]src[\\/]/,
+                //     minSize: 1024,
+                //     chunks: "all",
+                //     priority: 5
+                // }
             }
         }
     }

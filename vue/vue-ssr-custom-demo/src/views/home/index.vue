@@ -3,8 +3,12 @@
 </template>
 
 <script>
+import util from "@/utils/util";
 export default {
-    name: "home"
+    name: "home",
+    created() {
+        console.log(util.isProduction());
+    }
 };
 </script>
 <style>

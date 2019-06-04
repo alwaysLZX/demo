@@ -2,8 +2,12 @@
     <h1>这是帮助页面</h1>
 </template>
 <script>
+import util from "@/utils/util";
 export default {
-    name: "help"
+    name: "help",
+    created() {
+        console.log(util.isProduction());
+    }
 }
 </script>
 <style>

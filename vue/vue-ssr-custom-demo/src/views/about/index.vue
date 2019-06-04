@@ -2,8 +2,12 @@
     <h1>这是about页面</h1>
 </template>
 <script>
+import util from "@/utils/util";
 export default {
-    name: "about"
+    name: "about",
+    created() {
+        console.log(util.isProduction());
+    }
 }
 </script>
 <style>

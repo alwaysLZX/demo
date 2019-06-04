@@ -9,7 +9,8 @@ const resolve = dir => path.join(__dirname, "..", dir);
 const config = {
     mode: isProduction ? "production" : "development",
     output: {
-        path: resolve("dist")
+        path: resolve("dist"),
+        chunkFilename: "[name].chunk.js"
     },
     module: {
         rules: [
@@ -75,9 +76,9 @@ const config = {
             cacheGroups: {
                 vendor: {
                     name: "vendor",
-                    filename: "[name].bundle.js",
                     test: /[\\/]node_modules[\\/]/,
-                    chunks: "initial"
+                    chunks: "initial",
+                    minChunks: 1
                 }
             }
         }

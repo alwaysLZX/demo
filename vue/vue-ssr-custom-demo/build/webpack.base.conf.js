@@ -1,5 +1,4 @@
 const path = require("path");
-const webpack = require("webpack");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -25,17 +24,7 @@ const config = {
             },
             {
                 test: /\.css$/,
-                use: [
-                    isProduction ? MiniCssExtractPlugin.loader : "vue-style-loader",
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: true,
-                            localIdentName: "[name]-[local]-[hash:base64:5]"
-                        }
-                    },
-                    "postcss-loader"
-                ]
+                use: [isProduction ? MiniCssExtractPlugin.loader : "vue-style-loader", "css-loader", "postcss-loader"]
             },
             {
                 test: /\.scss$/,
@@ -47,10 +36,9 @@ const config = {
                     {
                         loader: "url-loader",
                         options: {
-                            // 文件大小小于此限制则以base64的形式显示文件[单位：字节]
-                            limit: 1024 * 100,
-                            context: "./src",
-                            name: "[path][name].[hash:8].[ext]"
+                            limit: 1024 * 10,
+                            context: resolve("./"),
+                            name: "images/[name].[hash:8].[ext]"
                         }
                     }
                 ]
@@ -59,28 +47,10 @@ const config = {
     },
     plugins: [new VueLoaderPlugin()],
     resolve: {
-        // 自动解析确定的扩展名，此配置会覆盖默认配置
-        extensions: [".vue", ".js", ".json"],
-        /*
-        创建 import 或 require 的别名，来确保模块引入变得更简单
-        示例：import Upper from '@/utils/util';
-        */
+        extensions: [".js", ".vue", ".json"],
         alias: {
-            // 加上$符号，表示精准匹配
             vue$: "vue/dist/vue.esm.js",
             "@": path.resolve(__dirname, "../src")
-        }
-    },
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                vendor: {
-                    name: "vendor",
-                    test: /[\\/]node_modules[\\/]/,
-                    chunks: "initial",
-                    minChunks: 1
-                }
-            }
         }
     }
 };
@@ -88,8 +58,8 @@ const config = {
 if (isProduction) {
     config.plugins.push(
         new MiniCssExtractPlugin({
-            filename: "[name].css",
-            chunkFilename: "[id].css"
+            filename: "styles/[name].css",
+            chunkFilename: "styles/[name].chunk.css"
         })
     );
 }

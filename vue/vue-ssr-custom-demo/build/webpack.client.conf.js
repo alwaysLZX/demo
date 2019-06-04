@@ -16,7 +16,26 @@ module.exports = merge(baseConfig, {
             "process.env.VUE_ENV": JSON.stringify("client")
         }),
         new VueSSRClientPlugin()
-    ]
+    ],
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    name: "vendor",
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: "all",
+                    priority: 10
+                },
+                common: {
+                    name: "common",
+                    test: /[\\/]src[\\/]/,
+                    minSize: 1024,
+                    chunks: "all",
+                    priority: 5
+                }
+            }
+        }
+    }
 });
 
 // if (process.env.NODE_ENV === 'production') {

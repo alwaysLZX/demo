@@ -113,21 +113,21 @@ module.exports = {
             title: "index页面",
             filename: "index.html",
             template: "./src/assets/template.html",
-            chunks: ["vendor", "index"],
+            chunks: ["vendor", "common", "index"],
             hash: true
         }),
         new HtmlWebpackPlugin({
             title: "main页面",
             filename: "main.html",
             template: "./src/assets/template.html",
-            chunks: ["vendor", "main"],
+            chunks: ["vendor", "common", "main"],
             hash: true
         }),
         new HtmlWebpackPlugin({
             title: "other页面",
             filename: "other.html",
             template: "./src/assets/template.html",
-            chunks: ["vendor", "other"],
+            chunks: ["vendor", "common", "other"],
             hash: true
         })
     ],

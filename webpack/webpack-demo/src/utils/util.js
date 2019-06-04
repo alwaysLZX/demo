@@ -19,10 +19,6 @@ const util = {
         });
         return fd;
     },
-    // 是否是生产环境
-    isProduction() {
-        return process.env.NODE_ENV.toLocaleUpperCase() === "production".toLocaleUpperCase();
-    },
     // 获取元素的滚动高度
     getEleScrollHeight(ele) {
         let parentEle = ele.parentElement;

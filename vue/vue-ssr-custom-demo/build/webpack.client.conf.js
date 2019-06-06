@@ -1,9 +1,10 @@
 const webpack = require("webpack");
 const merge = require("webpack-merge");
-const baseConfig = require("./webpack.base.conf.js");
+const SWPrecachePlugin = require("sw-precache-webpack-plugin");
 const VueSSRClientPlugin = require("vue-server-renderer/client-plugin");
+const baseConfig = require("./webpack.base.conf.js");
 
-module.exports = merge(baseConfig, {
+const config = merge(baseConfig, {
     entry: {
         app: "./src/entry-client.js"
     },
@@ -38,32 +39,34 @@ module.exports = merge(baseConfig, {
     }
 });
 
-// if (process.env.NODE_ENV === 'production') {
-//     config.plugins.push(
-//       new SWPrecachePlugin({
-//         cacheId: 'vue-hn',
-//         filename: 'service-worker.js',
-//         minify: true,
-//         dontCacheBustUrlsMatching: /./,
-//         staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/],
-//         runtimeCaching: [
-//           {
-//             urlPattern: '/',
-//             handler: 'networkFirst'
-//           },
-//           {
-//             urlPattern: /\/(top|new|show|ask|jobs)/,
-//             handler: 'networkFirst'
-//           },
-//           {
-//             urlPattern: '/item/:id',
-//             handler: 'networkFirst'
-//           },
-//           {
-//             urlPattern: '/user/:id',
-//             handler: 'networkFirst'
-//           }
-//         ]
-//       })
-//     )
-//   }
+if (process.env.NODE_ENV === "production") {
+    config.plugins.push(
+        new SWPrecachePlugin({
+            cacheId: "vue-ssr-custom-demo",
+            filename: "service-worker.js",
+            minify: true,
+            dontCacheBustUrlsMatching: /./,
+            staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/],
+            runtimeCaching: [
+                {
+                    urlPattern: "/",
+                    handler: "networkFirst"
+                },
+                {
+                    urlPattern: /\/(top|new|show|ask|jobs)/,
+                    handler: "networkFirst"
+                },
+                {
+                    urlPattern: "/item/:id",
+                    handler: "networkFirst"
+                },
+                {
+                    urlPattern: "/user/:id",
+                    handler: "networkFirst"
+                }
+            ]
+        })
+    );
+}
+
+module.exports = config;

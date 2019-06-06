@@ -33,3 +33,7 @@ module.exports = {
 无奈同目录下还有个 `App.vue` 文件，所以引入的东西不是我想要的，报错了。
 
 没办法，锅还是自己的，自己扛。
+
+## 注意
+
+`mini-css-extract-plugin` 提取公共 `css` 的插件无法在server端运行。

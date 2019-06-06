@@ -52,11 +52,11 @@ const serve = (path, cache) =>
 
 app.use(compression({ threshold: 0 }));
 app.use(favicon("./public/favicon.ico"));
-// app.use(express.static(resolve("./dist")));
+app.use(serve("./dist", true));
 app.use("/dist", serve("./dist", true));
 app.use("/public", serve("./public", true));
-// app.use("/manifest.json", serve("./manifest.json", true));
-// app.use("/service-worker.js", serve("./dist/service-worker.js"));
+app.use("/manifest.json", serve("./manifest.json", true));
+app.use("/service-worker.js", serve("./dist/service-worker.js"));
 
 app.use(microcache.cacheSeconds(1, req => useMicroCache && req.originalUrl));
 

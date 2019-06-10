@@ -15,9 +15,11 @@ export function createStore() {
         },
         actions: {
             fetchItem({ commit }, id) {
-                setTimeout(() => {
-                    commit("setItem", { id: "1", item: { name: "蟹钳" } });
-                }, 1000);
+                return new Promise((resolve, reject) => {
+                    resolve({ name: "蟹钳" });
+                }).then(item => {
+                    commit("setItem", { id: id, item: item });
+                });
             }
         }
     });

@@ -2,7 +2,7 @@
 
 ## 革命尚未成功，同志仍需努力
 
-## 犯了一个错
+## 犯了一个错，`webpack.extensions` 问题
 
 在 `entry.client.js` 和 `entry.client.js` 这两个入口文件中，引入 app 构造器（即 `app.js` 文件）的时候，我是这样子写的：
 
@@ -36,4 +36,4 @@ module.exports = {
 
 ## 注意
 
-`mini-css-extract-plugin` 提取公共 `css` 的插件无法在server端运行。
+`mini-css-extract-plugin` 提取公共 `css` 的插件无法在 server 端运行。

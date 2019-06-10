@@ -7,8 +7,10 @@ const resolve = dir => path.join(__dirname, "..", dir);
 
 const config = {
     mode: isProduction ? "production" : "development",
+    devtool: isProduction ? false : "#cheap-module-source-map",
     output: {
         path: resolve("dist"),
+        publicPath: "/",
         chunkFilename: "[name].chunk.js"
     },
     module: {

@@ -123,8 +123,8 @@
             result.push("</table>");
             html = result.join("");
         }
-        html = html.replace(/\<a/, '<span style="color: #337ab7;"');
-        html = html.replace(/\<\/a>/, "</span>");
+        html = html.replace(/\<a/g, '<span style="color: #337ab7;"');
+        html = html.replace(/\<\/a>/g, "</span>");
         if (CONFIG.DEBUG) {
             console.log(html);
         }

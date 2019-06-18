@@ -1,6 +1,6 @@
 const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV === "production";
 const resolve = dir => path.join(__dirname, "..", dir);
@@ -26,11 +26,21 @@ const config = {
             },
             {
                 test: /\.css$/,
-                use: [isProduction ? MiniCssExtractPlugin.loader : "vue-style-loader", "css-loader", "postcss-loader"]
+                use: isProduction
+                    ? ExtractTextPlugin.extract({
+                          fallback: "vue-style-loader",
+                          use: ["css-loader", "postcss-loader"]
+                      })
+                    : ["vue-style-loader", "css-loader", "postcss-loader"]
             },
             {
                 test: /\.scss$/,
-                use: [isProduction ? MiniCssExtractPlugin.loader : "vue-style-loader", "css-loader", "postcss-loader", "sass-loader"]
+                use: isProduction
+                    ? ExtractTextPlugin.extract({
+                          fallback: "vue-style-loader",
+                          use: ["css-loader", "postcss-loader", "sass-loader"]
+                      })
+                    : ["vue-style-loader", "css-loader", "postcss-loader", "sass-loader"]
             },
             {
                 test: /.(png|jpg|gif)$/,
@@ -59,9 +69,9 @@ const config = {
 
 if (isProduction) {
     config.plugins.push(
-        new MiniCssExtractPlugin({
+        new ExtractTextPlugin({
             filename: "styles/[name].css",
-            chunkFilename: "styles/[name].chunk.css"
+            allChunks: true
         })
     );
 }

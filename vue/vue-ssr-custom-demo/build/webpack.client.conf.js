@@ -1,6 +1,6 @@
 const webpack = require("webpack");
 const merge = require("webpack-merge");
-const SWPrecachePlugin = require("sw-precache-webpack-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin");
 const VueSSRClientPlugin = require("vue-server-renderer/client-plugin");
 const baseConfig = require("./webpack.base.conf.js");
 
@@ -27,13 +27,6 @@ const config = merge(baseConfig, {
                     chunks: "all",
                     priority: 10
                 }
-                // common: {
-                //     name: "common",
-                //     test: /[\\/]src[\\/]/,
-                //     minSize: 1024,
-                //     chunks: "all",
-                //     priority: 5
-                // }
             }
         }
     }
@@ -41,28 +34,20 @@ const config = merge(baseConfig, {
 
 if (process.env.NODE_ENV === "production") {
     config.plugins.push(
-        new SWPrecachePlugin({
-            cacheId: "vue-ssr-custom-demo",
-            filename: "service-worker.js",
-            minify: true,
-            dontCacheBustUrlsMatching: /./,
-            staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/],
+        // 渐进式网络应用程序
+        new WorkboxPlugin.GenerateSW({
+            cacheId: "fz-cache-id",
+            swDest: "service-worker.js",
+            importWorkboxFrom: "cdn", // local cdn
+            importsDirectory: "sw",
+            precacheManifestFilename: "precache-manifest.[manifestHash].js",
+            clientsClaim: true,
+            skipWaiting: true,
+            // 运行时缓存
             runtimeCaching: [
                 {
-                    urlPattern: "/",
-                    handler: "networkFirst"
-                },
-                {
-                    urlPattern: /\/(top|new|show|ask|jobs)/,
-                    handler: "networkFirst"
-                },
-                {
-                    urlPattern: "/item/:id",
-                    handler: "networkFirst"
-                },
-                {
-                    urlPattern: "/user/:id",
-                    handler: "networkFirst"
+                    urlPattern: /\/f\/sys\/attach\/qrCode/,
+                    handler: "NetworkFirst"
                 }
             ]
         })

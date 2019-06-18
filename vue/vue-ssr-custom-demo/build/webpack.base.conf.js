@@ -2,8 +2,8 @@ const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const isProduction = process.env.NODE_ENV === "production";
 const resolve = dir => path.join(__dirname, "..", dir);
+const isProduction = process.env.NODE_ENV === "production";
 
 const config = {
     mode: isProduction ? "production" : "development",
@@ -49,7 +49,6 @@ const config = {
                         loader: "url-loader",
                         options: {
                             limit: 1024 * 10,
-                            context: resolve("./"),
                             name: "images/[name].[hash:8].[ext]"
                         }
                     }

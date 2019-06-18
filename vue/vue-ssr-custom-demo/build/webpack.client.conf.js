@@ -3,6 +3,7 @@ const merge = require("webpack-merge");
 const WorkboxPlugin = require("workbox-webpack-plugin");
 const VueSSRClientPlugin = require("vue-server-renderer/client-plugin");
 const baseConfig = require("./webpack.base.conf.js");
+const isProduction = process.env.NODE_ENV === "production";
 
 const config = merge(baseConfig, {
     entry: {
@@ -32,7 +33,7 @@ const config = merge(baseConfig, {
     }
 });
 
-if (process.env.NODE_ENV === "production") {
+if (isProduction) {
     config.plugins.push(
         // 渐进式网络应用程序
         new WorkboxPlugin.GenerateSW({

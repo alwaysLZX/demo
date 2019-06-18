@@ -1,12 +1,11 @@
 <template>
     <div>
-        <div>home {{ item }}</div>
+        <div>这是home页面，哈哈 {{ item }}</div>
         <router-link to="/">Home</router-link>
         <router-link to="/help">help</router-link>
         <router-link to="/about">about</router-link>
     </div>
 </template>
-
 <script>
 import util from "@/utils/util";
 export default {
@@ -23,8 +22,7 @@ export default {
     },
     created() {
         console.log(util.isProduction());
-    },
-    mounted() {}
+    }
 };
 </script>
 <style>

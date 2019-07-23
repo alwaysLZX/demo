@@ -1,17 +1,28 @@
-import json from "rollup-plugin-json";
-import resolve from "rollup-plugin-node-resolve";
-import babel from "rollup-plugin-babel";
+import alias from "rollup-plugin-alias";
+import replace from "rollup-plugin-replace";
+import buble from "rollup-plugin-buble";
+
+const banner = `/*Create By XieQian */`;
+
 export default {
     input: "src/main.js",
+    external: undefined,
     output: {
         file: "dist/bundle.js",
-        format: "cjs"
+        format: "es",
+        banner: banner,
+        name: "QIAN_XIE"
     },
     plugins: [
-        json(),
-        resolve(),
-        babel({
-            exclude: "node_modules/**" // 只编译我们的源代码
-        })
-    ]
+        alias({
+            resolve: [".js"]
+        }),
+        replace({
+            "process.env.NODE_ENV": JSON.stringify("production")
+        }),
+        buble()
+    ],
+    onwarn: (msg, warn) => {
+        warn(msg);
+    }
 };

@@ -16,7 +16,7 @@ export default {
     external: undefined,
     output: {
         file: "dist/bundle.js",
-        format: "iife",
+        format: "umd",
         banner: banner,
         name: "DEMO"
     },

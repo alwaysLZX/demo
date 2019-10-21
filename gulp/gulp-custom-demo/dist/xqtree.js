@@ -1,25 +1,63 @@
-"use strict";
+/*!
+ * demo v1.0.0
+ * (c) 2019-2019 Qian Xie
+ * Released under the MIT License.
+ */
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define('xqTree', factory) :
+  (global = global || self, global.xqTree = factory());
+}(this, function () { 'use strict';
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { if (i % 2) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } else { Object.defineProperties(target, Object.getOwnPropertyDescriptors(arguments[i])); } } return target; }
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-!function (global, factory) {
-  if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object' && typeof module !== 'undefined') {
-    module.exports = factory();
-  } else if (typeof define === 'function' && define.amd) {
-    define(factory);
-  } else {
-    global.xqTree = factory();
+    return obj;
   }
-}(window, function () {
-  // 默认配置
+
+  function _objectSpread(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      if (i % 2) {
+        var source = arguments[i] != null ? arguments[i] : {};
+        var ownKeys = Object.keys(source);
+
+        if (typeof Object.getOwnPropertySymbols === 'function') {
+          ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+            return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+          }));
+        }
+
+        ownKeys.forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(arguments[i]));
+      }
+    }
+
+    return target;
+  }
+
+  var util = {
+    getName: function getName() {
+      return "xieqian";
+    }
+  };
+
   var defaultConfig = {
     onClick: function onClick() {},
     onCheck: function onCheck() {}
-  }; // 默认节点对象
+  };
+  console.log(util.getName()); // 默认节点对象
 
   var defaultNode = {
     _id: "",
@@ -54,8 +92,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     return str.match(/\[object (.*?)\]/)[1].toLowerCase();
   };
 
-  ['Null', 'Undefined', 'Object', 'Array', 'String', 'Number', 'Boolean', 'Function', 'RegExp'].forEach(function (item) {
-    xqTree.type['is' + item] = function (obj) {
+  ["Null", "Undefined", "Object", "Array", "String", "Number", "Boolean", "Function", "RegExp"].forEach(function (item) {
+    xqTree.type["is" + item] = function (obj) {
       return xqTree.type(obj) === item.toLowerCase();
     };
   }); // 设置节点
@@ -429,5 +467,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       return ele;
     }
   };
+
   return xqTree;
-});
+
+}));

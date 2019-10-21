@@ -2,15 +2,17 @@
     <div>
         <h1 class="main-title">{{ msg }}</h1>
         <h2>{{ count }}</h2>
-        <router-view/>
+        <router-view />
     </div>
 </template>
 <script>
+import test from "./test.ts";
+
 export default {
     name: "app",
     data() {
         return {
-            msg: "知否？知否？应是绿肥红瘦！"
+            msg: "知否？知否？应是绿肥红瘦！" + test
         };
     },
     computed: {

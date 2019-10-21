@@ -6,7 +6,10 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .xqtree {
   color: #333;
@@ -24,6 +27,7 @@
 .xqtree-node ul {
   padding-left: 20px;
   overflow: hidden;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 .xqtree-node-checkbox {
@@ -35,6 +39,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 100%;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 .xqtree-node-checkbox-select-false {
@@ -79,6 +84,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 24px;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 .xqtree-node-switch-close {
@@ -92,4 +98,35 @@
   background-image: url(./images/open-close-select.png);
   background-image: url(./images/xqtree-sprites.png);
   background-position: 0px -100px;
+}
+.header {
+  width: 100%;
+  text-align: center;
+}
+.header .logo {
+  font-size: 20px;
+  font-weight: 700;
+}
+.header .logo .title {
+  line-height: 35px;
+  -webkit-transform: rotate(30deg);
+          transform: rotate(30deg);
+  background-size: 63px 100px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#e66465), to(#9198e5));
+  background-image: linear-gradient(#e66465, #9198e5);
+}
+::-webkit-input-placeholder {
+  color: gray;
+}
+::-moz-placeholder {
+  color: gray;
+}
+:-ms-input-placeholder {
+  color: gray;
+}
+::-ms-input-placeholder {
+  color: gray;
+}
+::placeholder {
+  color: gray;
 }

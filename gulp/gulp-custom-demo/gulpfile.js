@@ -4,8 +4,6 @@ const plugins = require("gulp-load-plugins")();
 const sass = require("gulp-sass");
 const postcss = require("gulp-postcss");
 const rollup = require("gulp-better-rollup");
-const ts = require("gulp-typescript");
-const tsProject = ts.createProject("tsconfig.json");
 const rollupConfig = require("./config/rollup.config");
 
 const postcssConfig = [require("autoprefixer")];
@@ -26,10 +24,14 @@ const reloadFunc = function() {
 };
 
 gulp.task("build:ts", function() {
-    return tsProject
-        .src()
-        .pipe(tsProject())
-        .js.pipe(gulp.dest("dist"));
+    gulp.src("src/*.ts", option)
+        .pipe(rollup(rollupConfig.arg1Ts, rollupConfig.arg2))
+        .pipe(plugins.rename(renameFunc))
+        .pipe(gulp.dest(dist))
+        .pipe(plugins.uglify())
+        .pipe(plugins.rename(renameMinFunc))
+        .pipe(gulp.dest(dist))
+        .pipe(reloadFunc());
 });
 
 gulp.task("build:js", function() {
@@ -104,6 +106,7 @@ gulp.task("build:asset", function() {
 
 gulp.task("watch", function() {
     gulp.watch("src/**/*.js", ["build:js"]);
+    gulp.watch("src/**/*.ts", ["build:ts"]);
     gulp.watch("src/**/*.scss", ["build:scss"]);
     gulp.watch("src/**/*.less", ["build:less"]);
     gulp.watch("src/**/*.html", ["build:html"]);
@@ -122,6 +125,6 @@ gulp.task("server", function() {
     });
 });
 
-gulp.task("release", ["build:js", "build:scss", "build:less", "build:html", "build:asset"]);
+gulp.task("release", ["build:ts", "build:js", "build:scss", "build:less", "build:html", "build:asset"]);
 
 gulp.task("default", ["release", "server", "watch"]);

@@ -1,0 +1,1 @@
+!function(){"use strict";var a,e={name:"123123"};a="aaa",console.log(e),a.toLowerCase().toUpperCase()}();

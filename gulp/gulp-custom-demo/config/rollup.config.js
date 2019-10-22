@@ -1,4 +1,5 @@
 const babel = require("rollup-plugin-babel");
+const rollupTypescript = require("rollup-plugin-typescript");
 const package = require("../package.json");
 const banner = `
 /*!
@@ -24,5 +25,9 @@ module.exports = {
     },
     arg2: {
         ...rollupConfig.output
+    },
+    arg1Ts: {
+        external: rollupConfig.external,
+        plugins: [rollupTypescript()]
     }
 };

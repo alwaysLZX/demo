@@ -4,112 +4,72 @@ const plugins = require("gulp-load-plugins")();
 const sass = require("gulp-sass");
 const postcss = require("gulp-postcss");
 const rollup = require("gulp-better-rollup");
-const babel = require("rollup-plugin-babel");
-const config = require("./config");
+const ts = require("gulp-typescript");
+const tsProject = ts.createProject("tsconfig.json");
+const rollupConfig = require("./config/rollup.config");
 
 const postcssConfig = [require("autoprefixer")];
-const option = {
-    base: "src"
-};
+const option = { base: "src" };
 const dist = __dirname + "/dist";
+const renameFunc = function(path) {
+    if (path.basename === "index") {
+        path.basename = "xqtree";
+    }
+};
+const renameMinFunc = function(path) {
+    path.basename += ".min";
+};
+const reloadFunc = function() {
+    return browserSync.reload({
+        stream: true
+    });
+};
+
+gulp.task("build:ts", function() {
+    return tsProject
+        .src()
+        .pipe(tsProject())
+        .js.pipe(gulp.dest("dist"));
+});
 
 gulp.task("build:js", function() {
     gulp.src("src/*.js", option)
-        .pipe(
-            rollup(
-                {
-                    plugins: [babel()]
-                },
-                {
-                    format: "iife",
-                    name: "xqTree",
-                    banner: config.banner
-                }
-            )
-        )
-        .pipe(
-            plugins.rename(function(path) {
-                if (path.basename === "index") {
-                    path.basename = "xqtree";
-                }
-            })
-        )
+        .pipe(rollup(rollupConfig.arg1, rollupConfig.arg2))
+        .pipe(plugins.rename(renameFunc))
         .pipe(gulp.dest(dist))
-        .pipe(
-            browserSync.reload({
-                stream: true
-            })
-        )
         .pipe(plugins.uglify())
-        .pipe(
-            plugins.rename(function(path) {
-                path.basename += ".min";
-            })
-        )
-        .pipe(gulp.dest(dist));
+        .pipe(plugins.rename(renameMinFunc))
+        .pipe(gulp.dest(dist))
+        .pipe(reloadFunc());
 });
 
 gulp.task("build:scss", function() {
     gulp.src("src/*.scss", option)
         .pipe(sass())
         .pipe(postcss(postcssConfig))
-        .pipe(
-            plugins.rename(function(path) {
-                if (path.basename === "index") {
-                    path.basename = "xqtree";
-                }
-            })
-        )
+        .pipe(plugins.rename(renameFunc))
         .pipe(gulp.dest(dist))
-        .pipe(
-            browserSync.reload({
-                stream: true
-            })
-        )
         .pipe(plugins.minifyCss())
-        .pipe(
-            plugins.rename(function(path) {
-                path.basename += ".min";
-            })
-        )
-        .pipe(gulp.dest(dist));
+        .pipe(plugins.rename(renameMinFunc))
+        .pipe(gulp.dest(dist))
+        .pipe(reloadFunc());
 });
 
 gulp.task("build:less", function() {
     gulp.src("src/*.less", option)
         .pipe(plugins.less())
         .pipe(postcss(postcssConfig))
-        .pipe(
-            plugins.rename(function(path) {
-                if (path.basename === "index") {
-                    path.basename = "xqtree";
-                }
-            })
-        )
+        .pipe(plugins.rename(renameFunc))
         .pipe(gulp.dest(dist))
-        .pipe(
-            browserSync.reload({
-                stream: true
-            })
-        )
         .pipe(plugins.minifyCss())
-        .pipe(
-            plugins.rename(function(path) {
-                path.basename += ".min";
-            })
-        )
-        .pipe(gulp.dest(dist));
+        .pipe(plugins.rename(renameMinFunc))
+        .pipe(gulp.dest(dist))
+        .pipe(reloadFunc());
 });
 
 gulp.task("build:html", function() {
     gulp.src("src/*.html", option)
-        .pipe(
-            plugins.rename(function(path) {
-                if (path.basename === "index") {
-                    path.basename = "xqtree";
-                }
-            })
-        )
+        .pipe(plugins.rename(renameFunc))
         .pipe(
             plugins.tap(function(file) {
                 var contents = file.contents.toString();
@@ -123,18 +83,10 @@ gulp.task("build:html", function() {
             })
         )
         .pipe(gulp.dest(dist))
-        .pipe(
-            browserSync.reload({
-                stream: true
-            })
-        )
         .pipe(plugins.minifyHtml())
-        .pipe(
-            plugins.rename(function(path) {
-                path.basename += ".min";
-            })
-        )
-        .pipe(gulp.dest(dist));
+        .pipe(plugins.rename(renameMinFunc))
+        .pipe(gulp.dest(dist))
+        .pipe(reloadFunc());
 });
 
 gulp.task("build:asset", function() {
@@ -147,18 +99,14 @@ gulp.task("build:asset", function() {
             })
         )
         .pipe(gulp.dest(dist))
-        .pipe(
-            browserSync.reload({
-                stream: true
-            })
-        );
+        .pipe(reloadFunc());
 });
 
 gulp.task("watch", function() {
-    gulp.watch("src/*.js", ["build:js"]);
-    gulp.watch("src/*.scss", ["build:scss"]);
-    gulp.watch("src/*.less", ["build:less"]);
-    gulp.watch("src/*.html", ["build:html"]);
+    gulp.watch("src/**/*.js", ["build:js"]);
+    gulp.watch("src/**/*.scss", ["build:scss"]);
+    gulp.watch("src/**/*.less", ["build:less"]);
+    gulp.watch("src/**/*.html", ["build:html"]);
     gulp.watch("src/images/**/*.?(png|jpg|gif|ico)", ["build:asset"]);
 });
 

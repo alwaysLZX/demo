@@ -1,5 +1,5 @@
 export default {
     getName() {
-        return "xieqian";
+        return "xieqian" + "我的天呀！!!!!";
     }
 };

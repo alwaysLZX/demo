@@ -25,8 +25,10 @@
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
     "gulp-tap": "^1.0.1",
+    "gulp-typescript": "^5.0.1",
     "gulp-uglify": "^3.0.1",
     "rollup": "^1.25.1",
-    "rollup-plugin-babel": "^4.3.3"
+    "rollup-plugin-babel": "^4.3.3",
+    "typescript": "^3.6.4"
   }
 }

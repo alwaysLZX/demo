@@ -1,6 +1,6 @@
-@import "./styles/reset";
-@import "./styles/variable";
-@import "./styles/mixin";
+@import "./less/reset";
+@import "./less/variable";
+@import "./less/mixin";
 
 // 行内元素水平居中
 .verticalCenter() {
@@ -49,20 +49,20 @@
         }
 
         &-checkbox-select-false {
-            background-image: url(./images/checkbox.png);
-            background-image: url(./images/xqtree-sprites.png);
+            background-image: url(../images/checkbox.png);
+            background-image: url(../images/xqtree-sprites.png);
             background-position: 0px 0px;
         }
 
         &-checkbox-select-part {
-            background-image: url(./images/checkbox-select-part.png);
-            background-image: url(./images/xqtree-sprites.png);
+            background-image: url(../images/checkbox-select-part.png);
+            background-image: url(../images/xqtree-sprites.png);
             background-position: 0px -48px;
         }
 
         &-checkbox-select-true {
-            background-image: url(./images/checkbox-select.png);
-            background-image: url(./images/xqtree-sprites.png);
+            background-image: url(../images/checkbox-select.png);
+            background-image: url(../images/xqtree-sprites.png);
             background-position: 0px -24px;
         }
 
@@ -78,8 +78,8 @@
                 color: @fontColorHover;
 
                 &~.xqtree-node-switch-close {
-                    background-image: url(./images/open-close-select.png);
-                    background-image: url(./images/xqtree-sprites.png);
+                    background-image: url(../images/open-close-select.png);
+                    background-image: url(../images/xqtree-sprites.png);
                     background-position: 0px -107px;
                 }
             }
@@ -102,15 +102,15 @@
 
         &-switch-close {
             background-position: 0 -11px;
-            background-image: url(./images/open-close.png);
-            background-image: url(./images/xqtree-sprites.png);
+            background-image: url(../images/open-close.png);
+            background-image: url(../images/xqtree-sprites.png);
             background-position: 0px -83px;
         }
 
         &-switch-open {
             background-position: 0 -4px;
-            background-image: url(./images/open-close-select.png);
-            background-image: url(./images/xqtree-sprites.png);
+            background-image: url(../images/open-close-select.png);
+            background-image: url(../images/xqtree-sprites.png);
             background-position: 0px -100px;
         }
     }

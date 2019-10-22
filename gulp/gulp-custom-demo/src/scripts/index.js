@@ -1,4 +1,4 @@
-import util from "./utils/util";
+import util from "./js/util";
 
 // 默认配置
 var defaultConfig = {

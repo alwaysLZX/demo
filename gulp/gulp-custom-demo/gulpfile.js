@@ -28,7 +28,7 @@ const reloadFunc = function() {
 };
 
 gulp.task("build:ts", function() {
-    gulp.src("src/*.ts", option)
+    gulp.src("src/scripts/*.ts", option)
         .pipe(rollup(rollupConfig.arg1Ts, rollupConfig.arg2))
         .pipe(plugins.rename(renameFunc))
         .pipe(plugins.rename(reExtFunc))
@@ -40,7 +40,7 @@ gulp.task("build:ts", function() {
 });
 
 gulp.task("build:js", function() {
-    gulp.src("src/*.js", option)
+    gulp.src("src/scripts/*.js", option)
         .pipe(rollup(rollupConfig.arg1, rollupConfig.arg2))
         .pipe(plugins.rename(renameFunc))
         .pipe(gulp.dest(dist))
@@ -51,7 +51,7 @@ gulp.task("build:js", function() {
 });
 
 gulp.task("build:scss", function() {
-    gulp.src("src/*.scss", option)
+    gulp.src("src/styles/*.scss", option)
         .pipe(sass())
         .pipe(postcss(postcssConfig))
         .pipe(plugins.rename(renameFunc))
@@ -63,7 +63,7 @@ gulp.task("build:scss", function() {
 });
 
 gulp.task("build:less", function() {
-    gulp.src("src/*.less", option)
+    gulp.src("src/styles/*.less", option)
         .pipe(plugins.less())
         .pipe(postcss(postcssConfig))
         .pipe(plugins.rename(renameFunc))
@@ -75,16 +75,16 @@ gulp.task("build:less", function() {
 });
 
 gulp.task("build:html", function() {
-    gulp.src("src/*.html", option)
+    gulp.src("src/htmls/*.html", option)
         .pipe(plugins.rename(renameFunc))
         .pipe(
             plugins.tap(function(file) {
                 var contents = file.contents.toString();
-                contents = contents.replace(/<link\s+rel="stylesheet"\s+href="(index.css)"\s+\/>/gi, function() {
-                    return '<link rel="stylesheet" href="xqtree.css"/>';
+                contents = contents.replace(/<link\s+rel="stylesheet"\s+href="(styles\/index.css)"\s+\/>/gi, function() {
+                    return '<link rel="stylesheet" href="styles/xqtree.css"/>';
                 });
-                contents = contents.replace(/<script\s+src="(index.js)"><\/script>/gi, function() {
-                    return '<script src="xqtree.js"></script>';
+                contents = contents.replace(/<script\s+src="(scripts\/index.js)"><\/script>/gi, function() {
+                    return '<script src="scripts/xqtree.js"></script>';
                 });
                 file.contents = new Buffer(contents);
             })
@@ -126,7 +126,7 @@ gulp.task("server", function() {
         port: 12,
         open: "external",
         host: "localhost",
-        index: "xqtree.html"
+        index: "htmls/xqtree.html"
     });
 });
 

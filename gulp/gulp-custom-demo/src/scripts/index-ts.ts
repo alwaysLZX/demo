@@ -1,4 +1,4 @@
-import util from "./scripts/ts/util";
+import util from "./ts/util";
 
 function testDemo(str: string) {
     console.log([1, 2, "123"].includes(str));

@@ -1,11 +1,12 @@
 const gulp = require("gulp");
 const browserSync = require("browser-sync");
-const plugins = require("gulp-load-plugins")();
 const sass = require("gulp-sass");
 const postcss = require("gulp-postcss");
 const rollup = require("gulp-better-rollup");
-const rollupConfig = require("./config/rollup.config");
+const del = require("del");
+const plugins = require("gulp-load-plugins")();
 
+const rollupConfig = require("./config/rollup.config");
 const postcssConfig = [require("autoprefixer")];
 const option = { base: "src" };
 const dist = __dirname + "/dist";
@@ -17,6 +18,9 @@ const renameFunc = function(path) {
 const renameMinFunc = function(path) {
     path.basename += ".min";
 };
+const reExtFunc = function(path) {
+    path.extname += ".js";
+};
 const reloadFunc = function() {
     return browserSync.reload({
         stream: true
@@ -27,6 +31,7 @@ gulp.task("build:ts", function() {
     gulp.src("src/*.ts", option)
         .pipe(rollup(rollupConfig.arg1Ts, rollupConfig.arg2))
         .pipe(plugins.rename(renameFunc))
+        .pipe(plugins.rename(reExtFunc))
         .pipe(gulp.dest(dist))
         .pipe(plugins.uglify())
         .pipe(plugins.rename(renameMinFunc))
@@ -123,6 +128,10 @@ gulp.task("server", function() {
         host: "localhost",
         index: "xqtree.html"
     });
+});
+
+gulp.task("clear", function(cb) {
+    del(["dist/**/*"], cb);
 });
 
 gulp.task("release", ["build:ts", "build:js", "build:scss", "build:less", "build:html", "build:asset"]);

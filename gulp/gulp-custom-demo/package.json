@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "树组件",
   "scripts": {
-    "dev": "gulp",
-    "build": "gulp release"
+    "dev": "gulp clear && gulp",
+    "build": "gulp clear && gulp release"
   },
   "keywords": [],
   "author": "",
